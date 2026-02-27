@@ -1,0 +1,1658 @@
+[
+  {
+    "id": 2,
+    "title": "Sum of Two Numbers",
+    "description": "Given two integers, return their sum.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 3,
+    "title": "Balanced Subarray Pairs",
+    "description": "Given an array of integers, you need to find the number of unique pairs of indices (i, j) where i < j such that the subarray from index i to j (inclusive) has an equal number of positive and negative integers. The array may contain zeros as well. If there are no such pairs, return 0. The subarray must be of even length (i.e., j - i + 1 must be even).",
+    "constraints": "{\"time\": \"2 seconds per test case\", \"memory\": \"256 MB\", \"N\": {\"min\": 1, \"max\": 100000}, \"array_elements\": {\"min\": -1000000000, \"max\": 1000000000}}",
+    "input_format": "The first line contains an integer N (1 ≤ N ≤ 10^5), the size of the array. The second line contains N space-separated integers, each between -10^9 and 10^9 (inclusive).",
+    "output_format": "An integer representing the number of valid pairs (i, j) that satisfy the condition."
+  },
+  {
+    "id": 4,
+    "title": "Optimal Robbery Strategy (Recursive DP)",
+    "description": "You are a thief planning to rob a series of houses arranged in a circular street. Each house has a certain amount of money stored inside, and adjacent houses have alerts—no two adjacent houses can be robbed in the linear (non-circular) case. However, in this circular arrangement, the first and last houses are also adjacent. Given the values of money in each house, determine the maximum amount of money you can rob without alerting the police by not robbing adjacent houses (including the first and last). Solve the problem using recursive dynamic programming, where you must define the state and write a function that reuses computed subproblems to make the solution efficient.",
+    "constraints": "`n` is between `1` and `100` inclusive. The value of each element in `money` is between `1` and `100` inclusive.",
+    "input_format": "An integer array `money` where `money[i]` is the money in the ith house in the circular street. The length of the array is `n`.",
+    "output_format": "An integer representing the maximum amount of money that can be robbed."
+  },
+  {
+    "id": 10,
+    "title": "Optimal Binary Search Tree (OBS) Construction",
+    "description": "Given a sequence of `n` integers `freq`, representing the frequency of each character in a sorted list of characters, and a sequence of `n` string keys `keys` representing a sorted list of keys, construct an **optimal binary search tree** (OBS) with the minimum search cost. The search cost of a tree is the sum of the frequencies of all keys multiplied by their depth.\n\nFor example, if you have keys `['a', 'c', 'd']` and frequencies `[10, 5, 1]`, the search cost of the tree where `a` is the root, `c` and `d` are children of `a` in order, and `c` has a child `d`, would be:\n- `a`: depth 1 → cost `10 * 1 = 10`\n- `c`: depth 2 → cost `5 * 2 = 10`\n- `d`: depth 3 → cost `1 * 3 = 3`\n\nTotal cost: `10 + 10 + 3 = 23`.\n\nWrite a function to return the minimum search cost among all possible binary search trees.\n\nConstraints:\n- `1 ≤ n ≤ 100`\n- `1 ≤ keys.length() ≤ 100`, `keys` is sorted in reverse dictionary order.\n- `freq[0] ≤ freq[1] ≤ ... ≤ freq[n-1]`, `0 ≤ keys[i].length() ≤ 10`\n\nExample:\n**Input:** `keys = [\"a\", \"c\", \"d\"]`, `freq = [10, 5, 1]`\n**Output:** `23`\n**Explanation:** The optimal binary search tree for the given keys and frequencies has a minimum search cost of `23`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 11,
+    "title": "Maximum Profit by Selling on Days with Stock Price Valuation",
+    "description": "You have given `n` days of stock price valuations in an array `prices[0..n-1]`, where `prices[i]` is the price of the stock on day `i`. You can sell the stock on **at most k** days, but **only one sell** per day is allowed. Additionally, you can only sell shares you already own. Each time you purchase shares, they are priced at `cost[i]`, and you must sell them on a future day.\n\nThe goal is to determine the **maximum profit** achievable by choosing **at most k** days to sell, given that you can buy and sell any number of shares on any day (occurrence of buy and sell operations should be optimized for maximum profit).\n\nConstraints:\n- `1 ≤ n ≤ 10,000`\n- `0 ≤ prices[i] ≤ 1,000,000`\n- `0 ≤ k ≤ 1000`\n\nExample:\n**Input:** `prices = [3, 2, 6, 5, 0, 3]`, `k = 2`\n**Output:** `8`\n**Explanation:** The optimal strategy is to buy at day `0` (price `3`), sell at day `2` (price `6`, profit `6-3=3`) then buy again at day `5` (price `3`) and sell on the same day as the price is `3`. But this is incorrect. The correct optimal strategy is to buy at day `2` (price `6`), sell at day `2` (profit `6-6=0`), buy at day `0` (price `0`), sell at day `2` (profit `6-0=6`) and buy at day `5` (price `3`), sell at day `5` (profit `0`). Incorrect.\n\n**Correct Approach:** Buy on day 2 (price 6), buy on day 5 with price 0, sell on day 2 (profit is 0 because you can’t sell future shares) — no, the correct approach is to make two independent buy-sell transactions:\n- Buy on day `0` (price `3`), sell on day `2` (price `6`, profit `6-3=3`)\n- Buy on day `5` (price `3`), sell on day `5` (but no future profit). Incorrect.\n\n**Revised Example:**\n**Input:** `prices = [3, 5, 0, 2, 6]`, `k = 2`\n**Output:** `9`\n**Explanation:** The profit can be maximized by:\n- Buy on day `0` (price `3`), sell on day `4` (price `6`, profit `6-3=3`)\n- Buy on day `1` (price `5`), sell on day `4` (price `6`, profit `6-5=1`)\n- Buy on day `2` (price `0`), sell on day `4` (price `6`, profit `6-0=6`).\n\n**Correct Output:** Buy on day `2` (price `0`), sell on day `4` (profit `6`), and buy again on day `0` (price `3`), sell on day `4` (profit `3`). Total profit: `9` (sum of `6` and `3`). However, this approach counts double sells. The correct DP solution involves tracking the min and max cumulative profits over ranges of `i` to `j`, with at most `k` transactions.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 12,
+    "title": "Detect a Cycle in an Undirected Graph",
+    "description": "Given an undirected graph represented by an adjacency list and a number of vertices **V** and edges **E**, write a function to determine if the graph contains a cycle. The graph may or may not be connected.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 13,
+    "title": "Find the Shortest Path in a Weighted Graph",
+    "description": "Given a weighted, undirected graph with **V** vertices and **E** edges, along with two distinct vertices **src** and **dest**, write a function to find the shortest path from **src** to **dest** using Dijkstra's algorithm.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 14,
+    "title": "Count Connected Components in an Undirected Graph",
+    "description": "Given an undirected, unweighted graph with **V** vertices and **E** edges, write a function to count the number of connected components (groups of nodes where each node is reachable from any other node within the same group).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 15,
+    "title": "Shortest Path in a Directed Acyclic Graph (DAG) with Negative Weights",
+    "description": "Given a directed acyclic graph (DAG) with V vertices and E edges, where each edge can have a negative weight. The task is to find the shortest path from a source node to all other nodes in the graph.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 16,
+    "title": "Detecting Cycles in a Graph with Backtracking",
+    "description": "Given a directed or undirected graph with V vertices and E edges, determine whether the graph contains any cycles. You must use a backtracking approach to traverse the graph, marking nodes as visited and checking for loop backs.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 17,
+    "title": "Minimum Spanning Tree (MST) with Prim's Algorithm",
+    "description": "Given an undirected connected graph with V vertices and E edges, and a weight for each edge, find the minimum spanning tree (MST) of the graph. The MST is a subset of the edges that connects all vertices together with the least total edge weight.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 24,
+    "title": "Palindrome Partitioning",
+    "description": "Given a string, determine if it can be partitioned into substrings such that each substring is a palindrome. Return the number of ways to partition the string. A string of length 1 or 0 is considered a palindrome.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 25,
+    "title": "Longest Substring Without Repeating Characters",
+    "description": "You are given a string, return the length of the longest substring that does not contain any repeating characters. The input string can contain both uppercase and lowercase letters as well as numbers.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 27,
+    "title": "First Unique Character in String",
+    "description": "Given a string, find and return the index of the first non-repeating character. Return -1 if there are no non-repeating characters. Consider only lowercase letters; the string may contain numbers or uppercase letters that should be ignored for this problem. For example, given the string `s`, return the index of the first lowercase letter that appears only once in the string.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 28,
+    "title": "Longest Palindromic Subsequence with Restrictions",
+    "description": "Given a string `S` and an array of forbidden indices `F`, find the length of the longest palindromic subsequence (not necessarily contiguous) that does **not** include any character at the indices in `F`. A subsequence is a sequence that can be derived from another sequence by deleting zero or more elements without changing the order of the remaining elements. A palindromic subsequence reads the same forwards and backwards.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 29,
+    "title": "Lexicographically Small Substring with K Distinct Characters",
+    "description": "Given a string `S` and an integer `K`, find the lexicographically smallest substring of `S` that contains **exactly** `K` distinct characters. A substring is a contiguous sequence of characters within a string. If no such substring exists, return an empty string.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 30,
+    "title": "Minimum Unique Substring for All Anagrams",
+    "description": "Given a string `S` consisting of lowercase letters, return the smallest substring `T` (by length) such that every anagram of any substring in `S` is a substring of `T`. An anagram is a rearrangement of letters in a string (e.g., 'cat' and 'tac'). The answer should be the lexicographically smallest substring of minimal length if more than one such substring exists.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 31,
+    "title": "Valid Parenthesis Sequence with Pairs",
+    "description": "Given a string `S` consisting of parentheses (i.e., '(', ')', '{', '}', '[' , ']') and an array of forbidden pairs `F`, determine if `S` is a valid parenthesis sequence where all opening parentheses must be matched with a corresponding closing parenthesis **not from the forbidden pairs**.** For example, if `{}` is forbidden, then `('{''}')` is invalid. Note that `F` only contains pairs like ['[',']'], and not individual characters.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 32,
+    "title": "Optimal String Splitting for Maximum Palindromes",
+    "description": "Given a string `S`, split it into two parts by removing **one contiguous substring** such that the resulting parts have the maximum possible sum of lengths of their longest palindromic subsequence (LPS). For example, removing a substring like 'aa' from 'aabaa' leaves 'abaa'. The LPS of 'abaa' is 'aaa' with length 3. The task is to maximize this total LPS length across all possible split operations. Return this maximum total length.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 48,
+    "title": "Subarray Sum Equals K",
+    "description": "Given an array of integers and an integer `k`, write a function to find the total number of continuous subarrays whose sum equals to `k`. A subarray is a contiguous part of the array. The solution should efficiently handle large input sizes.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 44,
+    "title": "Count Pairs with Given Sum",
+    "description": "Given an array of integers and a target sum, count how many pairs of numbers add up to the target. Pairs should consist of two distinct elements (i.e., indices must be different).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 45,
+    "title": "Merge Two Sorted Arrays",
+    "description": "Given two sorted arrays in ascending order, merge them into a single sorted array without using extra space for another array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 46,
+    "title": "Find the Pivot Index",
+    "description": "Given an array of integers `nums`, write a function to find the pivot index where the sum of all elements to the left of the index is equal to the sum of all elements to the right of the index. If no such index exists, return `-1`. The function should return the leftmost pivot index if there are multiple ones.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 47,
+    "title": "Longest Continuous Increasing Subsequence",
+    "description": "Given an unsorted array of integers, write a function to find the length of the longest continuous increasing subsequence (LCIS). A continuous increasing subsequence is a subsequence where each element is greater than the previous one by exactly 1. For example, `[1, 2, 3, 4, 5]` is a continuous increasing sequence, but `[1, 3, 5]` is not.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 49,
+    "title": "Reverse a String",
+    "description": "Write a function that reverses a given string. For example, 'hello' should return 'olleh'.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 50,
+    "title": "Count Vowels in a String",
+    "description": "Given a string, write a function that counts the number of vowels (a, e, i, o, u) present in it. The vowel count should be case-insensitive.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 51,
+    "title": "Check Palindrome",
+    "description": "Write a function that checks if a given string is a palindrome. A palindrome reads the same backward as forward (e.g., 'madam'). The function should ignore case and non-alphanumeric characters.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 52,
+    "title": "Find All Anagrams in a String",
+    "description": "Given two strings `s` and `p`, return an array of all the indices where the anagram of `p` occurs in `s`. An anagram is a string formed by rearranging the letters of another string, typically using all the original letters exactly once. For example, in `s = \"cbaebabacd\"`, `p = \"abc\"`, one anagram of `p` occurs at index `0` and another at index `6`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 53,
+    "title": "Group Anagrams",
+    "description": "Given an array of strings `strs`, group the anagrams together from the input list. An anagram is a word formed by rearranging the letters of another string, following the same order and all letters used exactly once. For instance, given `strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]`, return `[ [\"eat\", \"tea\", \"ate\"], [\"tan\", \"nat\"], [\"bat\"] ]`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 54,
+    "title": "Counting Steps to One",
+    "description": "Given a positive integer `n`, return the number of steps needed to reduce it to 1. In each step, if the current number is even, you can divide it by 2; if it is odd, you can subtract 1. Write a recursive solution without using a loop.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 59,
+    "title": "Balanced Parentheses",
+    "description": "Given a string of parentheses, determine if it is balanced. A string is balanced if every opening parenthesis '(' has a corresponding closing parenthesis ')'. Use a stack to solve this problem efficiently.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 60,
+    "title": "Basic Calculator",
+    "description": "Implement a basic calculator that can handle addition and subtraction operations with parentheses. The given string will only contain digits and '+', '-', '(', ')', '+' without any spaces.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 61,
+    "title": "Reverse Words in a String",
+    "description": "Given a stringcontaining spaces and multiple words, reverse each word in the string without altering the original positions of the words.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 64,
+    "title": "Evaluate Complex Expression with Parentheses Using Stack",
+    "description": "Given a string expression containing numbers, '+', '-', '*', '/', and '(', ')', process the expression using stacks to handle parentheses correctly. For example, \"3*(4-2)\" should return \"6\". The input is guaranteed to be a valid expression.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 65,
+    "title": "Basic Queue Operations",
+    "description": "Implement a queue using an array or list and perform basic operations like enqueue (add an element), dequeue (remove an element), front (get the front element), and isEmpty (check if the queue is empty). The queue should handle up to 100,000 elements efficiently.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 66,
+    "title": "Find Minimum Element in Sliding Window",
+    "description": "You are given an array of integers and a sliding window of size k. You need to return an array indicating the minimum element in each window of size k as it slides through the entire array. For example, for array [1, 3, -1, -3, 5, 3, 6, 7] and k = 3, output should be [-1, -3, -3, 3, 5].",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 67,
+    "title": "Reverse the First k Elements of a Queue",
+    "description": "Given a queue of integers and an integer k, reverse the first k elements of the queue. For example, if the queue is [10, 20, 30, 40, 50] and k = 3, the output should be [30, 20, 10, 40, 50].",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 68,
+    "title": "Find First and Last Position of Element in Sorted Array",
+    "description": "Given an array of integers nums sorted in ascending order, find the first and last positions of a given target value. Return them as an array where the first element is the first index and the second element is the last index of the target. If the target is not found in the array, return [-1, -1].",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 69,
+    "title": "Binary Search Implementation",
+    "description": "Implement binary search on a sorted array of integers. Given the array and a target value, return the index of the target if found, otherwise return -1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 70,
+    "title": "Pow(x, n) - Find Exponent",
+    "description": "Implement the function pow(x, n) to compute x raised to the power of n. Handle both positive and negative integer values of n efficiently.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 71,
+    "title": "Find Peak Element in Mountain Array",
+    "description": "Given an array of integers that is first strictly increasing and then strictly decreasing (a mountain array), find the peak element. An array is strictly increasing if each element is greater than the previous one, and strictly decreasing if each element is less than the previous one. The peak element is the element with the maximum value. Your solution must be in O(log n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 72,
+    "title": "Search in a Sorted 2D Matrix (II)",
+    "description": "Write an efficient algorithm that searches for a target value in an m x n integer matrix where rows and columns are sorted in ascending order. The algorithm should return true if the target exists in the matrix and false otherwise. The matrix is sorted in non-decreasing order both row-wise and column-wise. Your solution must be in O(m + n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 73,
+    "title": "Kth Smallest in Lexicographical Order",
+    "description": "Given a list of strings of the same length, find the kth smallest string in lexicographical order. The list is unsorted, and you can assume the strings are composed of lowercase English letters. Perform the operation in O(n log k) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 74,
+    "title": "Coin Change Problem",
+    "description": "Given an array of coin denominations and a target amount, find the minimum number of coins needed to make up the amount. You can use any combination of coins.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 75,
+    "title": "Fractional Knapsack",
+    "description": "Given weights and values of items, put these items in a knapsack of capacity W to get the maximum total value. You can break items into fractions.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 56,
+    "title": "Binary Search Using Recursion",
+    "description": "Implement a recursive binary search function to find the index of a target value in a sorted array. If the target is not present, return `-1`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 57,
+    "title": "Paschal's Triangle",
+    "description": "Generate the first n rows of Pascal's Triangle using recursion. Each row starts and ends with 1, and each inner element is the sum of the two elements directly above it from the previous row.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 62,
+    "title": "Reverse Characters in a String Using Stack",
+    "description": "Given a string, write a function to reverse each character in the given string using a stack. For example, 'hello' should become 'olleh'. The input string will only contain ASCII characters.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 63,
+    "title": "Minimum Add to Make Parentheses Valid Using Stack",
+    "description": "Given a string 'S' of '(' and ')' parentheses, return the minimum number of parentheses to add to make the string valid. A valid string is one where every opening parenthesis '(' has a corresponding closing parenthesis ')' and vice versa, in the correct order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 76,
+    "title": "Gas Station (Greedy Variant)",
+    "description": "Given a circular route with gas stations, each having a certain amount of gas and cost to travel to the next station, determine if a car can complete the circuit without stopping.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 77,
+    "title": "Fractional Knapsack Problem",
+    "description": "Given weights and values of `n` items, put these items in a knapsack of capacity `W` to get the maximum total value in the knapsack. You cannot break an item, so if an item doesn't fit completely, leave it behind.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 78,
+    "title": "Minimum Number of Platforms Needed for Trains",
+    "description": "Given arrival and departure times of all trains that reach a railway station, compute the minimum number of platforms needed such that no train waits for a platform at the station. Assume that all trains arrive on the same day and leave the same day.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 79,
+    "title": "Gas Station Tour with Optimal Stops",
+    "description": "You have a circular route defined by `n` gas stations, where `gas[i]` is the amount of gas available at station `i` and `cost[i]` is the cost to travel from station `i` to station `i+1`. Find the starting gas station index such that you can complete the entire journey without running out of gas. If no such station exists, return -1. Each station can be used at most once (except for refilling gas).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 80,
+    "title": "Climbing Stairs",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 81,
+    "title": "House Robber (Basic)",
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. Adjacent houses have security systems connected, and you cannot rob two adjacent houses. Given an array of non-negative integers `nums` representing the money in each house, return the maximum amount of money you can rob without alerting the police.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 82,
+    "title": "House Robber I",
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this street are arranged in a circle. That means the first house is adjacent to the last house, so you may not rob them both at the same time. Given an integer array `nums` representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police. The solution must be optimal.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 83,
+    "title": "Edit Distance (Levenshtein Distance)",
+    "description": "Given two strings, `str1` and `str2`, return the minimum number of operations required to convert `str1` into `str2`. You have the following operations at your disposal: insert a character, delete a character, or replace a character. Example: the edit distance between 'kitten' and 'sitting' is 3 ('k'-'s', 'e'-'i', insert 'g').",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 84,
+    "title": "Minimum Path Sum in a Grid",
+    "description": "Given a `m x n` grid filled with non-negative numbers, find a path from the top-left to the bottom-right corner which minimizes the sum of the numbers along its path. You can only move either right or down.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 85,
+    "title": "Count the Number of Edges in a Graph",
+    "description": "Given an undirected graph represented by an adjacency list, write a function to count the total number of edges in the graph.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 86,
+    "title": "DFS Traversal of Graph",
+    "description": "Given an undirected graph, perform a Depth-First Search (DFS) and return the traversal order as an array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 87,
+    "title": "BFS Traversal of Graph",
+    "description": "Given an undirected graph, perform a Breadth-First Search (BFS) and return the traversal order as an array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 88,
+    "title": "Number of Provinces",
+    "description": "Given an undirected graph representation of an island with `n` cities (nodes) and some bidirectional land routes (edges) between them, determine the number of provinces in the island. A province consists of a group of connected cities. The island is represented by the `isConnected` array where `isConnected[i][j] = true` if there is a direct route between city `i` and city `j`. The nodes are labeled from 0 to n-1. Return the number of distinct provinces the island is divided into.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 89,
+    "title": "Rotting Oranges",
+    "description": "You are given an `m x n` grid representing an orchard where `0` stands for an empty cell, `1` for a fresh orange, and `2` for a rotten orange. Each minute, any fresh orange that is adjacent to a rotten orange (up, down, left, or right) becomes rotten. Return the minimum number of minutes required to rot all fresh oranges, or `-1` if it's impossible. The adjacency of fresh oranges is considered in the four directions: top, bottom, left, and right.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 90,
+    "title": "Shortest Path with Alternating Colors",
+    "description": "Given an undirected graph with `n` nodes represented by the `edges` array, where each edge is bidirectional and has an associated positive color (either `1` or `2`). The input is given as `n`, `red_edges`, and `blue_edges`, where `red_edges` are edges with color `1` and `blue_edges` are edges with color `2`. Your task is to find the shortest path from node `0` to node `n-1` given that no two consecutive nodes in the path may have the same color. Return an integer representing the number of nodes in the path, or `-1` if no such path exists.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 91,
+    "title": "Find the Maximum Depth of a Binary Tree",
+    "description": "Given a binary tree, find its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 92,
+    "title": "Sum of Left Leaves",
+    "description": "Calculate the sum of all left leaves in a binary tree. A leaf is a node with no children. The left leaf is a left child of some node which is also a leaf.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 93,
+    "title": "Invert Binary Tree",
+    "description": "Invert a binary tree so that the left subtree becomes the right subtree and vice versa. The inversion should happen recursively for all nodes.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 94,
+    "title": "Check for Balanced Binary Tree",
+    "description": "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a tree such that the two subtrees of every node differ in height by no more than 1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 95,
+    "title": "Inorder Traversal of a Binary Tree Using Moris Traversal",
+    "description": "Given the root of a binary tree, return the inorder traversal of its nodes' values using Morris Traversal (without recursion and without using a stack).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 96,
+    "title": "Binary Tree Maximum Path Sum",
+    "description": "Given the root of a binary tree, return the maximum path sum of any path in the tree, where each node's value is considered exactly once. A path may start and end at any node.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 97,
+    "title": "Subset Sum Problem",
+    "description": "Given an array of integers, find whether a subset of those integers sums up to a given target value.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 98,
+    "title": "Generate All Valid IP Addresses",
+    "description": "Given a string containing only digits, return all possible valid IP addresses that can be formed by inserting three dots (.) into the string.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 99,
+    "title": "Maze Path Counting",
+    "description": "Given a maze of size m x n where each cell is either open (0) or blocked (1), count the number of all possible paths from the top-left to the bottom-right corner.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 100,
+    "title": "N-Queens II Problem",
+    "description": "Find the number of distinct solutions to the N-Queens problem, where N queens are placed on an N×N chessboard such that no two queens threaten each other. The solution count should not consider rotations or reflections as distinct.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 101,
+    "title": "Combination Sum with Constraints",
+    "description": "Given a list of integers (candidates) and a target sum, find all unique combinations where the candidate numbers sum to the target. Each number in candidates can be used an unlimited number of times. Ensure the solution set does not contain duplicate combinations.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 102,
+    "title": "Sliding Window Maximum",
+    "description": "Given an array of integers `nums` and an integer `k`, find the maximum value in each window of size `k` as you slide the window through the array from left to right. Return the results as an array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 103,
+    "title": "Check if a String Contains All Characters of Another String",
+    "description": "Given two strings `s` and `t`, determine if all characters of `t` are present in `s` (in any order). Return `True` if `t` is a subsequence of `s`, and `False` otherwise. Important: This is a different problem from checking if `s` contains `t` as a substring or in order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 104,
+    "title": "First Occurrence in a Sorted Array",
+    "description": "Given a sorted array `nums` of unique integers and a target integer `target`, find the first occurrence of `target` in `nums` using a sliding window approach. The array is rotated at some unknown pivot, but it still contains a single duplicate that does not affect the sliding window.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 105,
+    "title": "Maximum Sum Subarray of Size K",
+    "description": "Given an array of integers and a positive number k, find the maximum sum of any contiguous subarray of size k. The subarray can be any consecutive k elements in the array. Return the maximum sum found.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 106,
+    "title": "Merge Two Heaps",
+    "description": "Given two min-heaps, merge them into a single min-heap. You are allowed to assume that initially, the heaps are sorted and there is no overlapping between the two heaps.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 107,
+    "title": "Kth Largest Element in a Stream",
+    "description": "Design a class to find the kth largest element in a stream of numbers. The class should support two methods: `insert` and `get_kth_largest`. `insert` method accepts a number and stores it, `get_kth_largest` retrieves the kth largest element from the stored numbers.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 108,
+    "title": "Last Stone Weight",
+    "description": "You are given a list of non-negative integers representing the weights of stones. Each turn, you remove two stones with the smallest weights, smash them together to form a new stone with weight equal to their difference, and place the new stone back in the list. If the difference is zero, you discard the new stone. Repeat this process until no more stones can be smashed. Return the weight of the last remaining stone or 0 if there are no stones left.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 109,
+    "title": "Merge k Sorted Lists",
+    "description": "You are given an array of `k` linked-lists, each linked-list is sorted in ascending order. Merge all the linked-lists into a single sorted linked-list and return it.\nExample: \nInput: \nlists = [[1,4,5],[1,3,4],[2,6]]\nOutput: \n[1,1,2,3,4,4,5,6]",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 110,
+    "title": "Kth Largest Element in an Array",
+    "description": "Given an array `nums` and a positive integer `k`, find the `k`th largest element in the array.\nExample:\nInput: nums = [3,2,1,5,6,4], k = 2\nOutput: 5",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 111,
+    "title": "Find Median in a Stream of Integers",
+    "description": "Imagine a list of numbers where the numbers are added one by one. Design an algorithm to efficiently find the median at any given point after insertion.\nExample:\nInputs: \n[1,2,3,4,5]\nOutputs: \n1 (after adding 1)\n1.5 (after adding 2)\n2 (after adding 3)\n2.5 (after adding 4)\n3 (after adding 5)",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 112,
+    "title": "Find the Maximum and Minimum Element in an Array",
+    "description": "Given an unsorted array of integers, find the maximum and minimum elements in it. The array may contain both positive and negative integers. Return them as an array where the first element is the maximum and the second is the minimum.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 113,
+    "title": "Second Largest Element in an Array",
+    "description": "Given an unsorted array of integers, find the second largest element in it. If the array has fewer than two distinct elements, return -1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 114,
+    "title": "Reverse the Array",
+    "description": "Given an array of integers, reverse it in place (do not return a new array). For example, [1, 2, 3] should become [3, 2, 1].",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 115,
+    "title": "Maximum Subarray Sum",
+    "description": "Given an integer array `nums`, return the sum of the maximum subarray sum. A subarray is a contiguous part of the array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 116,
+    "title": "Reverse Pairs",
+    "description": "Given an array of integers `nums`, return the number of reverse pairs. A reverse pair is a pair of indices `(i, j)` where `0 ≤ i < j < nums.length` and `nums[i] > nums[j]`. You should implement a solution with `O(n log n)` time complexity, where `n` is the length of the array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 117,
+    "title": "Check for Palindrome",
+    "description": "Determine if a given string is a palindrome (reads the same backward as forward). Ignore case, spaces, and punctuation. For example, 'A man a plan a canal Panama' is a palindrome.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 118,
+    "title": "Find the First Unique Character",
+    "description": "Given a string, find the first non-repeating character and return its index. If no such character exists, return -1. For example, 'leetcode' should return 0 as 'l' appears first and only once.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 119,
+    "title": "Longest Palindromic Substring",
+    "description": "Given a string `s`, find the longest palindromic substring in it. A palindrome is a word or phrase that reads the same backward as forward, e.g., \"racecar\" or \"madam\". Return the longest substring that is a palindrome.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 120,
+    "title": "Factorial Calculation",
+    "description": "Write a recursive function to compute the factorial of a given non-negative integer `n`. The factorial of a number `n` is the product of all positive integers less than or equal to `n`. For example, `5! = 5 * 4 * 3 * 2 * 1 = 120`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 121,
+    "title": "Sum of Array Elements",
+    "description": "Given an array of integers, write a recursive function to find the sum of all elements in the array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 122,
+    "title": "Check if a Number is Even",
+    "description": "Write a recursive function to check whether a given integer `n` is even or not without using any arithmetic operators like `%`, `*`, or division.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 123,
+    "title": "Reverse a String Using Recursion",
+    "description": "Write a recursive function that reverses a given string. You cannot use any iterative methods like loops.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 124,
+    "title": "Fibonacci Sequence with Memoization",
+    "description": "Implement a recursive function to calculate the nth Fibonacci number using memoization to optimize performance and avoid recalculating the same values multiple times. The Fibonacci sequence is defined as: F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 125,
+    "title": "Count Paths in a Grid",
+    "description": "Given a grid of size m x n, return the number of unique paths from the top-left corner (0,0) to the bottom-right corner (m-1,n-1) where you can only move right or down. Both solution and explanation should avoid loops; instead, compute paths recursively.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 126,
+    "title": "Check for Balanced Parentheses",
+    "description": "Given a string containing only the characters '(', ')', '{', '}', '[', and ']', determine if the input string is valid. An input string is valid if open brackets are closed by the same type of brackets and in the correct order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 127,
+    "title": "Next Greater Element",
+    "description": "Given an integer array, for each element find the next greater element to its right. If there is no such element, return -1. For example, for the input array [4, 5, 2, 25], the output should be [5, -1, 25, -1] because for 4 the next greater element is 5, for 5 there is no next greater element, for 2 it is 25, and for 25 there is no next greater element to its right.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 128,
+    "title": "Reverse a String using a Stack",
+    "description": "Given a string, reverse it using a stack. For example, if the input string is \"Hello\", the output string should be \"olleH\".",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 129,
+    "title": "Remove Duplicate Letters",
+    "description": "Given a string `s`, return the lexicographically smallest substring containing all the distinct characters of `s`. Each character must appear only once in the result, and the result should be the shortest possible substring. If there is no solution, return an empty string.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 130,
+    "title": "Implement a Queue Using Stacks",
+    "description": "Implement a queue using two stacks. The `Queue` class should support the following operations: `push(x)` – adds an element `x` to the end of the queue, `pop()` – removes and returns the element from the front of the queue, and `peek()` – returns the element at the front of the queue without removing it. Ensure all operations are done in O(1) time complexity for `push` and `O(n)` for `pop` and `peek` where possible.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 131,
+    "title": "Interleave First and Second Half of a Queue",
+    "description": "Write a function to interleave the elements of a queue where its first half and second half are alternately placed. For example, if the input queue is `[1, 2, 3, 4, 5, 6]`, the output queue should be `[1, 5, 2, 6, 3, 4]`. The queue should contain an odd number of elements.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 132,
+    "title": "Generate Binary Numbers in a Queue",
+    "description": "Write a function to generate the first `N` binary numbers in a queue, where each number is produced by a given formula. Given a queue with an initial number (say `1`), generate the next `N-1` numbers by repeatedly taking two numbers from the front of the queue, removing them, and then adding a new number which is the sum of the two numbers. For example, if `N = 5` and the initial queue is `[1]`, the output should be `[1, 1, 2, 3, 5]`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 133,
+    "title": "Implement Queue using Stacks",
+    "description": "Implement a queue using two stacks. A queue is a First-In-First-Out (FIFO) data structure, while a stack is a Last-In-First-Out (LIFO) data structure. Your task is to create a queue-like structure with the following operations: enqueue(x), dequeue(), and peek(). Each operation should be performed in amortized O(1) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 134,
+    "title": "Circular Queue Implementation",
+    "description": "Design a circular queue that supports the following operations: enqueue(x), dequeue(), front(), rear(), and isEmpty(). The queue should operate efficiently (O(1) time complexity for each operation) and use additional space (extraDataSpace) to indicate the presence of elements in the queue when it is empty.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 135,
+    "title": "Task Scheduler (LeetCode 621)",
+    "description": "You have a series of tasks represented by characters (e.g., A, B, C, D) and cooldown intervals between them. Each task must be executed once, but tasks with the same character must be scheduled with at least `n` tasks between their executions. Return the least number of intervals needed to complete all tasks according to the rules.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 220,
+    "title": "Sliding Window - Smallest Subarray with Sum ≥ K",
+    "description": "Given an array of positive integers and a number K, find the smallest contiguous subarray whose sum is at least K.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 136,
+    "title": "Binary Search in Sorted Array",
+    "description": "Given a sorted array of integers and a target value, implement a function to return the index of the target in the array using binary search. If the target is not found, return -1. The array is guaranteed to be sorted in ascending order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 137,
+    "title": "Search Insert Position",
+    "description": "Given a sorted array of distinct integers and a target value, return the index where the target would be if it were inserted in order. If the target already exists in the array, return its index. The solution must use binary search with O(log n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 138,
+    "title": "Search in Rotated Sorted Array",
+    "description": "Given a sorted and possibly rotated array of integers, find the index of a target value if it exists. If not, return -1. Follow-up: What if there are duplicates in the array?",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 139,
+    "title": "Find Peak Element in a Bitonic Array",
+    "description": "Given a bitonic array (an array that first increases and then decreases), find the peak element. If the array has multiple peaks, return any of them. Assume the array is sorted in ascending order up to a certain point and then sorted in descending order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 140,
+    "title": "Closest Binary Search Value",
+    "description": "Given a non-empty array of unique integers and a target value, find the value in the array that is closest to the target. If there are multiple answers, return any of them.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 141,
+    "title": "Change Making Problem",
+    "description": "Given an infinite supply of coins of given denominations, find the minimum number of coins required to make up a certain amount. For example, coins of denominations [1, 2, 5] can make up 11 with 3 coins (5 + 5 + 1).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 142,
+    "title": "Jump Game",
+    "description": "You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position. Determine if you can reach the last index starting from the first. For example, nums = [2,3,1,1,4] returns true because you can reach the last index by jumping 2 -> 3 -> 1 -> 1 -> 4.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 143,
+    "title": "Minimum Platforms for Trains",
+    "description": "You are given the arrival and departure times of trains at a station. Your task is to find the minimum number of platforms required to accommodate all the trains so that no train waits. For example, arrival = [1, 4, 5], departure = [3, 6, 7] requires 2 platforms at peak times. Sort both arrays before starting.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 144,
+    "title": "Coin Change Problem (LeetCode - 322)",
+    "description": "You are given coins of different denominations and a total amount of money. Write a function to compute the fewest number of coins needed to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1. You may assume that you have an infinite number of each kind of coin (solved using greedy approach with constraints).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 145,
+    "title": "Minimum Number of Platforms Required for Train Schedule",
+    "description": "Given the arrival and departure times of trains at a platform, find the minimum number of platforms required to ensure no two trains are at the same platform at the same time. Your solution should efficiently compute this using a greedy approach.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 146,
+    "title": "Partition Array for Maximum Sum (LeetCode - 1043)",
+    "description": "Given an integer array nums, partition it into one or more continuous subarrays such that each subarray contains the maximum possible sum when the sum is multiplied by its length. Maximize the total sum obtained after partitioning. Use a greedy approach to find the optimal partition.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 147,
+    "title": "Climbing Stairs with Limited Steps",
+    "description": "You are climbing a staircase that has `n` steps. Each time you can climb either 1 step, 2 steps, or `k` steps. Find the number of distinct ways you can climb to the top of the staircase, having taken at least one step, such that you never skip more than `k` steps at a time.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 148,
+    "title": "Longest Increasing Subsequence with Cost",
+    "description": "You are given an array of integers `nums` where each element represents the cost of the sequence up to that index. You should find the length of the longest increasing subsequence such that the cost of every element in it is non-decreasing, i.e., each subsequent element's cost should be at least as much as the previous one. You can choose to extend an existing subsequence or start a new one with the current element.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 149,
+    "title": "Word Break with Limited Repetitions",
+    "description": "Given a string `s` and a dictionary of words `wordDict`, determine if `s` can be segmented into a space-separated sequence of one or more dictionary words such that each dictionary word appears at most `k` times. Return `true` if it is possible, otherwise return `false`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 150,
+    "title": "Count the Number of Islands",
+    "description": "Given a 2D grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 151,
+    "title": "Flood Fill",
+    "description": "An image is represented by a 2D grid of integers where each value represents the color of the pixel. Perform a flood fill starting at a given pixel (sr, sc) with a given new color. The flood fill should only change pixels connected to (sr, sc) horizontally or vertically.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 152,
+    "title": "Course Schedule II",
+    "description": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [a_i, b_i]` indicating that to take course `a_i`, you must have already taken course `b_i`. Each course is also labeled with one of `totalVisits` types of visits (represented as integers from `1` to `totalVisits`). Determine the order in which you can take all the `numCourses` courses such that all course prerequisites are satisfied and the courses are scheduled in the order of decreasing visit type. Return an array representing the valid course schedule. If it is impossible to complete the courses, return an empty array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 221,
+    "title": "Sliding Window - Find All Anagrams in a String",
+    "description": "Given a string S and a non-empty string P, find all the starting indices of P's anagrams in S.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 153,
+    "title": "Detect Cycles in an Undirected Graph",
+    "description": "Given a set of `n` nodes and a list of `undirectedEdges` representing edges between two nodes, determine if the graph contains a cycle. A cycle exists if you can start from a node and reach back to it by traversing some sequence of edges without revisiting any other node.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 154,
+    "title": "Shortest Path in Binary Matrix",
+    "description": "Given an `n x n` binary matrix where `0` represents an obstacle and `1` represents a walkable cell, find the shortest path length between the top-left corner `(0, 0)` and the bottom-right corner `(n - 1, n - 1)`. The path can only move down or right. If there is no path, return `-1`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 155,
+    "title": "Tree Node Construction from Level Order",
+    "description": "Given an array representing the level order traversal of a binary tree, construct the tree from the given array. If the array is empty, return an empty tree.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 156,
+    "title": "Check if Binary Tree is Symmetric",
+    "description": "Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around the root).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 157,
+    "title": "Count Nodes with Even Value in BST",
+    "description": "Given the root of a BST, return the number of nodes with even values. All nodes' values are unique.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 158,
+    "title": "Maximum Depth of Binary Tree",
+    "description": "Given the root of a binary tree, find its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 159,
+    "title": "Lowest Common Ancestor of a Binary Tree",
+    "description": "Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. The LCA is the lowest node in the tree that has both nodes as descendants (where a node can be a descendant of itself).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 160,
+    "title": "Subsets",
+    "description": "Given an integer array nums of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 161,
+    "title": "Generate Parentheses",
+    "description": "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. For example, if the input is 3, then the output should be all combinations of '()', '()()', '(())', etc.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 162,
+    "title": "Permutations of a String",
+    "description": "Given a string s, return all possible permutations of its characters including duplicates. For example, if the string is 'abc', return all permutations like 'abc', 'acb', 'bac', 'bca', 'cab', 'cba'.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 163,
+    "title": "Subset Sum II",
+    "description": "Given an array of integers `nums` that may contain duplicates, return all possible subsets (the power set) where the subset sum does not exceed a given target `T`. Ensure subsets are in non-decreasing order and without duplicates.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 164,
+    "title": "Word Search II",
+    "description": "Given a 2D board of characters and a list of words `words`, find all words that can be formed in the board by traversing adjacent cells (up, down, left, right) without reusing any cell in the same word. The words can start or end at any cell.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 165,
+    "title": "Fixed Size Sliding Window Maximum",
+    "description": "Given an array of integers `nums` and an integer `k`, find the maximum value in every sliding window of size `k` as it moves through the array from left to right. Ensure your solution efficiently handles the problem with O(n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 166,
+    "title": "Subarray Sums with Constraints",
+    "description": "Given an array of integers `nums` and an integer `k`, find the number of subarrays that sum up to `k`. Optimize your solution to avoid O(n^2) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 167,
+    "title": "Sliding Window Median",
+    "description": "Given an array of integers `nums` and an integer `k`, find the median value in every sliding window of size `k` as it moves through the array. Ensure your solution handles both even and odd window sizes.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 168,
+    "title": "Minimum Size Subarray Sum",
+    "description": "Given an array of positive integers `nums` and a positive integer `target`, return the minimum length of a contiguous subarray whose sum is greater than or equal to `target`. If there is no such subarray, return 0. Ensure the solution is O(n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 169,
+    "title": "Heapify Array",
+    "description": "Given an array of integers, convert it into a min-heap in-place. A min-heap is a complete binary tree where the value of each node is less than or equal to the values of its children.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 170,
+    "title": "Find Kth Largest Element in Array",
+    "description": "Given an array of integers and a positive integer k, find the kth largest element in the array using a max-heap. You need to return the kth largest element in the array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 171,
+    "title": "Merge K Sorted Lists using Max-Heap",
+    "description": "Given k sorted linked lists, merge them into a single sorted list using a max-heap. Return the merged list in ascending order.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 172,
+    "title": "Task Scheduler",
+    "description": "Given a char array containing tasks `tasks`, and an integer `n` representing the cooldown time between each task, return the least completion time needed to schedule all tasks.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 173,
+    "title": "Merge K Sorted Lists",
+    "description": "Given an array of `k` linked lists `lists`, each list is sorted in ascending order. Merge all the lists into one sorted list and return the merged list as a heap.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 174,
+    "title": "Reverse an Array",
+    "description": "Given an array, reverse it in-place. Return the reversed array without allocating any additional extra space.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 175,
+    "title": "Find the Maximum Consecutive Ones",
+    "description": "Given a binary array, find the maximum number of consecutive 1s in the array without using extra space for another array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 176,
+    "title": "Remove Duplicates from Sorted Array",
+    "description": "Given a sorted integer array, remove duplicates in-place such that each element appears only once and return the new length of the array. Do not allocate extra space for another array.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 177,
+    "title": "Find the Duplicate in an Array",
+    "description": "Given an array of integers from 1 to n (inclusive), with each integer appearing exactly once except for one integer that appears twice. Find the duplicate integer without using extra space (i.e., O(1) space complexity) and with O(n) time complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 178,
+    "title": "Next Permutation",
+    "description": "Implement the next permutation algorithm. You are given an array representing a permutation of numbers, and you need to find the next lexicographically greater permutation of the array. If such a permutation does not exist, return the lowest permutation (sorted in ascending order).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 179,
+    "title": "3Sum Closest",
+    "description": "Given an array of integers nums and a target integer target, find three integers in the array whose sum is closest to target. Return the sum of these three integers.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 180,
+    "title": "Palindrome Checker",
+    "description": "Given a string, determine if it is a palindrome (reads the same forwards and backwards). Ignore case and non-alphanumeric characters.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 181,
+    "title": "First Unique Character",
+    "description": "Given a string, find the first non-repeating (unique) character and return its index. If no unique character exists, return -1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 182,
+    "title": "Minimum Window Substring",
+    "description": "Given two strings 's' and 't', find the minimum window in 's' which will contain all characters of 't' (including duplicates). The characters in 't' may appear in any order in the window in 's'. If there are multiple valid answers, return the one with the smallest possible length.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 183,
+    "title": "Factorial of a Number",
+    "description": "Write a function that calculates the factorial of a given non-negative integer using recursion. The factorial of a number n is the product of all positive integers less than or equal to n, denoted by n!. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. Also, note that 0! = 1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 184,
+    "title": "Sum of Digits in a Number",
+    "description": "Write a recursive function that calculates the sum of all digits in a given positive integer. For example, the sum of digits in 1234 is 1 + 2 + 3 + 4 = 10.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 185,
+    "title": "Fibonacci Number",
+    "description": "The Fibonacci sequence is defined such that each number is the sum of the two preceding ones, starting from 0 and 1. That is, F(0) = 0, F(1) = 1, and F(n) = F(n-1) + F(n-2) for n > 1. Given an integer `n`, return the `n`-th Fibonacci number. Constraints: 0 <= n <= 30.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 186,
+    "title": "Reverse a String Using Stack",
+    "description": "Write a function that reverses a given string using a stack. You cannot use built-in reverse functions.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 187,
+    "title": "Check for Valid Palindrome",
+    "description": "Given a string `s`, determine if it is a valid palindrome using a stack. Ignore all non-alphanumeric characters and case sensitivity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 188,
+    "title": "Next Greater Element II",
+    "description": "Given a circular array (the next element of nums[nums.length - 1] is nums[0]), compute the next greater element for every element in the array. The next greater element for nums[i] is nums[j] where j > i (considering circular order) such that nums[i] < nums[j] and j is the smallest possible (or -1 if no such element exists).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 190,
+    "title": "Reverse a Queue",
+    "description": "Given a queue, reverse its elements using a stack data structure. For example, if the input queue is [1, 2, 3, 4, 5], the output should be [5, 4, 3, 2, 1].",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 191,
+    "title": "Queue Implement Using Two Stacks",
+    "description": "Implement a queue using two stacks. The queue should support standard operations like enqueue, dequeue, peek, and isEmpty. All operations should be as efficient as possible.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 192,
+    "title": "First Non-Repeating Character",
+    "description": "Given a string, find the first non-repeating character. Return its index. If no such character exists, return -1. For example, in 'leetcode', the first non-repeating character is 'l', so return 0. In 'loveleetcode', the first non-repeating character is 'v', so return 2.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 193,
+    "title": "Implement a Min Stack using Queue",
+    "description": "Design a min stack that supports push, pop, top, and retrieving the minimum element in O(1) time, using only a queue. The stack should also allow popping the minimum element from the stack in O(1) time.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 194,
+    "title": "Find the Median of the Stream using Queue",
+    "description": "Design a data structure to find the median of a stream of numbers dynamically. Implement the `MedianFinder` class: \n- `MedianFinder()` initializes an empty stream.\n- `addNum(int num)` adds a number to the stream.\n- `findMedian()` returns the median of the stream so far.\n\nThe median is the middle value in an ordered list of numbers. If the list has an even number of elements, return the average of the two middle elements. Use queues to achieve O(1) median finding after each insertion.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 195,
+    "title": "Find Peak Element",
+    "description": "Given an array of integers that may contain multiple peaks, find and return any index of a peak element. A peak element is an element greater than or equal to its neighbors. For instance, in [1, 2, 1, 3], both 2 and 3 are peak elements.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 196,
+    "title": "Search in a Sorted Circular Array",
+    "description": "Given a sorted and rotated array of integers (e.g., [4, 5, 6, 7, 0, 1, 2]) and a target value, find the index of the target element if it exists; otherwise, return -1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 197,
+    "title": "Kth Element of Two Sorted Arrays of Different Sizes",
+    "description": "Given two sorted arrays nums1 and nums2 of different sizes, write a function to find the kth smallest element in the union of the two arrays. You should minimize the number of comparisons within the arrays.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 198,
+    "title": "Activity Selection Problem",
+    "description": "You are given a set of activities where each has a start and end time. You want to select the maximum number of activities such that no two activities overlap.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 199,
+    "title": "Minimum Platforms Needed for Train Schedules",
+    "description": "Given the arrival and departure times of trains at a station, determine the minimum number of platforms required so that no train has to wait to depart (or arrive) due to lack of space. Each train has an arrival time and a departure time, and platforms cannot be shared by overlapping schedules.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 200,
+    "title": "Coin Change Problem (Minimum Number of Coins)",
+    "description": "Given an infinite supply of coins of given denominations, find the minimum number of coins needed to make up a target amount. The greedy approach of always taking the largest possible coin does not work for all denominations (e.g., coins = [1, 3, 4], target = 6). Solve it efficiently.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 201,
+    "title": "Climbing Stairs (Min Cost)",
+    "description": "You are given an integer array cost where cost[i] is the cost to climb to the ith step. Return the minimum cost to reach the top of the stairs (i.e., the cost to reach the nth step) where the stairs have exactly n steps.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 202,
+    "title": "Count Steps to One",
+    "description": "Given a non-negative integer num, return the number of steps to reduce it to one. In each step, you can either subtract one from num or divide num by some integer k (where k >= 2).",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 203,
+    "title": "House Robber",
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this street are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 204,
+    "title": "Longest Increasing Subsequence (LIS) with Indices",
+    "description": "Given an array of integers, find the length of the longest strictly increasing subsequence ending with a given index (e.g., ending at the last element). Return an array `result` where `result[i]` holds the length of the LIS ending at index `i`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 205,
+    "title": "Maximum Product Subarray",
+    "description": "Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest product. Return the maximum product.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 206,
+    "title": "Breadth-First Search (BFS) Traversal of a Graph",
+    "description": "Given an undirected graph represented using an adjacency list, perform a BFS traversal starting from node 0, and return the order of nodes visited.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 207,
+    "title": "Check if Two Nodes are Connected (BFS)",
+    "description": "Given an undirected graph and two nodes `u` and `v`, determine if there exists a path between them using BFS.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 208,
+    "title": "Detect Cycle in an Undirected Graph (DFS)",
+    "description": "Given an undirected graph, determine whether it contains a cycle using DFS. Return `true` if a cycle exists, otherwise `false`.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 209,
+    "title": "Detect Cycle in an Undirected Graph",
+    "description": "Given an undirected graph represented by an adjacency list and a number of vertices V, determine if there exists a cycle in the graph. A cycle is a path that starts and ends at the same vertex without repeating any edges or vertices.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 210,
+    "title": "Find All Paths from Source to Target in a DAG",
+    "description": "Given a Directed Acyclic Graph (DAG) with N nodes and M edges, find all possible paths from a source node (0) to a target node (N-1). Return the list of all paths.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 211,
+    "title": "Minimum Spanning Tree (Kruskal's Algorithm)",
+    "description": "Given a connected, undirected graph with N vertices and M edges, find the weight of the Minimum Spanning Tree (MST) using Kruskal's algorithm. Each edge has an associated weight.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 212,
+    "title": "Depth of Binary Tree",
+    "description": "Given the root of a binary tree, return its maximum depth. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 213,
+    "title": "Same Tree",
+    "description": "Given two binary trees, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and the nodes have the same values.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 214,
+    "title": "Path Sum",
+    "description": "Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum. If no such path exists, return false.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 215,
+    "title": "Combinations Sum",
+    "description": "Given an array of distinct integers `candidates` and a target integer `target`, return all possible combinations of integers in `candidates` that add up to `target`, where each number in `candidates` can be used an unlimited number of times in a combination, and the combinations should not contain duplicate numbers.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 216,
+    "title": "Generate All Possible Combinations",
+    "description": "Given a list of unique integers `nums` and an integer `k`, return all possible combinations of length `k` where the order of selection does not matter. The solution set should not contain duplicate combinations.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 217,
+    "title": "Subsets with Sum Constraints",
+    "description": "Given a list of integers `nums` and a target `sum`, return all subsets of `nums` that add up to `sum`. Each subset should be unique and the solution set should not contain duplicate subsets.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 218,
+    "title": "Generate N-Queens Solutions",
+    "description": "The N-Queens problem is to place `N` queens on an `N×N` chessboard such that no two queens attack each other. Given an integer `n`, return all distinct solutions to the N-Queens problem.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 219,
+    "title": "Sliding Window - Maximum Sum Subarray of Size K",
+    "description": "Given an array of integers and a number K, find the maximum sum of a contiguous subarray of size K.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 222,
+    "title": "Substring with Concatenation of All Words",
+    "description": "You are given a string 's' and an array of strings 'words'. All strings in 'words' are of the same length. Find all starting indices in 's' where a substring of 's' contains all the words in 'words' exactly once and in any order. Return the indices as an array of strings.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 223,
+    "title": "Min Heap Implementation",
+    "description": "Implement a Min Heap data structure with the following operations: insert, extract_min, and get_min. Ensure that your implementation adheres to the Min Heap property where the parent node is always smaller than or equal to its children.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 224,
+    "title": "Find Kth Smallest Element",
+    "description": "Given an array of integers, find the kth smallest element using a max heap. The heap should be adjusted so that only the k smallest elements are present, and then the root of the heap should be extracted.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 225,
+    "title": "Merge Sorted Arrays Using Heap",
+    "description": "Given two sorted arrays, merge them into a single sorted array in ascending order. Use a max heap to efficiently combine the two arrays into one sorted array. The problem should efficiently merge the arrays in O((n + m) log k) time complexity, where k is the number of smallest elements considered.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 226,
+    "title": "Kth Smallest Element in a Matrix",
+    "description": "Given a matrix `matrix` of size `n x n` with positive integers sorted row-wise and column-wise, return the `k-th` smallest element in the matrix. For example, if `matrix = [[1,5,9],[10,11,13],[12,13,15]]` and `k = 8`, the output should be `13`. Assess the solution for optimal time and space complexity.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 9,
+    "title": "Splitting the String into Balanced Substrings",
+    "description": "You are given a string `s` consisting of characters like `0` and `1`. Your task is to split `s` into **k** substrings such that each substring is **balanced**, i.e., the number of `1`s and `0`s in each substring is as equal as possible (absolute difference ≤ 1).\n\nA **balanced** substring can be either one of the following:\n- A string of length **1** (which is inherently balanced as there are no pairs of characters).\n- A string of length **2** containing one `1` and one `0`.\n- Any other string where the absolute difference between the number of `1`s and `0`s is at most `1`.\n\nReturn the **smallest possible length** of the longest substring among the substrings after the split. For example, if you split the string into substrings of lengths `[2, 3, 2]`, the answer is `3`.\n\nConstraints:\n- `1 ≤ k ≤ s.length() ≤ 1000`\n- `s` consists only of `'0'` and `'1'` characters.\n\nExample:\n**Input:** `s = \"0100110101\"`, `k = 3`\n**Output:** `3`\n**Explanation:** The string can be split into substrings of lengths `[2, 3, 2]`. The longest substring has length `3`, which is the smallest possible among all ways to split into `k` balanced substrings.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 23,
+    "title": "Balanced Brackets Checker",
+    "description": "Write a function to check if a given string of brackets is balanced. For example, given a string like `a(b(c)d)e`, the function should return true because all '(', '[', and '{' have corresponding closing brackets. The types of brackets can be nested and mixed, but they must be closed in the correct order. Consider the string to contain only these brackets and alphanumeric characters. The bracket types are: '(', ')', '[', ']', '{', '}'",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 43,
+    "title": "Find the Second Minimum Number in an Array",
+    "description": "Given an array of integers, find the second smallest number. If there is no second smallest number, return -1.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 55,
+    "title": "Fibonacci Sequence",
+    "description": "The Fibonacci sequence is defined as `fib(n) = fib(n - 1) + fib(n - 2)`, where `fib(0) = 0` and `fib(1) = 1`. Write a recursive function to return the `n`-th Fibonacci number.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 58,
+    "title": "Counting Subsequences in an Array",
+    "description": "Given an array of integers, write a function to count the number of subsequences that sum to a given target using recursion. A subsequence is a sequence that can be derived from the array by deleting zero or more elements without changing the order of the remaining elements.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 227,
+    "title": "Sum of Two Numbers",
+    "description": "Given two integers, return their sum.",
+    "constraints": null,
+    "input_format": null,
+    "output_format": null
+  },
+  {
+    "id": 228,
+    "title": "Find Whether a Number is Even or Odd",
+    "description": "Given an integer N, determine whether the number is even or odd.\n\nA number is considered even if it is divisible by 2 without any remainder. Otherwise, it is odd.\n\nPrint \"Even\" if the number is even, otherwise print \"Odd\".",
+    "constraints": "-10^9 ≤ N ≤ 10^9",
+    "input_format": "A single integer N.",
+    "output_format": "Print \"Even\" if N is even, otherwise print \"Odd\"."
+  },
+  {
+    "id": 229,
+    "title": "Count Subarrays With Exactly K Distinct Elements",
+    "description": "Given an integer array of size N and an integer K, count the number of contiguous subarrays that contain exactly K distinct integers.\nA subarray is a contiguous portion of the array.\nIf no such subarray exists, return 0.",
+    "constraints": "1 ≤ N ≤ 100000\n1 ≤ K ≤ N\n1 ≤ array[i] ≤ 10^9\nTime Limit: 2 seconds\nMemory Limit: 256 MB",
+    "input_format": "A single line containing:\nN K a1 a2 a3 ... aN\nN → size of array\nK → required number of distinct elements\na1 … aN → array elements",
+    "output_format": "Print a single integer — the number of valid subarrays."
+  }
+]

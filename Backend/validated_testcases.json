@@ -1,0 +1,1561 @@
+{
+  "problems": [
+    {
+      "id": 25,
+      "title": "Longest Substring Without Repeating Characters",
+      "is_validated": true,
+      "input_format": "The input is a single string `s`.",
+      "starter_code": {
+        "cpp": "#include <string>\n\nclass Solution {\npublic:\n    int lengthOfLongestSubstring(std::string s) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int lengthOfLongestSubstring(String s) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLongestSubstring = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 28,
+      "title": "Longest Palindromic Subsequence with Restrictions",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: `s`, a string, and `forbidden`, an array of integers representing the indices that are forbidden. If `forbidden` is empty, it should be treated as an empty array.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    /**\n     * @param s The input string\n     * @param forbidden The array of forbidden indices\n     * @return The length of the longest palindromic subsequence with restrictions\n     */\n    int longestPalindromeSubseqWithRestrictions(string s, vector<int>& forbidden) {\n        // Write your code here\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    /**\n     * @param s The input string\n     * @param forbidden The array of forbidden indices\n     * @return The length of the longest palindromic subsequence with restrictions\n     */\n    public int longestPalindromeSubseqWithRestrictions(String s, int[] forbidden) {\n        // Write your code here\n        return 0;\n    }\n}",
+        "python": "def longestPalindromeSubseqWithRestrictions(s: str, forbidden: list[int]) -> int:\n    # Write your code here\n    pass",
+        "javascript": "/**\n * @param {string} s\n * @param {number[]} forbidden\n * @return {number}\n */\nvar longestPalindromeSubseqWithRestrictions = function(s, forbidden) {\n    // Write your code here\n    \n};"
+      }
+    },
+    {
+      "id": 231,
+      "title": "Energy Jump Sequence",
+      "is_validated": true,
+      "input_format": "First line contains integer N — size of array\nSecond line contains N space-separated integers",
+      "starter_code": null
+    },
+    {
+      "id": 232,
+      "title": "Two Sum",
+      "is_validated": true,
+      "input_format": "First line contains integer N — size of array\nSecond line contains N space-separated integers\nThird line contains integer target",
+      "starter_code": null
+    },
+    {
+      "id": 14,
+      "title": "Count Connected Components in an Undirected Graph",
+      "is_validated": true,
+      "input_format": "The input is a list containing two elements: the number of vertices (V) and a list of edges. V is an integer representing the number of vertices in the graph, numbered from 0 to V-1. The list of edges is a list of lists, where each inner list represents an edge and contains two integers representing the vertices connected by that edge.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def countComponents(self, n: int, edges: list[list[int]]) -> int:\n        pass",
+        "javascript": "/**\n * @param {number} n\n * @param {number[][]} edges\n * @return {number}\n */\nvar countComponents = function(n, edges) {\n    \n};"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Minimum Spanning Tree (MST) with Prim's Algorithm",
+      "is_validated": true,
+      "input_format": "See problem description for details.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int minSpanningTree(int V, vector<vector<vector<int>>> adj) {\n        // code here\n        return 0;\n    }\n};\n",
+        "java": "class Solution {\n    public int minSpanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) {\n        // code here\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def min_spanning_tree(self, V: int, adj: list[list[list[int]]]) -> int:\n        pass\n",
+        "javascript": "/**\n * @param {number} V\n * @param {number[][][]} adj\n * @return {number}\n */\nvar minSpanningTree = function(V, adj) {\n    \n};\n"
+      }
+    },
+    {
+      "id": 27,
+      "title": "First Unique Character in String",
+      "is_validated": true,
+      "input_format": "The input is a single string `s`.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int firstUniqChar(string s) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int firstUniqChar(String s) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar firstUniqChar = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 30,
+      "title": "Minimum Unique Substring for All Anagrams",
+      "is_validated": true,
+      "input_format": "The function takes two strings as input: `s` (the main string) and `t` (the string to find anagrams of).",
+      "starter_code": {
+        "cpp": "#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string minUniqueSubstring(string s, string t) {\n        return \"\";\n    }\n};",
+        "java": "class Solution {\n    public String minUniqueSubstring(String s, String t) {\n        return \"\";\n    }\n}",
+        "python": "class Solution:\n    def minUniqueSubstring(self, s: str, t: str) -> str:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {string}\n */\nvar minUniqueSubstring = function(s, t) {\n    \n};"
+      }
+    },
+    {
+      "id": 31,
+      "title": "Valid Parenthesis Sequence with Pairs",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: a string `s` representing the parenthesis sequence and a list of string pairs `forbidden` representing the forbidden parenthesis pairs. For example: `s = \"()\", forbidden = []`",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    bool isValidParenthesisSequence(std::string s, std::vector<std::vector<std::string>>& forbidden) {\n        // Implement your solution here\n        return false;\n    }\n}",
+        "java": "class Solution {\n    /**\n     * @param String s\n     * @param String[][] forbidden\n     * @return boolean\n     */\n    public boolean isValidParenthesisSequence(String s, String[][] forbidden) {\n        // Implement your solution here\n        return false;\n    }\n}",
+        "python": "class Solution:\n    def isValidParenthesisSequence(self, s: str, forbidden: list[list[str]]) -> bool:\n        # Implement your solution here\n        return False",
+        "javascript": "/**\n * @param {string} s\n * @param {string[][]} forbidden\n * @return {boolean}\n */\nvar isValidParenthesisSequence = function(s, forbidden) {\n    // Implement your solution here\n    return false;\n};"
+      }
+    },
+    {
+      "id": 51,
+      "title": "Check Palindrome",
+      "is_validated": true,
+      "input_format": "The input is a single string `s`.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    bool isPalindrome(string s) {\n        return false;\n    }\n};",
+        "java": "class Solution {\n    public boolean isPalindrome(String s) {\n        return false;\n    }\n}",
+        "python": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindrome = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 53,
+      "title": "Group Anagrams",
+      "is_validated": true,
+      "input_format": "The input is a list of strings, represented as a string array (e.g., `[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]`).",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<string>> groupAnagrams(vector<string>& strs) {\n        return {};\n    }\n};",
+        "java": "import java.util.*;\n\nclass Solution {\n    public List<List<String>> groupAnagrams(String[] strs) {\n        return null;\n    }\n}",
+        "python": "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        pass",
+        "javascript": "/**\n * @param {string[]} strs\n * @return {string[][]} \n */\nvar groupAnagrams = function(strs) {\n    \n};"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Maximum Profit by Selling on Days with Stock Price Valuation",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: `prices`, an array of integers representing the stock prices on each day, and `k`, an integer representing the maximum number of sell days allowed.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, int k) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int maxProfit(int[] prices, int k) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def maxProfit(self, prices: list[int], k: int) -> int:\n        pass",
+        "javascript": "/**\n * @param {number[]} prices\n * @param {number} k\n * @return {number}\n */\nvar maxProfit = function(prices, k) {\n    \n};"
+      }
+    },
+    {
+      "id": 47,
+      "title": "Longest Continuous Increasing Subsequence",
+      "is_validated": true,
+      "input_format": "The input is a list of integers, represented as an array (nums).",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int findLengthOfLCIS(vector<int>& nums) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int findLengthOfLCIS(int[] nums) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def findLengthOfLCIS(self, nums: list[int]) -> int:\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findLengthOfLCIS = function(nums) {\n    \n};"
+      }
+    },
+    {
+      "id": 54,
+      "title": "Counting Steps to One",
+      "is_validated": true,
+      "input_format": "The input is a single positive integer `n`.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int numberOfSteps(int num) {\n        if (num == 1) {\n            return 0;\n        }\n        if (num % 2 == 0) {\n            return 1 + numberOfSteps(num / 2);\n        } else {\n            return 1 + numberOfSteps(num - 1);\n        }\n    }\n};",
+        "java": "class Solution {\n    public int numberOfSteps(int num) {\n        if (num == 1) {\n            return 0;\n        }\n        if (num % 2 == 0) {\n            return 1 + numberOfSteps(num / 2);\n        } else {\n            return 1 + numberOfSteps(num - 1);\n        }\n    }\n}",
+        "python": "class Solution:\n    def numberOfSteps(self, num: int) -> int:\n        if num == 1:\n            return 0\n        if num % 2 == 0:\n            return 1 + self.numberOfSteps(num // 2)\n        else:\n            return 1 + self.numberOfSteps(num - 1)",
+        "javascript": "/**\n * @param {number} num\n * @return {number}\n */\nvar numberOfSteps = function(num) {\n    if (num === 1) {\n        return 0;\n    }\n    if (num % 2 === 0) {\n        return 1 + numberOfSteps(num / 2);\n    } else {\n        return 1 + numberOfSteps(num - 1);\n    }\n};"
+      }
+    },
+    {
+      "id": 43,
+      "title": "Find the Second Minimum Number in an Array",
+      "is_validated": true,
+      "input_format": "The input is a single array of integers, `nums`. For example: `[5, 1, 4, 2, 3]`.",
+      "starter_code": {
+        "cpp": "#include <vector>\n\nclass Solution {\npublic:\n    int findSecondMinimum(std::vector<int>& nums) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int findSecondMinimum(int[] nums) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def findSecondMinimum(self, nums: list[int]) -> int:\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findSecondMinimum = function(nums) {\n    \n};"
+      }
+    },
+    {
+      "id": 228,
+      "title": "Find Whether a Number is Even or Odd",
+      "is_validated": true,
+      "input_format": "A single integer N.",
+      "starter_code": null
+    },
+    {
+      "id": 229,
+      "title": "Count Subarrays With Exactly K Distinct Elements",
+      "is_validated": true,
+      "input_format": "A single line containing:\nN K a1 a2 a3 ... aN\nN → size of array\nK → required number of distinct elements\na1 … aN → array elements",
+      "starter_code": null
+    },
+    {
+      "id": 227,
+      "title": "Sum of Two Numbers",
+      "is_validated": true,
+      "input_format": "See problem description for details.",
+      "starter_code": null
+    },
+    {
+      "id": 57,
+      "title": "Paschal's Triangle",
+      "is_validated": true,
+      "input_format": "The input is a single integer `n` representing the number of rows to generate in Pascal's Triangle.",
+      "starter_code": {
+        "cpp": "#include <vector>\n\nclass Solution {\npublic:\n    /**\n     * @param n The number of rows to generate in Pascal's Triangle.\n     * @return The last row of Pascal's Triangle with n rows.\n     */\n    std::vector<int> pascalsTriangle(int n) {\n        // Implement your solution here\n        return {};\n    }\n};",
+        "java": "class Solution {\n    /**\n     * @param n The number of rows to generate in Pascal's Triangle.\n     * @return The last row of Pascal's Triangle with n rows.\n     */\n    public List<Integer> pascalsTriangle(int n) {\n        // Implement your solution here\n        return null;\n    }\n}",
+        "python": "class Solution:\n    def pascalsTriangle(self, n: int) -> list[int]:\n        # Implement your solution here\n        pass",
+        "javascript": "/**\n * @param {number} n\n * @return {number[]} The last row of Pascal's Triangle with n rows.\n */\nvar pascalsTriangle = function(n) {\n    // Implement your solution here\n    \n};"
+      }
+    },
+    {
+      "id": 44,
+      "title": "Count Pairs with Given Sum",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: `nums`, an array of integers, and `target`, an integer representing the target sum.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    /**\n     * Given an array of integers and a target sum, count how many pairs of numbers add up to the target.\n     *\n     * @param nums   The input array of integers.\n     * @param target The target sum.\n     * @return The number of pairs that add up to the target.\n     */\n    int countPairs(vector<int>& nums, int target) {\n        // Write your code here\n        return 0;\n    }\n};",
+        "java": "import java.util.*;\nimport java.lang.*;\n\nclass Solution {\n    /**\n     * Given an array of integers and a target sum, count how many pairs of numbers add up to the target.\n     *\n     * @param nums   The input array of integers.\n     * @param target The target sum.\n     * @return The number of pairs that add up to the target.\n     */\n    public int countPairs(int[] nums, int target) {\n        // Write your code here\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def countPairs(self, nums: list[int], target: int) -> int:\n        # Write your code here\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar countPairs = function(nums, target) {\n    // Write your code here\n    \n};"
+      }
+    },
+    {
+      "id": 32,
+      "title": "Optimal String Splitting for Maximum Palindromes",
+      "is_validated": true,
+      "input_format": "The input is a single string `S` representing the string to be split.",
+      "starter_code": {
+        "cpp": "#include <string>\n\nclass Solution {\npublic:\n    int solve(std::string s) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    /**\n     * @param String s\n     * @return int\n     */\n    public int solve(String s) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def solve(self, s: str) -> int:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar solve = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 45,
+      "title": "Merge Two Sorted Arrays",
+      "is_validated": true,
+      "input_format": "The function takes two sorted integer arrays, `nums1` and `nums2`, and two integers, `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.  `nums1` has a length of `m + n`, where the first `m` elements are the elements to be merged, and the last `n` elements are initially 0 and should be overwritten with the merged result. `nums2` has a length of `n`.",
+      "starter_code": {
+        "cpp": "#include <vector>\n\nclass Solution {\npublic:\n    void merge(std::vector<int>& nums1, int m, std::vector<int>& nums2, int n) {\n        \n    }\n};",
+        "java": "class Solution {\n    public void merge(int[] nums1, int m, int[] nums2, int n) {\n        \n    }\n}",
+        "python": "class Solution:\n    def merge(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        pass",
+        "javascript": "/**\n * @param {number[]} nums1\n * @param {number} m\n * @param {number[]} nums2\n * @param {number} n\n * @return {void} Do not return anything, modify nums1 in-place instead.\n */\nvar merge = function(nums1, m, nums2, n) {\n    \n};"
+      }
+    },
+    {
+      "id": 46,
+      "title": "Find the Pivot Index",
+      "is_validated": true,
+      "input_format": "The input is a single array of integers named `nums`. For example: `[1, 7, 3, 6, 5, 6]`",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int pivotIndex(vector<int>& nums) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int pivotIndex(int[] nums) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def pivotIndex(self, nums: list[int]) -> int:\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar pivotIndex = function(nums) {\n    \n};"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Optimal Robbery Strategy (Recursive DP)",
+      "is_validated": true,
+      "input_format": "The input is a single array of integers named `nums`, where `nums[i]` represents the amount of money in the i-th house. The houses are arranged in a circle, meaning the first and last houses are adjacent.",
+      "starter_code": {
+        "python": "class Solution(object):\n    def rob(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar rob = function(nums) {\n    \n};"
+      }
+    },
+    {
+      "id": 49,
+      "title": "Reverse a String",
+      "is_validated": true,
+      "input_format": "The input is a single string `s`.",
+      "starter_code": {
+        "cpp": "#include <string>\n\nclass Solution {\npublic:\n    std::string reverseString(std::string s) {\n        \n    }\n};",
+        "java": "class Solution {\n    public String reverseString(String s) {\n        \n    }\n}",
+        "python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        ",
+        "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reverseString = function(s) {"
+      }
+    },
+    {
+      "id": 50,
+      "title": "Count Vowels in a String",
+      "is_validated": true,
+      "input_format": "The input is a single string.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int countVowels(string s) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    /**\n     * @param String s\n     * @return int\n     */\n    public int countVowels(String s) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def countVowels(self, s: str) -> int:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar countVowels = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 52,
+      "title": "Find All Anagrams in a String",
+      "is_validated": true,
+      "input_format": "The input is a JSON array containing two strings: `s` and `p`. For example, `[\"cbaebabacd\", \"abc\"]`.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findAnagrams(string s, string p) {\n        return {};\n    }\n};",
+        "java": "import java.util.List;\nimport java.util.ArrayList;\n\nclass Solution {\n    public List<Integer> findAnagrams(String s, String p) {\n        return new ArrayList<>();\n    }\n}",
+        "python": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> list[int]:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @param {string} p\n * @return {number[]} array of starting indices\n */\nvar findAnagrams = function(s, p) {\n    \n};"
+      }
+    },
+    {
+      "id": 58,
+      "title": "Counting Subsequences in an Array",
+      "is_validated": true,
+      "input_format": "See problem description for details.",
+      "starter_code": {
+        "cpp": "#include <vector>\n\nclass Solution {\npublic:\n    /**\n     * @param nums The input array of integers.\n     * @param target The target sum.\n     * @return The number of subsequences that sum to the target.\n     */\n    int countSubsequences(std::vector<int>& nums, int target) {\n        // Write your code here\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    /**\n     * @param nums The input array of integers.\n     * @param target The target sum.\n     * @return The number of subsequences that sum to the target.\n     */\n    public int countSubsequences(int[] nums, int target) {\n        // Write your code here\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def countSubsequences(self, nums: list[int], target: int) -> int:\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar countSubsequences = function(nums, target) {\n    \n};"
+      }
+    },
+    {
+      "id": 55,
+      "title": "Fibonacci Sequence",
+      "is_validated": true,
+      "input_format": "The input is an integer `n` representing the index of the Fibonacci number to be calculated.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int fib(int n) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int fib(int n) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def fib(self, n: int) -> int:\n        pass",
+        "javascript": "/**\n * @param {number} n\n * @return {number}\n */\nvar fib = function(n) {\n    \n};"
+      }
+    },
+    {
+      "id": 62,
+      "title": "Reverse Characters in a String Using Stack",
+      "is_validated": true,
+      "input_format": "The input is a single string.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <stack>\n#include <string>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    string reverseString(string s) {\n        stack<char> charStack;\n        for (char c : s) {\n            charStack.push(c);\n        }\n        string reversedString = \"\";\n        while (!charStack.empty()) {\n            reversedString += charStack.top();\n            charStack.pop();\n        }\n        return reversedString;\n    }\n};",
+        "java": "import java.util.Stack;\n\nclass Solution {\n    public String reverseString(String s) {\n        Stack<Character> stack = new Stack<>();\n        for (char c : s.toCharArray()) {\n            stack.push(c);\n        }\n        StringBuilder reversedString = new StringBuilder();\n        while (!stack.isEmpty()) {\n            reversedString.append(stack.pop());\n        }\n        return reversedString.toString();\n    }\n}",
+        "python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        stack = []\n        for char in s:\n            stack.append(char)\n        reversed_string = ''\n        while stack:\n            reversed_string += stack.pop()\n        return reversed_string",
+        "javascript": "/**\n * @param {string} s\n * @return {string}\n */\nvar reverseString = function(s) {\n    const stack = [];\n    for (let char of s) {\n        stack.push(char);\n    }\n    let reversedString = '';\n    while (stack.length > 0) {\n        reversedString += stack.pop();\n    }\n    return reversedString;\n};"
+      }
+    },
+    {
+      "id": 63,
+      "title": "Minimum Add to Make Parentheses Valid Using Stack",
+      "is_validated": true,
+      "input_format": "The input is a single string 's' consisting of '(' and ')' characters.",
+      "starter_code": {
+        "cpp": "#include <string>\n\nclass Solution {\npublic:\n    int minAddToMakeValid(std::string s) {\n        return 0;\n    }\n};",
+        "java": "class Solution {\n    public int minAddToMakeValid(String s) {\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def minAddToMakeValid(self, s: str) -> int:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar minAddToMakeValid = function(s) {\n    \n};"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Optimal Binary Search Tree (OBS) Construction",
+      "is_validated": true,
+      "input_format": "The input consists of a list of strings `keys` and a list of integers `freq`. The `keys` list represents the sorted keys, and the `freq` list represents the corresponding frequencies of the keys. Both lists have the same length `n`, where `1 <= n <= 100`. The keys are sorted in reverse dictionary order, and the frequencies are sorted in non-decreasing order.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int optimalBST(vector<string>& keys, vector<int>& freq) {\n        int n = keys.size();\n        vector<vector<int>> dp(n, vector<int>(n, 0));\n\n        for (int i = 0; i < n; i++) {\n            dp[i][i] = freq[i];\n        }\n\n        for (int length = 2; length <= n; length++) {\n            for (int i = 0; i <= n - length; i++) {\n                int j = i + length - 1;\n                dp[i][j] = INT_MAX;\n                int sumFreq = 0;\n                for (int k = i; k <= j; k++) {\n                    sumFreq += freq[k];\n                }\n\n                for (int k = i; k <= j; k++) {\n                    int cost = (k > i ? dp[i][k - 1] : 0) + (k < j ? dp[k + 1][j] : 0) + sumFreq;\n                    dp[i][j] = min(dp[i][j], cost);\n                }\n            }\n        }\n\n        return dp[0][n - 1];\n    }\n};",
+        "java": "class Solution {\n    public int optimalBST(String[] keys, int[] freq) {\n        int n = keys.length;\n        int[][] dp = new int[n][n];\n\n        for (int i = 0; i < n; i++) {\n            dp[i][i] = freq[i];\n        }\n\n        for (int length = 2; length <= n; length++) {\n            for (int i = 0; i <= n - length; i++) {\n                int j = i + length - 1;\n                dp[i][j] = Integer.MAX_VALUE;\n                int sumFreq = 0;\n                for (int k = i; k <= j; k++) {\n                    sumFreq += freq[k];\n                }\n\n                for (int k = i; k <= j; k++) {\n                    int cost = (k > i ? dp[i][k - 1] : 0) + (k < j ? dp[k + 1][j] : 0) + sumFreq;\n                    dp[i][j] = Math.min(dp[i][j], cost);\n                }\n            }\n        }\n\n        return dp[0][n - 1];\n    }\n}",
+        "python": "class Solution:\n    def optimalBST(self, keys: list[str], freq: list[int]) -> int:\n        n = len(keys)\n        dp = [[0] * n for _ in range(n)]\n        \n        for i in range(n):\n            dp[i][i] = freq[i]\n        \n        for length in range(2, n + 1):\n            for i in range(n - length + 1):\n                j = i + length - 1\n                dp[i][j] = float('inf')\n                sum_freq = sum(freq[i:j+1])\n                \n                for k in range(i, j + 1):\n                    cost = (dp[i][k-1] if k > i else 0) + (dp[k+1][j] if k < j else 0) + sum_freq\n                    dp[i][j] = min(dp[i][j], cost)\n        \n        return dp[0][n-1]",
+        "javascript": "/**\n * @param {string[]} keys\n * @param {number[]} freq\n * @return {number}\n */\nvar optimalBST = function(keys, freq) {\n    const n = keys.length;\n    const dp = Array(n).fill(null).map(() => Array(n).fill(0));\n\n    for (let i = 0; i < n; i++) {\n        dp[i][i] = freq[i];\n    }\n\n    for (let length = 2; length <= n; length++) {\n        for (let i = 0; i <= n - length; i++) {\n            let j = i + length - 1;\n            dp[i][j] = Infinity;\n            let sumFreq = 0;\n            for (let k = i; k <= j; k++) {\n                sumFreq += freq[k];\n            }\n\n            for (let k = i; k <= j; k++) {\n                const cost = (k > i ? dp[i][k - 1] : 0) + (k < j ? dp[k + 1][j] : 0) + sumFreq;\n                dp[i][j] = Math.min(dp[i][j], cost);\n            }\n        }\n    }\n\n    return dp[0][n - 1];\n};"
+      }
+    },
+    {
+      "id": 13,
+      "title": "Find the Shortest Path in a Weighted Graph",
+      "is_validated": true,
+      "input_format": "The input consists of four arguments: V (an integer representing the number of vertices), edges (a list of lists, where each inner list represents an edge in the format [u, v, w], where u and v are the vertices connected by the edge and w is the weight of the edge), src (an integer representing the source vertex), and dest (an integer representing the destination vertex).",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <limits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int shortestPath(int V, vector<vector<int>>& edges, int src, int dest) {\n        vector<vector<pair<int, int>>> adj(V);\n        for (auto& edge : edges) {\n            int u = edge[0];\n            int v = edge[1];\n            int w = edge[2];\n            adj[u].push_back({v, w});\n            adj[v].push_back({u, w});\n        }\n\n        vector<int> dist(V, numeric_limits<int>::max());\n        dist[src] = 0;\n\n        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;\n        pq.push({0, src});\n\n        while (!pq.empty()) {\n            int d = pq.top().first;\n            int u = pq.top().second;\n            pq.pop();\n\n            if (d > dist[u]) {\n                continue;\n            }\n\n            for (auto& neighbor : adj[u]) {\n                int v = neighbor.first;\n                int weight = neighbor.second;\n                if (dist[v] > dist[u] + weight) {\n                    dist[v] = dist[u] + weight;\n                    pq.push({dist[v], v});\n                }\n            }\n        }\n\n        return dist[dest] == numeric_limits<int>::max() ? -1 : dist[dest];\n    }\n};",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int shortestPath(int V, List<List<Integer>> edges, int src, int dest) {\n        List<List<Pair>> adj = new ArrayList<>();\n        for (int i = 0; i < V; i++) {\n            adj.add(new ArrayList<>());\n        }\n\n        for (List<Integer> edge : edges) {\n            int u = edge.get(0);\n            int v = edge.get(1);\n            int w = edge.get(2);\n            adj.get(u).add(new Pair(v, w));\n            adj.get(v).add(new Pair(u, w));\n        }\n\n        int[] dist = new int[V];\n        Arrays.fill(dist, Integer.MAX_VALUE);\n        dist[src] = 0;\n\n        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.distance));\n        pq.add(new Pair(src, 0));\n\n        while (!pq.isEmpty()) {\n            Pair curr = pq.poll();\n            int u = curr.node;\n            int d = curr.distance;\n\n            if (d > dist[u]) {\n                continue;\n            }\n\n            for (Pair neighbor : adj.get(u)) {\n                int v = neighbor.node;\n                int weight = neighbor.distance;\n                if (dist[v] > dist[u] + weight) {\n                    dist[v] = dist[u] + weight;\n                    pq.add(new Pair(v, dist[v]));\n                }\n            }\n        }\n\n        return dist[dest] == Integer.MAX_VALUE ? -1 : dist[dest];\n    }\n\n    static class Pair {\n        int node;\n        int distance;\n\n        public Pair(int node, int distance) {\n            this.node = node;\n            this.distance = distance;\n        }\n    }\n}",
+        "python": "import heapq\n\nclass Solution:\n    def shortestPath(self, V, edges, src, dest):\n        adj = [[] for _ in range(V)]\n        for u, v, w in edges:\n            adj[u].append((v, w))\n            adj[v].append((u, w))\n\n        dist = [float('inf')] * V\n        dist[src] = 0\n        pq = [(0, src)]\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            if d > dist[u]:\n                continue\n\n            for v, weight in adj[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    heapq.heappush(pq, (dist[v], v))\n\n        if dist[dest] == float('inf'):\n            return -1\n        return dist[dest]",
+        "javascript": "class Solution {\n    /**\n     * @param {number} V\n     * @param {number[][]} edges\n     * @param {number} src\n     * @param {number} dest\n     * @return {number}\n     */\n    shortestPath(V, edges, src, dest) {\n        const adj = Array(V).fill(null).map(() => []);\n        for (const [u, v, w] of edges) {\n            adj[u].push([v, w]);\n            adj[v].push([u, w]);\n        }\n\n        const dist = Array(V).fill(Infinity);\n        dist[src] = 0;\n        const pq = [[0, src]]; // [distance, node]\n\n        while (pq.length > 0) {\n            pq.sort((a, b) => a[0] - b[0]); // Sort by distance\n            const [d, u] = pq.shift();\n\n            if (d > dist[u]) {\n                continue;\n            }\n\n            for (const [v, weight] of adj[u]) {\n                if (dist[v] > dist[u] + weight) {\n                    dist[v] = dist[u] + weight;\n                    pq.push([dist[v], v]);\n                }\n            }\n        }\n\n        return dist[dest] === Infinity ? -1 : dist[dest];\n    }\n}"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Shortest Path in a Directed Acyclic Graph (DAG) with Negative Weights",
+      "is_validated": true,
+      "input_format": "The input is a list of lists representing the edges of the directed acyclic graph (DAG). The first element of the outer list is the number of vertices, V. Each subsequent element of the outer list represents an edge, where the first element of the inner list is the source vertex, the second element is the destination vertex, and the third element is the weight of the edge. The source node is assumed to be 0. The function takes the number of vertices V (integer) and a list of edges (list of lists of integers) as input.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n#include <limits>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    /**\n     * Finds the shortest path from node 0 to node V-1 in a DAG.\n     *\n     * @param V     The number of vertices in the DAG.\n     * @param edges A vector of edges, where each edge is represented as {source, destination, weight}.\n     * @return The shortest path from node 0 to node V-1, or numeric_limits<int>::max() if no path exists.\n     */\n    int shortestPathDAG(int V, vector<vector<int>>& edges) {\n        // code here\n        return 0;\n    }\n};",
+        "java": "import java.util.*;\nimport java.lang.*;\n\nclass Solution {\n    /**\n     * Finds the shortest path from node 0 to node V-1 in a DAG.\n     *\n     * @param V     The number of vertices in the DAG.\n     * @param edges A list of edges, where each edge is represented as [source, destination, weight].\n     * @return The shortest path from node 0 to node V-1, or Integer.MAX_VALUE if no path exists.\n     */\n    public int shortestPathDAG(int V, List<List<Integer>> edges) {\n        // code here\n        return 0;\n    }\n}",
+        "python": "class Solution:\n    def shortestPathDAG(self, V: int, edges: list[list[int]]) -> int:\n        # code here",
+        "javascript": "/**\n * @param {number} V\n * @param {number[][]} edges\n * @return {number}\n */\nconst shortestPathDAG = function(V, edges) {\n    // code here\n};"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Splitting the String into Balanced Substrings",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: `s`, a string consisting of '0' and '1' characters, and `k`, an integer representing the number of substrings to split `s` into.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int splitString(string s, int k) {\n        int n = s.length();\n\n        // Helper function to check if we can split the string into at most k substrings\n        // with the maximum length of each substring being maxLen.\n        // Note: This implementation does not check for balanced substrings.\n        // It only checks if the string can be split into k substrings with max length maxLen.\n        // A more complex implementation would be needed to check for balanced substrings.\n\n        // This is a placeholder implementation. A full solution would require\n        // checking if each substring is balanced.\n\n        int left = 1, right = n;\n        int ans = n;\n        while (left <= right) {\n            int mid = (left + right) / 2;\n            int count = 0;\n            int i = 0;\n            while (i < n) {\n                i += mid;\n                count++;\n            }\n            if (count <= k) {\n                ans = mid;\n                right = mid - 1;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return ans;\n    }\n};",
+        "java": "class Solution {\n    public int splitString(String s, int k) {\n        int n = s.length();\n\n        // Helper function to check if we can split the string into at most k substrings\n        // with the maximum length of each substring being maxLen.\n        // Note: This implementation does not check for balanced substrings.\n        // It only checks if the string can be split into k substrings with max length maxLen.\n        // A more complex implementation would be needed to check for balanced substrings.\n        \n        // This is a placeholder implementation. A full solution would require\n        // checking if each substring is balanced.\n        \n        int left = 1, right = n;\n        int ans = n;\n        while (left <= right) {\n            int mid = (left + right) / 2;\n            int count = 0;\n            int i = 0;\n            while (i < n) {\n                i += mid;\n                count++;\n            }\n            if (count <= k) {\n                ans = mid;\n                right = mid - 1;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return ans;\n    }\n}",
+        "python": "class Solution:\n    def splitString(self, s: str, k: int) -> int:\n        n = len(s)\n        def check(max_len):\n            count = 0\n            curr_len = 0\n            i = 0\n            while i < n:\n                curr_len = 0\n                while i < n and curr_len < max_len:\n                    curr_len += 1\n                    i += 1\n                count += 1\n            return count <= k\n\n        left, right = 1, n\n        ans = n\n        while left <= right:\n            mid = (left + right) // 2\n            if check(mid):\n                ans = mid\n                right = mid - 1\n            else:\n                left = mid + 1\n        return ans",
+        "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {number}\n */\nvar splitString = function(s, k) {\n    const n = s.length;\n\n    function check(maxLen) {\n        let count = 0;\n        let currLen = 0;\n        let i = 0;\n        while (i < n) {\n            currLen = 0;\n            while (i < n && currLen < maxLen) {\n                currLen++;\n                i++;\n            }\n            count++;\n        }\n        return count <= k;\n    }\n\n    let left = 1, right = n;\n    let ans = n;\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n        if (check(mid)) {\n            ans = mid;\n            right = mid - 1;\n        } else {\n            left = mid + 1;\n        }\n    }\n    return ans;\n};"
+      }
+    },
+    {
+      "id": 56,
+      "title": "Binary Search Using Recursion",
+      "is_validated": true,
+      "input_format": "The input consists of a sorted integer array `nums` and an integer `target`. The function should find the index of the `target` in `nums`.",
+      "starter_code": {
+        "cpp": "class Solution {\npublic:\n    int search(vector<int>& nums, int target) {\n        return binarySearch(nums, target, 0, nums.size() - 1);\n    }\n\nprivate:\n    int binarySearch(vector<int>& nums, int target, int left, int right) {\n        if (left > right) {\n            return -1;\n        }\n\n        int mid = left + (right - left) / 2;\n\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            return binarySearch(nums, target, mid + 1, right);\n        } else {\n            return binarySearch(nums, target, left, mid - 1);\n        }\n    }\n};",
+        "java": "class Solution {\n    public int search(int[] nums, int target) {\n        return binarySearch(nums, target, 0, nums.length - 1);\n    }\n\n    private int binarySearch(int[] nums, int target, int left, int right) {\n        if (left > right) {\n            return -1;\n        }\n\n        int mid = left + (right - left) / 2;\n\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            return binarySearch(nums, target, mid + 1, right);\n        } else {\n            return binarySearch(nums, target, left, mid - 1);\n        }\n    }\n}",
+        "python": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        def binary_search(left, right):\n            if left > right:\n                return -1\n            \n            mid = (left + right) // 2\n            \n            if nums[mid] == target:\n                return mid\n            elif nums[mid] < target:\n                return binary_search(mid + 1, right)\n            else:\n                return binary_search(left, mid - 1)\n        \n        return binary_search(0, len(nums) - 1)",
+        "javascript": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar search = function(nums, target) {\n    function binarySearch(left, right) {\n        if (left > right) {\n            return -1;\n        }\n\n        const mid = Math.floor((left + right) / 2);\n\n        if (nums[mid] === target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            return binarySearch(mid + 1, right);\n        } else {\n            return binarySearch(left, mid - 1);\n        }\n    }\n\n    return binarySearch(0, nums.length - 1);\n};"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Detect a Cycle in an Undirected Graph",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: V (an integer representing the number of vertices in the graph) and adj (a list of lists representing the adjacency list of the graph). Each inner list in adj represents an edge (u, v) as [u, v], where u and v are integers representing the vertices connected by the edge. Vertices are 0-indexed.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    // Function to detect cycle in an undirected graph.\n    bool isCycle(int V, vector<vector<int>>& adj) {\n        // Code here\n        return false;\n    }\n};",
+        "java": "import java.util.*;\nimport java.lang.*;\nimport java.io.*;\nclass Solution {\n    // Function to detect cycle in an undirected graph.\n    public boolean isCycle(int V, List<List<Integer>> adj) {\n        // Code here\n        return false;\n    }\n}",
+        "python": "class Solution:\n    def isCycle(self, V: int, adj: list[list[int]]) -> bool:\n        # code here",
+        "javascript": "/**\n * @param {number} V\n * @param {number[][]} adj\n * @return {boolean}\n */\nvar isCycle = function(V, adj) {\n    // code here\n};"
+      }
+    },
+    {
+      "id": 16,
+      "title": "Detecting Cycles in a Graph with Backtracking",
+      "is_validated": true,
+      "input_format": "The input consists of two arguments: V (an integer representing the number of vertices in the graph) and edges (a list of lists, where each inner list represents an edge between two vertices, represented by their 0-indexed integer IDs).",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    /**\n     * @param V The number of vertices in the graph.\n     * @param edges A list of edges, where each edge is a vector of two integers representing the vertices connected by the edge.\n     * @return True if the graph contains a cycle, false otherwise.\n     */\n    bool hasCycle(int V, vector<vector<int>>& edges) {\n        // code here\n        return false;\n    }\n};",
+        "java": "import java.util.*;\nimport java.lang.*;\n\nclass Solution {\n    /**\n     * @param V The number of vertices in the graph.\n     * @param edges A list of edges, where each edge is a list of two integers representing the vertices connected by the edge.\n     * @return True if the graph contains a cycle, false otherwise.\n     */\n    public boolean hasCycle(int V, List<List<Integer>> edges) {\n        // code here\n        return false;\n    }\n}",
+        "python": "class Solution:\n    def hasCycle(self, V: int, edges: list[list[int]]) -> bool:\n        # code here",
+        "javascript": "/**\n * @param {number} V\n * @param {number[][]} edges\n * @return {boolean}\n */\nvar hasCycle = function(V, edges) {\n    // code here\n};"
+      }
+    },
+    {
+      "id": 23,
+      "title": "Balanced Brackets Checker",
+      "is_validated": true,
+      "input_format": "The input is a single string containing brackets and alphanumeric characters. The function takes one argument: a string.",
+      "starter_code": {
+        "cpp": "#include <iostream>\n#include <stack>\n#include <string>\n#include <unordered_map>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isBalanced(string s) {\n        stack<char> st;\n        unordered_map<char, char> mapping = {\n            {')', '('},\n            {']', '['},\n            {'}', '{'}\n        };\n\n        for (char c : s) {\n            if (mapping.count(c)) {\n                if (st.empty() || st.top() != mapping[c]) {\n                    return false;\n                }\n                st.pop();\n            } else if (c == '(' || c == '[' || c == '{') {\n                st.push(c);\n            }\n        }\n\n        return st.empty();\n    }\n};",
+        "java": "import java.util.*;\n\nclass Solution {\n    public boolean isBalanced(String s) {\n        Stack<Character> stack = new Stack<>();\n        Map<Character, Character> mapping = new HashMap<>();\n        mapping.put(')', '(');\n        mapping.put(']', '[');\n        mapping.put('}', '{');\n\n        for (char c : s.toCharArray()) {\n            if (mapping.containsKey(c)) {\n                if (stack.isEmpty() || stack.pop() != mapping.get(c)) {\n                    return false;\n                }\n            } else if (c == '(' || c == '[' || c == '{') {\n                stack.push(c);\n            }\n        }\n\n        return stack.isEmpty();\n    }\n}",
+        "python": "class Solution:\n    def isBalanced(self, s: str) -> bool:\n        stack = []\n        mapping = {')': '(', ']': '[', '}': '{'}\n        for char in s:\n            if char in mapping:\n                if not stack or stack[-1] != mapping[char]:\n                    return False\n                stack.pop()\n            elif char in ['(', '[', '{']:\n                stack.append(char)\n        return not stack",
+        "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar isBalanced = function(s) {\n    const stack = [];\n    const mapping = {')': '(', ']': '[', '}': '{'};\n    for (const char of s) {\n        if (mapping[char]) {\n            if (!stack.length || stack[stack.length - 1] !== mapping[char]) {\n                return false;\n            }\n            stack.pop();\n        } else if (['(', '[', '{'].includes(char)) {\n            stack.push(char);\n        }\n    }\n    return stack.length === 0;\n};"
+      }
+    },
+    {
+      "id": 24,
+      "title": "Palindrome Partitioning",
+      "is_validated": true,
+      "input_format": "The input is a single string representing the string to be partitioned. The function takes a single string as input.",
+      "starter_code": {
+        "cpp": "#include <string>\n#include <vector>\n\nusing namespace std;\n\nclass Solution {\npublic:\n    int palindromePartitioning(string s) {\n        int n = s.length();\n        if (n <= 1) {\n            return 1;\n        }\n\n        vector<int> dp(n + 1, 0);\n        dp[0] = 1;\n\n        for (int i = 1; i <= n; i++) {\n            for (int j = 1; j <= i; j++) {\n                string sub = s.substr(i - j, j);\n                string rev = sub;\n                reverse(rev.begin(), rev.end());\n                if (sub == rev) {\n                    dp[i] += dp[i - j];\n                }\n            }\n        }\n\n        return dp[n];\n    }\n};",
+        "java": "class Solution {\n    public int palindromePartitioning(String s) {\n        int n = s.length();\n        if (n <= 1) {\n            return 1;\n        }\n\n        int[] dp = new int[n + 1];\n        dp[0] = 1;\n\n        for (int i = 1; i <= n; i++) {\n            for (int j = 1; j <= i; j++) {\n                String sub = s.substring(i - j, i);\n                if (new StringBuilder(sub).reverse().toString().equals(sub)) {\n                    dp[i] += dp[i - j];\n                }\n            }\n        }\n\n        return dp[n];\n    }\n}",
+        "python": "class Solution:\n    def palindromePartitioning(self, s: str) -> int:\n        n = len(s)\n        if n <= 1:\n            return 1\n\n        dp = [0] * (n + 1)\n        dp[0] = 1\n\n        for i in range(1, n + 1):\n            for j in range(1, i + 1):\n                sub = s[i - j:i]\n                if sub == sub[::-1]:\n                    dp[i] += dp[i - j]\n\n        return dp[n]",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar palindromePartitioning = function(s) {\n    const n = s.length;\n    if (n <= 1) {\n        return 1;\n    }\n\n    const dp = new Array(n + 1).fill(0);\n    dp[0] = 1;\n\n    for (let i = 1; i <= n; i++) {\n        for (let j = 1; j <= i; j++) {\n            const sub = s.substring(i - j, i);\n            if (sub === sub.split('').reverse().join('')) {\n                dp[i] += dp[i - j];\n            }\n        }\n    }\n\n    return dp[n];\n};"
+      }
+    },
+    {
+      "id": 29,
+      "title": "Lexicographically Small Substring with K Distinct Characters",
+      "is_validated": true,
+      "input_format": "The function takes two arguments: `s`, a string representing the input string, and `k`, an integer representing the number of distinct characters required in the substring.",
+      "starter_code": {
+        "cpp": "#include <string>\n\nclass Solution {\npublic:\n    std::string smallestSubstring(std::string s, int k) {\n        return \"\";\n    }\n};",
+        "java": "class Solution {\n    public String smallestSubstring(String s, int k) {\n        return null;\n    }\n}",
+        "python": "class Solution:\n    def smallestSubstring(self, s: str, k: int) -> str:\n        pass",
+        "javascript": "/**\n * @param {string} s\n * @param {number} k\n * @return {string}\n */\nvar smallestSubstring = function(s, k) {\n    \n};"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Balanced Subarray Pairs",
+      "is_validated": true,
+      "input_format": "The input is a single array of integers, `nums`. For example: `[1, -1, 2, -2]`.",
+      "starter_code": {
+        "python": "class Solution(object):\n    def balancedSubarrayPairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        pass",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar balancedSubarrayPairs = function(nums) {\n    \n};"
+      }
+    }
+  ],
+  "testcases": [
+    {
+      "id": 10,
+      "problem_id": 24,
+      "input": "[\"ababa\"]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 11,
+      "problem_id": 24,
+      "input": "[\"aabb\"]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 13,
+      "problem_id": 25,
+      "input": "{abcabcbb}",
+      "expected_output": "3",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 14,
+      "problem_id": 25,
+      "input": "{bbbbb}",
+      "expected_output": "1",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 16,
+      "problem_id": 27,
+      "input": "[\"s StrinG\"]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 17,
+      "problem_id": 27,
+      "input": "[\"oooE\"]",
+      "expected_output": "\"-1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 19,
+      "problem_id": 43,
+      "input": "[[5, 1, 4, 2, 3]]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 20,
+      "problem_id": 43,
+      "input": "[[1, 1, 1, 1]]",
+      "expected_output": "\"-1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 22,
+      "problem_id": 44,
+      "input": "[ [3, 1, 6, 2, 4], 5 ]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 23,
+      "problem_id": 44,
+      "input": "[ [1, 2, 3, 4, 5], 11 ]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 21,
+      "problem_id": 43,
+      "input": "[[7, 5, 9, 2, 5]]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 25,
+      "problem_id": 45,
+      "input": "[[1, 3, 5, 0, 0, 0], [2, 4, 6], 3, 3]",
+      "expected_output": "\"[1, 2, 3, 4, 5, 6]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 26,
+      "problem_id": 45,
+      "input": "[[0, 0, 0, 0, 0, 0], [1, 2, 3], 3, 3]",
+      "expected_output": "\"[0, 0, 0, 1, 2, 3]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 28,
+      "problem_id": 46,
+      "input": "[[1, 7, 3, 6, 5, 6]]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 29,
+      "problem_id": 46,
+      "input": "[[1, 2, 3]]",
+      "expected_output": "\"-1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 32,
+      "problem_id": 47,
+      "input": "[ [1, 3, 5, 4, 7, 6, 8, 9] ]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 33,
+      "problem_id": 47,
+      "input": "[ [1, 10, 100, 4, 2, 200] ]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 34,
+      "problem_id": 47,
+      "input": "[ [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -2, -3] ]",
+      "expected_output": "\"9\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 43,
+      "problem_id": 50,
+      "input": "[\"aeiou\"]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 44,
+      "problem_id": 50,
+      "input": "[\"Hello World\"]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 46,
+      "problem_id": 51,
+      "input": "[\"A man, a plan, a canal: Panama\"]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 47,
+      "problem_id": 51,
+      "input": "[\"racecar\"]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 49,
+      "problem_id": 52,
+      "input": "[\"cbaebabacd\", \"abc\"]",
+      "expected_output": "\"[0, 6]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 50,
+      "problem_id": 52,
+      "input": "[\"abab\", \"ab\"]",
+      "expected_output": "\"[0, 1, 2]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 54,
+      "problem_id": 53,
+      "input": "[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]",
+      "expected_output": "\"[[\\\"eat\\\",\\\"tea\\\",\\\"ate\\\"],[\\\"tan\\\",\\\"nat\\\"],[\\\"bat\\\"]]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 59,
+      "problem_id": 54,
+      "input": "[8]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 60,
+      "problem_id": 54,
+      "input": "[121]",
+      "expected_output": "\"10\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 62,
+      "problem_id": 55,
+      "input": "[0]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 51,
+      "problem_id": 52,
+      "input": "[\"baa\", \"aa\"]",
+      "expected_output": "\"[1]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 63,
+      "problem_id": 55,
+      "input": "[1]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 61,
+      "problem_id": 54,
+      "input": "[1]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 64,
+      "problem_id": 55,
+      "input": "[7]",
+      "expected_output": "\"13\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 65,
+      "problem_id": 56,
+      "input": "[[-1, 0, 3, 5, 9, 12], 9]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 66,
+      "problem_id": 56,
+      "input": "[[-1, 0, 3, 5, 9, 12], 2]",
+      "expected_output": "\"-1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 67,
+      "problem_id": 56,
+      "input": "[[1, 2, 4, 6, 8, 10], 8]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 68,
+      "problem_id": 57,
+      "input": "[1]",
+      "expected_output": "\"[1]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 69,
+      "problem_id": 57,
+      "input": "[5]",
+      "expected_output": "\"[1, 4, 6, 4, 1]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 70,
+      "problem_id": 57,
+      "input": "[0]",
+      "expected_output": "\"[]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 71,
+      "problem_id": 57,
+      "input": "[4]",
+      "expected_output": "\"[1, 3, 3, 1]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 73,
+      "problem_id": 58,
+      "input": "{\n  \"arr\": [1, 1, 1],\n  \"target\": 2\n}",
+      "expected_output": "2",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 74,
+      "problem_id": 58,
+      "input": "{\n  \"arr\": [1, 5, 11],\n  \"target\": 5\n}",
+      "expected_output": "0",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 75,
+      "problem_id": 58,
+      "input": "{\n  \"arr\": [],\n  \"target\": 5\n}",
+      "expected_output": "-1",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 72,
+      "problem_id": 58,
+      "input": "{\n  \"arr\": [1, 2, 3],\n  \"target\": 3\n}",
+      "expected_output": "1",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 92,
+      "problem_id": 62,
+      "input": "[\"abc\"]",
+      "expected_output": "\"\\\"cba\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 96,
+      "problem_id": 63,
+      "input": "[\"(\\n(\\n)\\n\"]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 97,
+      "problem_id": 63,
+      "input": "[\")\\n(\\n)\"]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 30,
+      "problem_id": 46,
+      "input": "[[2, 1, -1]]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 93,
+      "problem_id": 62,
+      "input": "[\"\"]",
+      "expected_output": "\"\\\"\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 98,
+      "problem_id": 63,
+      "input": "[\"(\\n\"]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 35,
+      "problem_id": 47,
+      "input": "[ [10] ]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 94,
+      "problem_id": 62,
+      "input": "[\"stack\"]",
+      "expected_output": "\"\\\"kcats\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 95,
+      "problem_id": 62,
+      "input": "[\"hello world\"]",
+      "expected_output": "\"\\\"dlrow olleh\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 99,
+      "problem_id": 63,
+      "input": "[\"(\\n)\\n\"]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 100,
+      "problem_id": 63,
+      "input": "[\")\\n(\\n)\\n\"]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 7,
+      "problem_id": 23,
+      "input": "{a(b(c)d)e}",
+      "expected_output": "true",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 8,
+      "problem_id": 23,
+      "input": "{\"{[(A)]}\"}",
+      "expected_output": "true",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 12,
+      "problem_id": 24,
+      "input": "[\"abcdef\"]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 15,
+      "problem_id": 25,
+      "input": "{pwwkew}",
+      "expected_output": "3",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 31,
+      "problem_id": 46,
+      "input": "[[-1, -1, 1, -1, 0, 1, 1, 2]]",
+      "expected_output": "\"7\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 40,
+      "problem_id": 49,
+      "input": "[\"hello\"]",
+      "expected_output": "\"\\\"olleh\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 41,
+      "problem_id": 49,
+      "input": "[\"DSA\"]",
+      "expected_output": "\"\\\"ASD\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 45,
+      "problem_id": 50,
+      "input": "[\"XYZ\"]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 52,
+      "problem_id": 52,
+      "input": "[\"aaaa\", \"aa\"]",
+      "expected_output": "\"[0, 1, 2]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 589,
+      "problem_id": 12,
+      "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+      "expected_output": "\"false\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 55,
+      "problem_id": 53,
+      "input": "[\"\"]",
+      "expected_output": "\"[[\\\"\\\"]]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 602,
+      "problem_id": 10,
+      "input": "[[\"k1\", \"k2\", \"k3\"], [10, 12, 20]]",
+      "expected_output": "62",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 593,
+      "problem_id": 9,
+      "input": "[\"0100110101\", 4]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 603,
+      "problem_id": 10,
+      "input": "[[\"k1\", \"k2\"], [34, 50]]",
+      "expected_output": "118",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 604,
+      "problem_id": 10,
+      "input": "[[\"k1\", \"k2\", \"k3\", \"k4\"], [4, 2, 6, 3]]",
+      "expected_output": "26",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 596,
+      "problem_id": 13,
+      "input": "[4, [[0, 1, 1], [1, 2, 2], [2, 3, 3]], 0, 3]",
+      "expected_output": "\"6\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 597,
+      "problem_id": 13,
+      "input": "[3, [[0, 1, 5], [1, 2, 1], [0, 2, 10]], 0, 2]",
+      "expected_output": "\"6\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 605,
+      "problem_id": 11,
+      "input": "[[7, 1, 5, 3, 6, 4], 1]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 606,
+      "problem_id": 11,
+      "input": "[[7, 6, 4], 1]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 607,
+      "problem_id": 11,
+      "input": "[[1, 2, 3, 4], 4]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 598,
+      "problem_id": 13,
+      "input": "[5, [[0, 1, 2], [0, 2, 4], [1, 3, 7], [2, 4, 1], [4, 3, 1]], 0, 3]",
+      "expected_output": "\"6\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 614,
+      "problem_id": 15,
+      "input": "[4, [[0, 1, 1], [1, 2, -2], [2, 3, 3]]]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 615,
+      "problem_id": 15,
+      "input": "[5, [[0, 1, 2], [0, 2, 4], [1, 3, 7], [2, 4, 1], [4, 3, -2]]]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 617,
+      "problem_id": 16,
+      "input": "[3, [[0, 1], [1, 2], [2, 0]]]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 608,
+      "problem_id": 14,
+      "input": "[5, [[0, 1], [1, 2], [3, 4]]]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 609,
+      "problem_id": 14,
+      "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+      "expected_output": "\"1\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 618,
+      "problem_id": 16,
+      "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+      "expected_output": "\"false\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 619,
+      "problem_id": 16,
+      "input": "[5, [[0, 1], [1, 2], [2, 3], [3, 1]]]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 9,
+      "problem_id": 23,
+      "input": "{\"a(b)c[d]e}\"}",
+      "expected_output": "false",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 18,
+      "problem_id": 27,
+      "input": "[\"Ooooo\"]",
+      "expected_output": "\"-1\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 623,
+      "problem_id": 28,
+      "input": "[\"bbbab\", []]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 624,
+      "problem_id": 28,
+      "input": "[\"cbbd\", []]",
+      "expected_output": "\"2\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 625,
+      "problem_id": 28,
+      "input": "[\"agbdba\", []]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 626,
+      "problem_id": 29,
+      "input": "[\"abcba\", 2]",
+      "expected_output": "\"\\\"ab\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 627,
+      "problem_id": 29,
+      "input": "[\"aaabbb\", 1]",
+      "expected_output": "\"\\\"a\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 621,
+      "problem_id": 17,
+      "input": "5\n0 1 2\n0 3 6\n1 2 3\n1 3 8\n1 4 5\n2 4 7\n3 4 9",
+      "expected_output": "16",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 622,
+      "problem_id": 17,
+      "input": "3\n0 1 5\n1 2 10\n0 2 6",
+      "expected_output": "11",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 620,
+      "problem_id": 17,
+      "input": "4\n0 1 1\n1 2 2\n2 3 3\n3 0 4",
+      "expected_output": "6",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 629,
+      "problem_id": 30,
+      "input": "[\"ADOBECODEBANC\", \"ABC\"]",
+      "expected_output": "\"\\\"BANC\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 630,
+      "problem_id": 30,
+      "input": "[\"a\", \"a\"]",
+      "expected_output": "\"\\\"a\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 631,
+      "problem_id": 30,
+      "input": "[\"a\", \"aa\"]",
+      "expected_output": "\"\\\"\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 632,
+      "problem_id": 31,
+      "input": "[\"()\", []]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 633,
+      "problem_id": 31,
+      "input": "[\"(())\n()\", []]",
+      "expected_output": "\"true\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 635,
+      "problem_id": 32,
+      "input": "[\"ababa\"]",
+      "expected_output": "\"5\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 636,
+      "problem_id": 32,
+      "input": "[\"aaa\"]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 637,
+      "problem_id": 32,
+      "input": "[\"abc\"]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 24,
+      "problem_id": 44,
+      "input": "[ [4, 5, 0, -2, -3, 1], -2 ]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 27,
+      "problem_id": 45,
+      "input": "[[1, 2, 3, 0, 0], [4, 5], 3, 2]",
+      "expected_output": "\"[1, 2, 3, 4, 5]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 42,
+      "problem_id": 49,
+      "input": "[\"\"]",
+      "expected_output": "\"\\\"\\\"\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 48,
+      "problem_id": 51,
+      "input": "[\"hello\"]",
+      "expected_output": "\"false\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 53,
+      "problem_id": 52,
+      "input": "[\"\", \"\"]",
+      "expected_output": "\"[0]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 56,
+      "problem_id": 53,
+      "input": "[\"a\"]",
+      "expected_output": "\"[[\\\"a\\\"]]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 594,
+      "problem_id": 9,
+      "input": "[\"0000111100\", 4]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 595,
+      "problem_id": 9,
+      "input": "[\"0000001111\", 4]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 601,
+      "problem_id": 227,
+      "input": "0 0",
+      "expected_output": "0",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 599,
+      "problem_id": 227,
+      "input": "2 3",
+      "expected_output": "5",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 600,
+      "problem_id": 227,
+      "input": "-1 10",
+      "expected_output": "9",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 612,
+      "problem_id": 228,
+      "input": "7",
+      "expected_output": "Odd",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 613,
+      "problem_id": 228,
+      "input": "0",
+      "expected_output": "Even",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 611,
+      "problem_id": 228,
+      "input": "2",
+      "expected_output": "Even",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 641,
+      "problem_id": 229,
+      "input": "5 2\n1 2 1 2 3",
+      "expected_output": "7",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 642,
+      "problem_id": 229,
+      "input": "4 3\n1 2 1 3",
+      "expected_output": "2",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 643,
+      "problem_id": 229,
+      "input": "5 1\n1 2 3 4 5",
+      "expected_output": "5",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 654,
+      "problem_id": 231,
+      "input": "5\n1 2 3 2 1",
+      "expected_output": "2",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 655,
+      "problem_id": 231,
+      "input": "6\n7 6 9 6 9 6",
+      "expected_output": "3",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 656,
+      "problem_id": 231,
+      "input": "4\n1 2 3 4",
+      "expected_output": "3",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 657,
+      "problem_id": 232,
+      "input": "4\n2 7 11 15\n9",
+      "expected_output": "0 1",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 658,
+      "problem_id": 232,
+      "input": "3\n3 2 4\n6",
+      "expected_output": "1 2",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 659,
+      "problem_id": 232,
+      "input": "2\n3 3\n6",
+      "expected_output": "0 1",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 610,
+      "problem_id": 14,
+      "input": "[6, [[0, 1], [2, 3], [4, 5]]]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 634,
+      "problem_id": 31,
+      "input": "[\"(())\", []]",
+      "expected_output": "\"false\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 57,
+      "problem_id": 53,
+      "input": "[\"abc\", \"bac\", \"def\"]",
+      "expected_output": "\"[[\\\"abc\\\",\\\"bac\\\"],[\\\"def\\\"]]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 58,
+      "problem_id": 53,
+      "input": "[\"anagram\", \"nagaram\", \"apple\"]",
+      "expected_output": "\"[[\\\"anagram\\\",\\\"nagaram\\\"],[\\\"apple\\\"]]\"",
+      "is_hidden": false,
+      "is_verified": true
+    },
+    {
+      "id": 660,
+      "problem_id": 3,
+      "input": "[[1, -1, 2, -2]]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 661,
+      "problem_id": 3,
+      "input": "[[-1, 0, 1, -1, 2, -2]]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 662,
+      "problem_id": 3,
+      "input": "[[1, 2, 3]]",
+      "expected_output": "\"0\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 663,
+      "problem_id": 4,
+      "input": "[[1, 2, 3, 1]]",
+      "expected_output": "\"4\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 664,
+      "problem_id": 4,
+      "input": "[[2, 3, 2]]",
+      "expected_output": "\"3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 665,
+      "problem_id": 4,
+      "input": "[[1, 2, 3, 4, 5, 1, 2]]",
+      "expected_output": "\"10\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 616,
+      "problem_id": 15,
+      "input": "[3, [[0, 1, -5], [1, 2, 2]]]",
+      "expected_output": "\"-3\"",
+      "is_hidden": false,
+      "is_verified": false
+    },
+    {
+      "id": 628,
+      "problem_id": 29,
+      "input": "[\"xyzabc\", 3]",
+      "expected_output": "\"\\\"abc\\\"\"",
+      "is_hidden": false,
+      "is_verified": false
+    }
+  ]
+}
