@@ -7,13 +7,27 @@ const verifyToken = require("../middleware/authMiddleware");
 const JUDGE0_URL = "https://ce.judge0.com/submissions";
 
 // Normalize outputs for safe comparison
+// Handles double-encoded JSON strings from DB (e.g. "\"4\"" vs raw stdout "4")
 const normalize = (val) => {
   if (val === null || val === undefined) return "";
   let str = val.toString().trim();
   try {
-    return JSON.stringify(JSON.parse(str));
+    let parsed = JSON.parse(str);
+    // If the parsed result is a string, try to unwrap one more layer
+    // This handles cases where DB stores "\"4\"" (a JSON-encoded string "4")
+    // while stdout gives raw "4"
+    if (typeof parsed === 'string') {
+      try {
+        let inner = JSON.parse(parsed);
+        return JSON.stringify(inner);
+      } catch (e) {
+        // It's genuinely a string value, return the raw string content
+        return parsed.trim();
+      }
+    }
+    return JSON.stringify(parsed);
   } catch (e) {
-    return str.replace(/\\s+/g, " ").replace(/^"|"$/g, "");
+    return str.replace(/\s+/g, " ").replace(/^"|"$/g, "");
   }
 };
 

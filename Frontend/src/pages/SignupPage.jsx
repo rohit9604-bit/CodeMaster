@@ -14,6 +14,35 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+const InputField = ({ id, label, icon: Icon, type = 'text', value, onChange, placeholder, error }) => (
+  <div>
+    <label htmlFor={id} className="block text-sm font-medium text-[#a1a1aa] mb-2">
+      {label}
+    </label>
+    <div className="relative">
+      <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#52525b]" />
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        className="input-luxe"
+        placeholder={placeholder}
+      />
+    </div>
+    {error && (
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="mt-2 text-sm text-rose-400 flex items-center gap-1.5"
+      >
+        <AlertCircle className="w-3.5 h-3.5" />
+        {error}
+      </motion.p>
+    )}
+  </div>
+);
+
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -96,35 +125,6 @@ const SignupPage = () => {
       setErrors({ submit: result.error });
     }
   };
-
-  const InputField = ({ id, label, icon: Icon, type = 'text', value, onChange, placeholder, error }) => (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-[#a1a1aa] mb-2">
-        {label}
-      </label>
-      <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#52525b]" />
-        <input
-          id={id}
-          type={type}
-          value={value}
-          onChange={onChange}
-          className="input-luxe"
-          placeholder={placeholder}
-        />
-      </div>
-      {error && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mt-2 text-sm text-rose-400 flex items-center gap-1.5"
-        >
-          <AlertCircle className="w-3.5 h-3.5" />
-          {error}
-        </motion.p>
-      )}
-    </div>
-  );
 
   return (
     <>

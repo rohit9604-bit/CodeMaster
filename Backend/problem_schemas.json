@@ -1,0 +1,3700 @@
+[
+  {
+    "id": 3,
+    "title": "Balanced Subarray Pairs",
+    "difficulty": "Easy",
+    "starter_python": "class Solution(object):\n    def balancedSubarrayPairs(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        pass",
+    "driver_python": "\nimport sys\nimport json\n\nif __name__ == '__main__':\n    raw_input = sys.stdin.read().strip()\n    if raw_input:\n        parsed = json.loads(raw_input)\n        nums = parsed[0] if isinstance(parsed, list) and len(parsed) > 0 and isinstance(parsed[0], list) else parsed\n        sol = Solution()\n        print(sol.balancedSubarrayPairs(nums))\n",
+    "test_cases": [
+      {
+        "input": "[[1, -1, 2, -2]]",
+        "display_input": "nums = [1,-1,2,-2]",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[[-1, 0, 1, -1, 2, -2]]",
+        "display_input": "nums = [-1,0,1,-1,2,-2]",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[[1, 2, 3]]",
+        "display_input": "nums = [1,2,3]",
+        "expected_output": "\"0\""
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Optimal Robbery Strategy (Recursive DP)",
+    "difficulty": "Medium",
+    "starter_python": "class Solution(object):\n    def rob(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        pass",
+    "driver_python": "\nimport sys\nimport json\n\nsys.setrecursionlimit(2000)\n\nif __name__ == '__main__':\n    raw_input = sys.stdin.read().strip()\n    if raw_input:\n        parsed = json.loads(raw_input)\n        nums = parsed[0] if isinstance(parsed, list) and len(parsed) > 0 and isinstance(parsed[0], list) else parsed\n        sol = Solution()\n        print(sol.rob(nums))\n",
+    "test_cases": [
+      {
+        "input": "[[1, 2, 3, 1]]",
+        "display_input": "nums = [1,2,3,1]",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[[2, 3, 2]]",
+        "display_input": "nums = [2,3,2]",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[[1, 2, 3, 4, 5, 1, 2]]",
+        "display_input": "nums = [1,2,3,4,5,1,2]",
+        "expected_output": "\"10\""
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Splitting the String into Balanced Substrings",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def splitString(self, s: str, k: int) -> int:\n        n = len(s)\n        def check(max_len):\n            count = 0\n            curr_len = 0\n            i = 0\n            while i < n:\n                curr_len = 0\n                while i < n and curr_len < max_len:\n                    curr_len += 1\n                    i += 1\n                count += 1\n            return count <= k\n\n        left, right = 1, n\n        ans = n\n        while left <= right:\n            mid = (left + right) // 2\n            if check(mid):\n                ans = mid\n                right = mid - 1\n            else:\n                left = mid + 1\n        return ans",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().splitString(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"0100110101\", 4]",
+        "display_input": "s = \"0100110101\"\\nk = 4",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[\"0000111100\", 4]",
+        "display_input": "s = \"0000111100\"\\nk = 4",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[\"0000001111\", 4]",
+        "display_input": "s = \"0000001111\"\\nk = 4",
+        "expected_output": "\"3\""
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Optimal Binary Search Tree (OBS) Construction",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def optimalBST(self, keys: list[str], freq: list[int]) -> int:\n        n = len(keys)\n        dp = [[0] * n for _ in range(n)]\n        \n        for i in range(n):\n            dp[i][i] = freq[i]\n        \n        for length in range(2, n + 1):\n            for i in range(n - length + 1):\n                j = i + length - 1\n                dp[i][j] = float('inf')\n                sum_freq = sum(freq[i:j+1])\n                \n                for k in range(i, j + 1):\n                    cost = (dp[i][k-1] if k > i else 0) + (dp[k+1][j] if k < j else 0) + sum_freq\n                    dp[i][j] = min(dp[i][j], cost)\n        \n        return dp[0][n-1]",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def optimalBST(self, keys: list[str], freq: list[int]) -> int:\n        n = len(keys)\n        dp = [[0] * n for _ in range(n)]\n        \n        for i in range(n):\n            dp[i][i] = freq[i]\n        \n        for length in range(2, n + 1):\n            for i in range(n - length + 1):\n                j = i + length - 1\n                dp[i][j] = float('inf')\n                sum_freq = sum(freq[i:j+1])\n                \n                for k in range(i, j + 1):\n                    cost = (dp[i][k-1] if k > i else 0) + (dp[k+1][j] if k < j else 0) + sum_freq\n                    dp[i][j] = min(dp[i][j], cost)\n        \n        return dp[0][n-1]\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().optimalBST(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[\"k1\", \"k2\", \"k3\"], [10, 12, 20]]",
+        "display_input": "keys = [\"k1\",\"k2\",\"k3\"]\\nfreq = [10,12,20]",
+        "expected_output": "62"
+      },
+      {
+        "input": "[[\"k1\", \"k2\"], [34, 50]]",
+        "display_input": "keys = [\"k1\",\"k2\"]\\nfreq = [34,50]",
+        "expected_output": "118"
+      },
+      {
+        "input": "[[\"k1\", \"k2\", \"k3\", \"k4\"], [4, 2, 6, 3]]",
+        "display_input": "keys = [\"k1\",\"k2\",\"k3\",\"k4\"]\\nfreq = [4,2,6,3]",
+        "expected_output": "26"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Maximum Profit by Selling on Days with Stock Price Valuation",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def maxProfit(self, prices: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().maxProfit(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[7, 1, 5, 3, 6, 4], 1]",
+        "display_input": "prices = [7,1,5,3,6,4]\\nk = 1",
+        "expected_output": "\"5\""
+      },
+      {
+        "input": "[[7, 6, 4], 1]",
+        "display_input": "prices = [7,6,4]\\nk = 1",
+        "expected_output": "\"0\""
+      },
+      {
+        "input": "[[1, 2, 3, 4], 4]",
+        "display_input": "prices = [1,2,3,4]\\nk = 4",
+        "expected_output": "\"3\""
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Detect a Cycle in an Undirected Graph",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isCycle(self, V: int, adj: list[list[int]]) -> bool:\n        # code here",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().isCycle(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+        "display_input": "V = 4\\nadj = [[0,1],[1,2],[2,3]]",
+        "expected_output": "\"false\""
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Find the Shortest Path in a Weighted Graph",
+    "difficulty": "Easy",
+    "starter_python": "import heapq\n\nclass Solution:\n    def shortestPath(self, V, edges, src, dest):\n        adj = [[] for _ in range(V)]\n        for u, v, w in edges:\n            adj[u].append((v, w))\n            adj[v].append((u, w))\n\n        dist = [float('inf')] * V\n        dist[src] = 0\n        pq = [(0, src)]\n\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            if d > dist[u]:\n                continue\n\n            for v, weight in adj[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    heapq.heappush(pq, (dist[v], v))\n\n        if dist[dest] == float('inf'):\n            return -1\n        return dist[dest]",
+    "driver_python": "import sys, json\nfrom typing import List\n\nclass Solution:\n    def shortestPath(self, V: int, edges: List[List[int]], src: int, dest: int) -> int:\n        adj = [[] for _ in range(V)]\n        for u, v, w in edges:\n            adj[u].append((v, w))\n            adj[v].append((u, w))\n\n        dist = [float('inf')] * V\n        dist[src] = 0\n        pq = [(0, src)]\n\n        import heapq\n        while pq:\n            d, u = heapq.heappop(pq)\n\n            if d > dist[u]:\n                continue\n\n            for v, weight in adj[u]:\n                if dist[v] > dist[u] + weight:\n                    dist[v] = dist[u] + weight\n                    heapq.heappush(pq, (dist[v], v))\n\n        if dist[dest] == float('inf'):\n            return -1\n        return dist[dest]\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().shortestPath(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[4, [[0, 1, 1], [1, 2, 2], [2, 3, 3]], 0, 3]",
+        "display_input": "arg1 = 4\\narg2 = [[0,1,1],[1,2,2],[2,3,3]]\\narg3 = 0\\narg4 = 3",
+        "expected_output": "\"6\""
+      },
+      {
+        "input": "[3, [[0, 1, 5], [1, 2, 1], [0, 2, 10]], 0, 2]",
+        "display_input": "arg1 = 3\\narg2 = [[0,1,5],[1,2,1],[0,2,10]]\\narg3 = 0\\narg4 = 2",
+        "expected_output": "\"6\""
+      },
+      {
+        "input": "[5, [[0, 1, 2], [0, 2, 4], [1, 3, 7], [2, 4, 1], [4, 3, 1]], 0, 3]",
+        "display_input": "arg1 = 5\\narg2 = [[0,1,2],[0,2,4],[1,3,7],[2,4,1],[4,3,1]]\\narg3 = 0\\narg4 = 3",
+        "expected_output": "\"6\""
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Count Connected Components in an Undirected Graph",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def countComponents(self, n: int, edges: list[list[int]]) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().countComponents(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[5, [[0, 1], [1, 2], [3, 4]]]",
+        "display_input": "n = 5\\nedges = [[0,1],[1,2],[3,4]]",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+        "display_input": "n = 4\\nedges = [[0,1],[1,2],[2,3]]",
+        "expected_output": "\"1\""
+      },
+      {
+        "input": "[6, [[0, 1], [2, 3], [4, 5]]]",
+        "display_input": "n = 6\\nedges = [[0,1],[2,3],[4,5]]",
+        "expected_output": "\"3\""
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Shortest Path in a Directed Acyclic Graph (DAG) with Negative Weights",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def shortestPathDAG(self, V: int, edges: list[list[int]]) -> int:\n        # code here",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def shortestPathDAG(self, V: int, edges: list[list[int]]) -> int:\n        # code here\n        pass\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    V = args[0]\n    edges = args[1]\n    res = Solution().shortestPathDAG(V, edges)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[4, [[0, 1, 1], [1, 2, -2], [2, 3, 3]]]",
+        "display_input": "V = 4\\nedges = [[0,1,1],[1,2,-2],[2,3,3]]",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[5, [[0, 1, 2], [0, 2, 4], [1, 3, 7], [2, 4, 1], [4, 3, -2]]]",
+        "display_input": "V = 5\\nedges = [[0,1,2],[0,2,4],[1,3,7],[2,4,1],[4,3,-2]]",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[3, [[0, 1, -5], [1, 2, 2]]]",
+        "display_input": "V = 3\\nedges = [[0,1,-5],[1,2,2]]",
+        "expected_output": "\"-3\""
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Detecting Cycles in a Graph with Backtracking",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def hasCycle(self, V: int, edges: list[list[int]]) -> bool:\n        # code here",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().hasCycle(*args)\n    print(json.dumps(res))",
+    "test_cases": [
+      {
+        "input": "[3, [[0, 1], [1, 2], [2, 0]]]",
+        "display_input": "V = 3\\nedges = [[0,1],[1,2],[2,0]]",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[4, [[0, 1], [1, 2], [2, 3]]]",
+        "display_input": "V = 4\\nedges = [[0,1],[1,2],[2,3]]",
+        "expected_output": "\"false\""
+      },
+      {
+        "input": "[5, [[0, 1], [1, 2], [2, 3], [3, 1]]]",
+        "display_input": "V = 5\\nedges = [[0,1],[1,2],[2,3],[3,1]]",
+        "expected_output": "\"true\""
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Minimum Spanning Tree (MST) with Prim's Algorithm",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def min_spanning_tree(self, V: int, adj: list[list[list[int]]]) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    V = int(lines[0].strip())\n    adj = [[] for _ in range(V)]\n    edge_count = 0\n    for i in range(1, len(lines)):\n        u, v, w = map(int, lines[i].strip().split())\n        adj[u].append([v, w])\n        adj[v].append([u, w])\n        edge_count += 1\n        if edge_count == len(lines) - 1:\n            break\n\n    result = Solution().min_spanning_tree(V, adj)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "4\n0 1 1\n1 2 2\n2 3 3\n3 0 4",
+        "display_input": "4\n0 1 1\n1 2 2\n2 3 3\n3 0 4",
+        "expected_output": "6"
+      },
+      {
+        "input": "5\n0 1 2\n0 3 6\n1 2 3\n1 3 8\n1 4 5\n2 4 7\n3 4 9",
+        "display_input": "5\n0 1 2\n0 3 6\n1 2 3\n1 3 8\n1 4 5\n2 4 7\n3 4 9",
+        "expected_output": "16"
+      },
+      {
+        "input": "3\n0 1 5\n1 2 10\n0 2 6",
+        "display_input": "3\n0 1 5\n1 2 10\n0 2 6",
+        "expected_output": "11"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Balanced Brackets Checker",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isBalanced(self, s: str) -> bool:\n        stack = []\n        mapping = {')': '(', ']': '[', '}': '{'}\n        for char in s:\n            if char in mapping:\n                if not stack or stack[-1] != mapping[char]:\n                    return False\n                stack.pop()\n            elif char in ['(', '[', '{']:\n                stack.append(char)\n        return not stack",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def isBalanced(self, s: str) -> bool:\n        stack = []\n        mapping = {')': '(', ']': '[', '}': '{'}\n        for char in s:\n            if char in mapping:\n                if not stack or stack[-1] != mapping[char]:\n                    return False\n                stack.pop()\n            elif char in ['(', '[', '{']:\n                stack.append(char)\n        return not stack\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().isBalanced(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "{a(b(c)d)e}",
+        "display_input": "{a(b(c)d)e}",
+        "expected_output": "true"
+      },
+      {
+        "input": "{\"{[(A)]}\"}",
+        "display_input": "{\"{[(A)]}\"}",
+        "expected_output": "true"
+      },
+      {
+        "input": "{\"a(b)c[d]e}\"}",
+        "display_input": "{\"a(b)c[d]e}\"}",
+        "expected_output": "false"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Palindrome Partitioning",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def palindromePartitioning(self, s: str) -> int:\n        n = len(s)\n        if n <= 1:\n            return 1\n\n        dp = [0] * (n + 1)\n        dp[0] = 1\n\n        for i in range(1, n + 1):\n            for j in range(1, i + 1):\n                sub = s[i - j:i]\n                if sub == sub[::-1]:\n                    dp[i] += dp[i - j]\n\n        return dp[n]",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().palindromePartitioning(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"ababa\"]",
+        "display_input": "s = \"ababa\"",
+        "expected_output": "\"5\""
+      },
+      {
+        "input": "[\"aabb\"]",
+        "display_input": "s = \"aabb\"",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[\"abcdef\"]",
+        "display_input": "s = \"abcdef\"",
+        "expected_output": "\"1\""
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().lengthOfLongestSubstring(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "{abcabcbb}",
+        "display_input": "{abcabcbb}",
+        "expected_output": "3"
+      },
+      {
+        "input": "{bbbbb}",
+        "display_input": "{bbbbb}",
+        "expected_output": "1"
+      },
+      {
+        "input": "{pwwkew}",
+        "display_input": "{pwwkew}",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "First Unique Character in String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().firstUniqChar(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"s StrinG\"]",
+        "display_input": "s = \"s StrinG\"",
+        "expected_output": "\"0\""
+      },
+      {
+        "input": "[\"oooE\"]",
+        "display_input": "s = \"oooE\"",
+        "expected_output": "\"-1\""
+      },
+      {
+        "input": "[\"Ooooo\"]",
+        "display_input": "s = \"Ooooo\"",
+        "expected_output": "\"-1\""
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Longest Palindromic Subsequence with Restrictions",
+    "difficulty": "Medium",
+    "starter_python": "def longestPalindromeSubseqWithRestrictions(s: str, forbidden: list[int]) -> int:\n    # Write your code here\n    pass",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def longestPalindromeSubseqWithRestrictions(self, s: str, forbidden: list[int]) -> int:\n        # This is a placeholder.  The actual solution goes in the starter code.\n        n = len(s)\n        if not forbidden:\n            return n\n        else:\n            return 0\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().longestPalindromeSubseqWithRestrictions(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"bbbab\", []]",
+        "display_input": "s = \"bbbab\"\\nforbidden = []",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[\"cbbd\", []]",
+        "display_input": "s = \"cbbd\"\\nforbidden = []",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[\"agbdba\", []]",
+        "display_input": "s = \"agbdba\"\\nforbidden = []",
+        "expected_output": "\"5\""
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Lexicographically Small Substring with K Distinct Characters",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def smallestSubstring(self, s: str, k: int) -> str:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().smallestSubstring(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"abcba\", 2]",
+        "display_input": "s = \"abcba\"\\nk = 2",
+        "expected_output": "\"\\\"ab\\\"\""
+      },
+      {
+        "input": "[\"aaabbb\", 1]",
+        "display_input": "s = \"aaabbb\"\\nk = 1",
+        "expected_output": "\"\\\"a\\\"\""
+      },
+      {
+        "input": "[\"xyzabc\", 3]",
+        "display_input": "s = \"xyzabc\"\\nk = 3",
+        "expected_output": "\"\\\"abc\\\"\""
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Minimum Unique Substring for All Anagrams",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minUniqueSubstring(self, s: str, t: str) -> str:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().minUniqueSubstring(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"ADOBECODEBANC\", \"ABC\"]",
+        "display_input": "s = \"ADOBECODEBANC\"\\nt = \"ABC\"",
+        "expected_output": "\"\\\"BANC\\\"\""
+      },
+      {
+        "input": "[\"a\", \"a\"]",
+        "display_input": "s = \"a\"\\nt = \"a\"",
+        "expected_output": "\"\\\"a\\\"\""
+      },
+      {
+        "input": "[\"a\", \"aa\"]",
+        "display_input": "s = \"a\"\\nt = \"aa\"",
+        "expected_output": "\"\\\"\\\"\""
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Valid Parenthesis Sequence with Pairs",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def isValidParenthesisSequence(self, s: str, forbidden: list[list[str]]) -> bool:\n        # Implement your solution here\n        return False",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def isValidParenthesisSequence(self, s: str, forbidden: list[list[str]]) -> bool:\n        stack = []\n        pairs = {\n            ')': '(',\n            '}': '{',\n            ']': '['\n        }\n        forbidden_set = set(tuple(pair) for pair in forbidden)\n\n        for char in s:\n            if char in '({[':\n                stack.append(char)\n            elif char in ')}]':\n                if not stack:\n                    return False\n                top = stack.pop()\n                if pairs[char] != top:\n                    return False\n                if (top, char) in forbidden_set:\n                    return False\n            else:\n                continue\n\n        return not stack\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().isValidParenthesisSequence(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"()\", []]",
+        "display_input": "s = \"()\"\\nforbidden = []",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"(())\n()\", []]",
+        "display_input": "[\"(())\n()\", []]",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"(())\", []]",
+        "display_input": "s = \"(())\"\\nforbidden = []",
+        "expected_output": "\"false\""
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Optimal String Splitting for Maximum Palindromes",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def solve(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().solve(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"ababa\"]",
+        "display_input": "s = \"ababa\"",
+        "expected_output": "\"5\""
+      },
+      {
+        "input": "[\"aaa\"]",
+        "display_input": "s = \"aaa\"",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[\"abc\"]",
+        "display_input": "s = \"abc\"",
+        "expected_output": "\"3\""
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "title": "Find the Second Minimum Number in an Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findSecondMinimum(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().findSecondMinimum(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[5, 1, 4, 2, 3]]",
+        "display_input": "nums = [5,1,4,2,3]",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[[1, 1, 1, 1]]",
+        "display_input": "nums = [1,1,1,1]",
+        "expected_output": "\"-1\""
+      },
+      {
+        "input": "[[7, 5, 9, 2, 5]]",
+        "display_input": "nums = [7,5,9,2,5]",
+        "expected_output": "\"5\""
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "title": "Count Pairs with Given Sum",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def countPairs(self, nums: list[int], target: int) -> int:\n        # Write your code here\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().countPairs(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[ [3, 1, 6, 2, 4], 5 ]",
+        "display_input": "nums = [3,1,6,2,4]\\ntarget = 5",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[ [1, 2, 3, 4, 5], 11 ]",
+        "display_input": "nums = [1,2,3,4,5]\\ntarget = 11",
+        "expected_output": "\"0\""
+      },
+      {
+        "input": "[ [4, 5, 0, -2, -3, 1], -2 ]",
+        "display_input": "nums = [4,5,0,-2,-3,1]\\ntarget = -2",
+        "expected_output": "\"3\""
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "title": "Merge Two Sorted Arrays",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def merge(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        pass",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    nums1, nums2, m, n = args[0], args[1], args[2], args[3]\n    Solution().merge(nums1, m, nums2, n)\n    print(json.dumps(nums1, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[1, 3, 5, 0, 0, 0], [2, 4, 6], 3, 3]",
+        "display_input": "nums1 = [1,3,5,0,0,0]\\nm = [2,4,6]\\nnums2 = 3\\nn = 3",
+        "expected_output": "\"[1, 2, 3, 4, 5, 6]\""
+      },
+      {
+        "input": "[[0, 0, 0, 0, 0, 0], [1, 2, 3], 3, 3]",
+        "display_input": "nums1 = [0,0,0,0,0,0]\\nm = [1,2,3]\\nnums2 = 3\\nn = 3",
+        "expected_output": "\"[0, 0, 0, 1, 2, 3]\""
+      },
+      {
+        "input": "[[1, 2, 3, 0, 0], [4, 5], 3, 2]",
+        "display_input": "nums1 = [1,2,3,0,0]\\nm = [4,5]\\nnums2 = 3\\nn = 2",
+        "expected_output": "\"[1, 2, 3, 4, 5]\""
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "title": "Find the Pivot Index",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def pivotIndex(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().pivotIndex(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[1, 7, 3, 6, 5, 6]]",
+        "display_input": "nums = [1,7,3,6,5,6]",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[[1, 2, 3]]",
+        "display_input": "nums = [1,2,3]",
+        "expected_output": "\"-1\""
+      },
+      {
+        "input": "[[2, 1, -1]]",
+        "display_input": "nums = [2,1,-1]",
+        "expected_output": "\"0\""
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "title": "Longest Continuous Increasing Subsequence",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findLengthOfLCIS(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().findLengthOfLCIS(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[ [1, 3, 5, 4, 7, 6, 8, 9] ]",
+        "display_input": "nums = [1,3,5,4,7,6,8,9]",
+        "expected_output": "\"5\""
+      },
+      {
+        "input": "[ [1, 10, 100, 4, 2, 200] ]",
+        "display_input": "nums = [1,10,100,4,2,200]",
+        "expected_output": "\"1\""
+      },
+      {
+        "input": "[ [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -1, -2, -3] ]",
+        "display_input": "nums = [1,2,3,4,5,6,7,8,9,0,-1,-2,-3]",
+        "expected_output": "\"9\""
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "title": "Subarray Sum Equals K",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def subarraySum(self, nums: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().subarraySum(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[1, 2, 3], 3]",
+        "display_input": "arg1 = [1,2,3]\\narg2 = 3",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[[-2, -1, 2, 1], 0]",
+        "display_input": "arg1 = [-2,-1,2,1]\\narg2 = 0",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[[10, 5, 2, 7, 1, 9], 15]",
+        "display_input": "arg1 = [10,5,2,7,1,9]\\narg2 = 15",
+        "expected_output": "\"1\""
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Reverse a String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        ",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().reverseString(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"hello\"]",
+        "display_input": "s = \"hello\"",
+        "expected_output": "\"\\\"olleh\\\"\""
+      },
+      {
+        "input": "[\"DSA\"]",
+        "display_input": "s = \"DSA\"",
+        "expected_output": "\"\\\"ASD\\\"\""
+      },
+      {
+        "input": "[\"\"]",
+        "display_input": "s = \"\"",
+        "expected_output": "\"\\\"\\\"\""
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "title": "Count Vowels in a String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def countVowels(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().countVowels(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"aeiou\"]",
+        "display_input": "s = \"aeiou\"",
+        "expected_output": "\"5\""
+      },
+      {
+        "input": "[\"Hello World\"]",
+        "display_input": "s = \"Hello World\"",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[\"XYZ\"]",
+        "display_input": "s = \"XYZ\"",
+        "expected_output": "\"0\""
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "title": "Check Palindrome",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().isPalindrome(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"A man, a plan, a canal: Panama\"]",
+        "display_input": "s = \"A man, a plan, a canal: Panama\"",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"racecar\"]",
+        "display_input": "s = \"racecar\"",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"hello\"]",
+        "display_input": "s = \"hello\"",
+        "expected_output": "\"false\""
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "title": "Find All Anagrams in a String",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findAnagrams(self, s: str, p: str) -> list[int]:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().findAnagrams(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"cbaebabacd\", \"abc\"]",
+        "display_input": "s = \"cbaebabacd\"\\np = \"abc\"",
+        "expected_output": "\"[0, 6]\""
+      },
+      {
+        "input": "[\"abab\", \"ab\"]",
+        "display_input": "s = \"abab\"\\np = \"ab\"",
+        "expected_output": "\"[0, 1, 2]\""
+      },
+      {
+        "input": "[\"baa\", \"aa\"]",
+        "display_input": "s = \"baa\"\\np = \"aa\"",
+        "expected_output": "\"[1]\""
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Group Anagrams",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().groupAnagrams(args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]",
+        "display_input": "arg1 = \"eat\"\\narg2 = \"tea\"\\narg3 = \"tan\"\\narg4 = \"ate\"\\narg5 = \"nat\"\\narg6 = \"bat\"",
+        "expected_output": "\"[[\\\"eat\\\",\\\"tea\\\",\\\"ate\\\"],[\\\"tan\\\",\\\"nat\\\"],[\\\"bat\\\"]]\""
+      },
+      {
+        "input": "[\"\"]",
+        "display_input": "strs = \"\"",
+        "expected_output": "\"[[\\\"\\\"]]\""
+      },
+      {
+        "input": "[\"a\"]",
+        "display_input": "strs = \"a\"",
+        "expected_output": "\"[[\\\"a\\\"]]\""
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "title": "Counting Steps to One",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def numberOfSteps(self, num: int) -> int:\n        if num == 1:\n            return 0\n        if num % 2 == 0:\n            return 1 + self.numberOfSteps(num // 2)\n        else:\n            return 1 + self.numberOfSteps(num - 1)",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().numberOfSteps(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[8]",
+        "display_input": "num = 8",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[121]",
+        "display_input": "num = 121",
+        "expected_output": "\"10\""
+      },
+      {
+        "input": "[1]",
+        "display_input": "num = 1",
+        "expected_output": "\"0\""
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "title": "Fibonacci Sequence",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def fib(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().fib(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[0]",
+        "display_input": "n = 0",
+        "expected_output": "\"0\""
+      },
+      {
+        "input": "[1]",
+        "display_input": "n = 1",
+        "expected_output": "\"1\""
+      },
+      {
+        "input": "[7]",
+        "display_input": "n = 7",
+        "expected_output": "\"13\""
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "title": "Binary Search Using Recursion",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        def binary_search(left, right):\n            if left > right:\n                return -1\n            \n            mid = (left + right) // 2\n            \n            if nums[mid] == target:\n                return mid\n            elif nums[mid] < target:\n                return binary_search(mid + 1, right)\n            else:\n                return binary_search(left, mid - 1)\n        \n        return binary_search(0, len(nums) - 1)",
+    "driver_python": "import sys, json\n\nclass Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        def binary_search(left, right):\n            if left > right:\n                return -1\n            \n            mid = (left + right) // 2\n            \n            if nums[mid] == target:\n                return mid\n            elif nums[mid] < target:\n                return binary_search(mid + 1, right)\n            else:\n                return binary_search(left, mid - 1)\n        \n        return binary_search(0, len(nums) - 1)\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().search(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[-1, 0, 3, 5, 9, 12], 9]",
+        "display_input": "nums = [-1,0,3,5,9,12]\\ntarget = 9",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[[-1, 0, 3, 5, 9, 12], 2]",
+        "display_input": "nums = [-1,0,3,5,9,12]\\ntarget = 2",
+        "expected_output": "\"-1\""
+      },
+      {
+        "input": "[[1, 2, 4, 6, 8, 10], 8]",
+        "display_input": "nums = [1,2,4,6,8,10]\\ntarget = 8",
+        "expected_output": "\"4\""
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "title": "Paschal's Triangle",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def pascalsTriangle(self, n: int) -> list[int]:\n        # Implement your solution here\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().pascalsTriangle(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[1]",
+        "display_input": "n = 1",
+        "expected_output": "\"[1]\""
+      },
+      {
+        "input": "[5]",
+        "display_input": "n = 5",
+        "expected_output": "\"[1, 4, 6, 4, 1]\""
+      },
+      {
+        "input": "[0]",
+        "display_input": "n = 0",
+        "expected_output": "\"[]\""
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "title": "Counting Subsequences in an Array",
+    "difficulty": "Hard",
+    "starter_python": "class Solution:\n    def countSubsequences(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    \n    result = Solution().countSubsequences(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "{\n  \"arr\": [1, 2, 3],\n  \"target\": 3\n}",
+        "display_input": "{\n  \"arr\": [\n    1,\n    2,\n    3\n  ],\n  \"target\": 3\n}",
+        "expected_output": "1"
+      },
+      {
+        "input": "{\n  \"arr\": [1, 1, 1],\n  \"target\": 2\n}",
+        "display_input": "{\n  \"arr\": [\n    1,\n    1,\n    1\n  ],\n  \"target\": 2\n}",
+        "expected_output": "2"
+      },
+      {
+        "input": "{\n  \"arr\": [1, 5, 11],\n  \"target\": 5\n}",
+        "display_input": "{\n  \"arr\": [\n    1,\n    5,\n    11\n  ],\n  \"target\": 5\n}",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "title": "Balanced Parentheses",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isValid(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().isValid(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"()\"]",
+        "display_input": "input = \"()\"",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"()()\"]",
+        "display_input": "input = \"()()\"",
+        "expected_output": "\"true\""
+      },
+      {
+        "input": "[\"(())\"]",
+        "display_input": "input = \"(())\"",
+        "expected_output": "\"true\""
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "title": "Basic Calculator",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def calculate(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().calculate(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "{\"1 + 1\"}",
+        "display_input": "{\"1 + 1\"}",
+        "expected_output": "2"
+      },
+      {
+        "input": "{\"(1 + (2 + 3)) + (4 + (5 + 6))\"}",
+        "display_input": "{\"(1 + (2 + 3)) + (4 + (5 + 6))\"}",
+        "expected_output": "21"
+      },
+      {
+        "input": "{\"1 - (2 + 3)\"}",
+        "display_input": "{\"1 - (2 + 3)\"}",
+        "expected_output": "-4"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "title": "Reverse Words in a String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseWords(self, s: str) -> str:\n        # Implement your solution here\n        return \"\"",
+    "driver_python": "import sys, json\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().reverseWords(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"Hello World\"]",
+        "display_input": "input = \"Hello World\"",
+        "expected_output": "\"\\\"olleH dlroW\\\"\""
+      },
+      {
+        "input": "[\"the sky is blue\"]",
+        "display_input": "input = \"the sky is blue\"",
+        "expected_output": "\"\\\"eht yks si eulb\\\"\""
+      },
+      {
+        "input": "[\"to be or not to be\"]",
+        "display_input": "input = \"to be or not to be\"",
+        "expected_output": "\"\\\"ot eb ro ton ot eb\\\"\""
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "title": "Reverse Characters in a String Using Stack",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        stack = []\n        for char in s:\n            stack.append(char)\n        reversed_string = ''\n        while stack:\n            reversed_string += stack.pop()\n        return reversed_string",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().reverseString(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"abc\"]",
+        "display_input": "s = \"abc\"",
+        "expected_output": "\"\\\"cba\\\"\""
+      },
+      {
+        "input": "[\"\"]",
+        "display_input": "s = \"\"",
+        "expected_output": "\"\\\"\\\"\""
+      },
+      {
+        "input": "[\"stack\"]",
+        "display_input": "s = \"stack\"",
+        "expected_output": "\"\\\"kcats\\\"\""
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "title": "Minimum Add to Make Parentheses Valid Using Stack",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minAddToMakeValid(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().minAddToMakeValid(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"(\\n(\\n)\\n\"]",
+        "display_input": "s = \"(\\n(\\n)\\n\"",
+        "expected_output": "\"1\""
+      },
+      {
+        "input": "[\")\\n(\\n)\"]",
+        "display_input": "s = \")\\n(\\n)\"",
+        "expected_output": "\"2\""
+      },
+      {
+        "input": "[\"(\\n\"]",
+        "display_input": "s = \"(\\n\"",
+        "expected_output": "\"1\""
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "title": "Evaluate Complex Expression with Parentheses Using Stack",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def calculate(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().calculate(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[\"3*(4-2)\"]",
+        "display_input": "input = \"3*(4-2)\"",
+        "expected_output": "\"6\""
+      },
+      {
+        "input": "[\"2*(3+1)+2\"]",
+        "display_input": "input = \"2*(3+1)+2\"",
+        "expected_output": "\"10\""
+      },
+      {
+        "input": "[\"10/2+3\"]",
+        "display_input": "input = \"10/2+3\"",
+        "expected_output": "\"8\""
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "title": "Basic Queue Operations",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def queueOperations(self, operations):\n        queue = []\n        result = None\n        for op in operations:\n            if op.startswith(\"enqueue\"): \n                value = int(op[8:-1])\n                queue.append(value)\n            elif op == \"dequeue()\":\n                if queue:\n                    queue.pop(0)\n            elif op == \"front()\":\n                if queue:\n                    result = queue[0]\n                else:\n                    result = None\n            elif op == \"isEmpty()\":\n                result = len(queue) == 0\n        return result",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().queueOperations(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[\"enqueue(1)\", \"enqueue(2)\", \"dequeue()\", \"front()\", \"isEmpty()\"]]",
+        "display_input": "input = [\"enqueue(1)\",\"enqueue(2)\",\"dequeue()\",\"front()\",\"isEmpty()\"]",
+        "expected_output": "\"1\""
+      },
+      {
+        "input": "[[\"enqueue(5)\", \"enqueue(10)\", \"dequeue()\", \"isEmpty()\", \"enqueue(15)\", \"front()\"]]",
+        "display_input": "input = [\"enqueue(5)\",\"enqueue(10)\",\"dequeue()\",\"isEmpty()\",\"enqueue(15)\",\"front()\"]",
+        "expected_output": "\"15\""
+      },
+      {
+        "input": "[[\"enqueue(7)\", \"dequeue()\", \"dequeue()\", \"isEmpty()\", \"enqueue(8)\", \"front()\"]]",
+        "display_input": "input = [\"enqueue(7)\",\"dequeue()\",\"dequeue()\",\"isEmpty()\",\"enqueue(8)\",\"front()\"]",
+        "expected_output": "\"8\""
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "title": "Find Minimum Element in Sliding Window",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findMinimumInSlidingWindow(self, nums: list[int], k: int) -> list[int]:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().findMinimumInSlidingWindow(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[1, 3, -1, -3, 5, 3, 6, 7], 3]",
+        "display_input": "arg1 = [1,3,-1,-3,5,3,6,7]\\narg2 = 3",
+        "expected_output": "\"[-1, -3, -3, 3, 3]\""
+      },
+      {
+        "input": "[[10], 1]",
+        "display_input": "arg1 = [10]\\narg2 = 1",
+        "expected_output": "\"[10]\""
+      },
+      {
+        "input": "[[2, 5, 7, 3, 2, 5, 3], 4]",
+        "display_input": "arg1 = [2,5,7,3,2,5,3]\\narg2 = 4",
+        "expected_output": "\"[2, 2, 2, 2]\""
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "title": "Reverse the First k Elements of a Queue",
+    "difficulty": "Easy",
+    "starter_python": "from collections import deque\n\nclass Solution:\n    def reverseFirstK(self, queue: list[int], k: int) -> list[int]:\n        # code here",
+    "driver_python": "import sys, json\nfrom collections import deque\n\nclass Solution:\n    def reverseFirstK(self, queue: list[int], k: int) -> list[int]:\n        q = deque(queue)\n        if k > len(q) or k <= 0:\n            return list(q)\n\n        stack = []\n        for _ in range(k):\n            stack.append(q.popleft())\n\n        while stack:\n            q.appendleft(stack.pop())\n\n        for _ in range(len(q) - k):\n            q.append(q.popleft())\n\n        return list(q)\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().reverseFirstK(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[ [10, 20, 30, 40, 50], 3 ]",
+        "display_input": "arg1 = [10,20,30,40,50]\\narg2 = 3",
+        "expected_output": "\"[30, 20, 10, 40, 50]\""
+      },
+      {
+        "input": "[ [1, 2, 3, 4], 2 ]",
+        "display_input": "arg1 = [1,2,3,4]\\narg2 = 2",
+        "expected_output": "\"[2, 1, 3, 4]\""
+      },
+      {
+        "input": "[ [10, 5, 12], 1 ]",
+        "display_input": "arg1 = [10,5,12]\\narg2 = 1",
+        "expected_output": "\"[10, 5, 12]\""
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "title": "Find First and Last Position of Element in Sorted Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def searchRange(self, nums: List[int], target: int) -> List[int]:\n        pass",
+    "driver_python": "import sys, json\nfrom typing import List\n\nclass Solution:\n    def searchRange(self, nums: List[int], target: int) -> List[int]:\n        left = 0\n        right = len(nums) - 1\n        first = -1\n        last = -1\n\n        while left <= right:\n            mid = (left + right) // 2\n            if nums[mid] == target:\n                first = mid\n                right = mid - 1\n            elif nums[mid] < target:\n                left = mid + 1\n            else:\n                right = mid - 1\n\n        left = 0\n        right = len(nums) - 1\n\n        while left <= right:\n            mid = (left + right) // 2\n            if nums[mid] == target:\n                last = mid\n                left = mid + 1\n            elif nums[mid] < target:\n                left = mid + 1\n            else:\n                right = mid - 1\n\n        return [first, last]\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().searchRange(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[5,7,7,8,8,10], 8]",
+        "display_input": "arg1 = [5,7,7,8,8,10]\\narg2 = 8",
+        "expected_output": "\"[3, 4]\""
+      },
+      {
+        "input": "[[5,7,7,8,8,10], 6]",
+        "display_input": "arg1 = [5,7,7,8,8,10]\\narg2 = 6",
+        "expected_output": "\"[-1, -1]\""
+      },
+      {
+        "input": "[[], 0]",
+        "display_input": "arg1 = []\\narg2 = 0",
+        "expected_output": "\"[-1, -1]\""
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "title": "Binary Search Implementation",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().search(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[-1,0,3,5,9,12], 9]",
+        "display_input": "arg1 = [-1,0,3,5,9,12]\\narg2 = 9",
+        "expected_output": "\"4\""
+      },
+      {
+        "input": "[[-1,0,3,5,9,12], 2]",
+        "display_input": "arg1 = [-1,0,3,5,9,12]\\narg2 = 2",
+        "expected_output": "\"-1\""
+      },
+      {
+        "input": "[[1], 1]",
+        "display_input": "arg1 = [1]\\narg2 = 1",
+        "expected_output": "\"0\""
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "title": "Pow(x, n) - Find Exponent",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def myPow(self, x: float, n: int) -> float:\n        pass",
+    "driver_python": "import sys, json\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().myPow(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[2.00000, 10]",
+        "display_input": "arg1 = 2\\narg2 = 10",
+        "expected_output": "\"1024.00000\""
+      },
+      {
+        "input": "[2.10000, 3]",
+        "display_input": "arg1 = 2.1\\narg2 = 3",
+        "expected_output": "\"9.26100\""
+      },
+      {
+        "input": "[2.00000, -2]",
+        "display_input": "arg1 = 2\\narg2 = -2",
+        "expected_output": "\"0.25000\""
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Find Peak Element in Mountain Array",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def peakIndexInMountainArray(self, arr: List[int]) -> int:\n        ",
+    "driver_python": "import sys, json\nfrom typing import List\n\nclass Solution:\n    def peakIndexInMountainArray(self, arr: List[int]) -> int:\n        left, right = 0, len(arr) - 1\n        while left < right:\n            mid = (left + right) // 2\n            if arr[mid] < arr[mid + 1]:\n                left = mid + 1\n            else:\n                right = mid\n        return left\n\nif __name__ == '__main__':\n    args = json.loads(sys.stdin.read().strip())\n    res = Solution().peakIndexInMountainArray(*args)\n    print(json.dumps(res, separators=(',', ':')))",
+    "test_cases": [
+      {
+        "input": "[[1,3,5,7,4,2]]",
+        "display_input": "input = [1,3,5,7,4,2]",
+        "expected_output": "\"3\""
+      },
+      {
+        "input": "[[2,1]]",
+        "display_input": "input = [2,1]",
+        "expected_output": "\"0\""
+      },
+      {
+        "input": "[[1,2,3,4,5,6,7,8,9,5,4,3,2,1]]",
+        "display_input": "input = [1,2,3,4,5,6,7,8,9,5,4,3,2,1]",
+        "expected_output": "\"8\""
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Kth Smallest in Lexicographical Order",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def kthSmallest(self, words: list[str], k: int) -> str:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    words = lines[0].strip().split()\n    k = int(lines[1].strip())\n    \n    result = Solution().kthSmallest(words, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[\n  \"geeks\",\n  \"for\",\n  \"geeks\",\n  \"quiz\"\n], 2",
+        "display_input": "[\n  \"geeks\",\n  \"for\",\n  \"geeks\",\n  \"quiz\"\n], 2",
+        "expected_output": "\"for\""
+      },
+      {
+        "input": "[\"apple\", \"banana\", \"cherry\", \"date\"], 4",
+        "display_input": "[\"apple\", \"banana\", \"cherry\", \"date\"], 4",
+        "expected_output": "\"quiz\""
+      },
+      {
+        "input": "[\n  \"abc\",\n  \"abd\",\n  \"xyz\",\n  \"aaa\",\n  \"aab\"\n], 1",
+        "display_input": "[\n  \"abc\",\n  \"abd\",\n  \"xyz\",\n  \"aaa\",\n  \"aab\"\n], 1",
+        "expected_output": "\"aaa\""
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "title": "Coin Change Problem",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def coinChange(self, coins: list[int], amount: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    coins = list(map(int, lines[0].strip().split()))\n    amount = int(lines[1].strip())\n    \n    result = Solution().coinChange(coins, amount)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "coins = [1, 2, 5], amount = 11",
+        "display_input": "coins = [1, 2, 5], amount = 11",
+        "expected_output": "3"
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "display_input": "coins = [2], amount = 3",
+        "expected_output": "-1"
+      },
+      {
+        "input": "coins = [1, 3, 4], amount = 6",
+        "display_input": "coins = [1, 3, 4], amount = 6",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "title": "Fractional Knapsack",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def fractionalKnapsack(self, W: int, items: list[list[int]]) -> float:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    W = int(lines[0].strip())\n    items = []\n    for line in lines[1:]:\n        weight, value = map(int, line.strip().split())\n        items.append([weight, value])\n\n    result = Solution().fractionalKnapsack(W, items)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "values = [60, 100, 120]\nweights = [10, 20, 30]\nW = 50",
+        "display_input": "values = [60, 100, 120]\nweights = [10, 20, 30]\nW = 50",
+        "expected_output": "240"
+      },
+      {
+        "input": "values = [10, 40, 30, 50]\nweights = [5, 4, 6, 3]\nW = 5",
+        "display_input": "values = [10, 40, 30, 50]\nweights = [5, 4, 6, 3]\nW = 5",
+        "expected_output": "50"
+      },
+      {
+        "input": "values = [100]\nweights = [50]\nW = 40",
+        "display_input": "values = [100]\nweights = [50]\nW = 40",
+        "expected_output": "80"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Gas Station (Greedy Variant)",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    gas = list(map(int, lines[0].strip().split(',')))\n    cost = list(map(int, lines[1].strip().split(',')))\n    result = Solution().canCompleteCircuit(gas, cost)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "gas = [1, 2, 3, 4, 5]\ncost = [5, 2, 1, 3, 4]",
+        "display_input": "gas = [1, 2, 3, 4, 5]\ncost = [5, 2, 1, 3, 4]",
+        "expected_output": "3"
+      },
+      {
+        "input": "gas = [2, 3, 4]\ncost = [3, 4, 3]",
+        "display_input": "gas = [2, 3, 4]\ncost = [3, 4, 3]",
+        "expected_output": "0"
+      },
+      {
+        "input": "gas = [4, 5]\ncost = [3, 3]",
+        "display_input": "gas = [4, 5]\ncost = [3, 3]",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Fractional Knapsack Problem",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def fractionalKnapsack(self, W: int, items: list[list[int]]) -> float:\n        pass",
+    "driver_python": "import sys\n\nclass Item:\n    def __init__(self, weight, value):\n        self.weight = weight\n        self.value = value\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    W = int(lines[0].strip())\n    items = []\n    for line in lines[1:]:\n        weight, value = map(int, line.strip().split())\n        items.append([weight, value])\n\n    result = Solution().fractionalKnapsack(W, items)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "W = 50\nvalues = [60, 100, 120]\nweights = [10, 20, 30]\nOutput: 240.0",
+        "display_input": "W = 50\nvalues = [60, 100, 120]\nweights = [10, 20, 30]\nOutput: 240.0",
+        "expected_output": "240.0"
+      },
+      {
+        "input": "W = 6\nvalues = [12, 40, 30]\nweights = [8, 10, 6]\nOutput: 72.0",
+        "display_input": "W = 6\nvalues = [12, 40, 30]\nweights = [8, 10, 6]\nOutput: 72.0",
+        "expected_output": "72.0"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "title": "Minimum Number of Platforms Needed for Trains",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findPlatform(self, arr: list[int], dep: list[int], n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    n = int(lines[0].strip())\n    arr = list(map(int, lines[1].strip().split()))\n    dep = list(map(int, lines[2].strip().split()))\n    \n    result = Solution().findPlatform(arr, dep, n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "arrivals = [900, 940, 950, 1100, 1500, 1800]\ndepartures = [910, 1200, 1120, 1130, 1900, 2000]\nOutput: 3",
+        "display_input": "arrivals = [900, 940, 950, 1100, 1500, 1800]\ndepartures = [910, 1200, 1120, 1130, 1900, 2000]\nOutput: 3",
+        "expected_output": "3"
+      },
+      {
+        "input": "arrivals = [900, 1100, 1230, 1240, 1900]\ndepartures = [910, 1200, 1235, 1150, 2000]\nOutput: 3",
+        "display_input": "arrivals = [900, 1100, 1230, 1240, 1900]\ndepartures = [910, 1200, 1235, 1150, 2000]\nOutput: 3",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Gas Station Tour with Optimal Stops",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    gas = list(map(int, lines[0].strip().split()))\n    cost = list(map(int, lines[1].strip().split()))\n    \n    result = Solution().canCompleteCircuit(gas, cost)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "gas = [1, 2, 3, 4, 5]\ncost = [3, 4, 5, 1, 2]\nOutput: 3",
+        "display_input": "gas = [1, 2, 3, 4, 5]\ncost = [3, 4, 5, 1, 2]\nOutput: 3",
+        "expected_output": "3"
+      },
+      {
+        "input": "gas = [2, 3, 4]\ncost = [3, 3, 5]\nOutput: -1",
+        "display_input": "gas = [2, 3, 4]\ncost = [3, 3, 5]\nOutput: -1",
+        "expected_output": "-1"
+      },
+      {
+        "input": "gas = [4, 5, 6, 7]\ncost = [6, 5, 3, 2]\nOutput: 1",
+        "display_input": "gas = [4, 5, 6, 7]\ncost = [6, 5, 3, 2]\nOutput: 1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Climbing Stairs",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def climbStairs(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().climbStairs(n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "2",
+        "display_input": "2",
+        "expected_output": "[2]"
+      },
+      {
+        "input": "3",
+        "display_input": "3",
+        "expected_output": "[3]"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "title": "House Robber (Basic)",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def rob(self, nums: list[int]) -> int:\n        pass\n",
+    "driver_python": "import sys\nimport json\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = json.loads(lines[0].strip())\n    result = Solution().rob(nums)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "[1,\n2,\n3,\n1]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 1",
+        "expected_output": "[4]"
+      },
+      {
+        "input": "[2,\n7,\n9,\n3,\n1]",
+        "display_input": "arg1 = 2\\narg2 = 7\\narg3 = 9\\narg4 = 3\\narg5 = 1",
+        "expected_output": "[12]"
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "title": "House Robber I",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def rob(self, nums: list[int]) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nclass Solution:\n    def rob(self, nums: list[int]) -> int:\n        if not nums:\n            return 0\n        if len(nums) == 1:\n            return nums[0]\n\n        def helper(arr):\n            rob1, rob2 = 0, 0\n\n            for n in arr:\n                temp = max(n + rob1, rob2)\n                rob1 = rob2\n                rob2 = temp\n            return rob2\n\n        return max(helper(nums[:-1]), helper(nums[1:]))\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    print(Solution().rob(nums))\n",
+    "test_cases": [
+      {
+        "input": "[1,\n2,\n3,\n1]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 1",
+        "expected_output": "4"
+      },
+      {
+        "input": "[2,\n7,\n9,\n3,\n1]",
+        "display_input": "arg1 = 2\\narg2 = 7\\narg3 = 9\\narg4 = 3\\narg5 = 1",
+        "expected_output": "12"
+      },
+      {
+        "input": "[2,\n1,\n1,\n2]",
+        "display_input": "arg1 = 2\\narg2 = 1\\narg3 = 1\\narg4 = 2",
+        "expected_output": "4"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Edit Distance (Levenshtein Distance)",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minDistance(self, str1: str, str2: str) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    str1 = lines[0].strip()\n    str2 = lines[1].strip()\n    print(Solution().minDistance(str1, str2))",
+    "test_cases": [
+      {
+        "input": "{'str1': 'kitten', 'str2': 'sitting'}",
+        "display_input": "{'str1': 'kitten', 'str2': 'sitting'}",
+        "expected_output": "3"
+      },
+      {
+        "input": "{'str1': 'googles', 'str2': 'google'}",
+        "display_input": "{'str1': 'googles', 'str2': 'google'}",
+        "expected_output": "1"
+      },
+      {
+        "input": "{'str1': 'abcde', 'str2': 'fghij'}",
+        "display_input": "{'str1': 'abcde', 'str2': 'fghij'}",
+        "expected_output": "5"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "title": "Minimum Path Sum in a Grid",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minPathSum(self, grid: List[List[int]]) -> int:\n        pass",
+    "driver_python": "import sys\nfrom typing import List\n\nclass Solution:\n    def minPathSum(self, grid: List[List[int]]) -> int:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    grid = []\n    for line in lines:\n        grid.append(list(map(int, line.strip().split())))\n    \n    result = Solution().minPathSum(grid)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "{\n  'grid': [\n    [1, 3, 1],\n    [1, 5, 1],\n    [4, 2, 1]\n  ]\n}",
+        "display_input": "{\n  'grid': [\n    [1, 3, 1],\n    [1, 5, 1],\n    [4, 2, 1]\n  ]\n}",
+        "expected_output": "7"
+      },
+      {
+        "input": "{\n  'grid': [\n    [5, 1, 2, 3, 7],\n    [1, 5, 1, 1, 1],\n    [2, 3, 5, 6, 3],\n    [3, 7, 2, 1, 8],\n    [8, 1, 3, 2, 5]\n  ]\n}",
+        "display_input": "{\n  'grid': [\n    [5, 1, 2, 3, 7],\n    [1, 5, 1, 1, 1],\n    [2, 3, 5, 6, 3],\n    [3, 7, 2, 1, 8],\n    [8, 1, 3, 2, 5]\n  ]\n}",
+        "expected_output": "36"
+      },
+      {
+        "input": "{\n  'grid': [\n    [1, 2, 3],\n    [4, 5, 6]\n  ]\n}",
+        "display_input": "{\n  'grid': [\n    [1, 2, 3],\n    [4, 5, 6]\n  ]\n}",
+        "expected_output": "12"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Count the Number of Edges in a Graph",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def countEdges(self, graph: list[list[int]]) -> int:\n        pass",
+    "driver_python": "import sys\nimport json\n\nif __name__ == '__main__':\n    graph_str = sys.stdin.read()\n    graph = json.loads(graph_str)\n    \n    result = Solution().countEdges(graph)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "4\n1 2\n1 3\n1 4\n2 3\n2 4\n3 4",
+        "display_input": "4\n1 2\n1 3\n1 4\n2 3\n2 4\n3 4",
+        "expected_output": "6"
+      },
+      {
+        "input": "3\n1 2\n2 3",
+        "display_input": "3\n1 2\n2 3",
+        "expected_output": "2"
+      },
+      {
+        "input": "5\n1 2\n1 3\n1 4\n1 5",
+        "display_input": "5\n1 2\n1 3\n1 4\n1 5",
+        "expected_output": "4"
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "title": "DFS Traversal of Graph",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def dfs(self, graph: dict[int, list[int]], start_node: int) -> list[int]:\n        pass\n",
+    "driver_python": "import sys\n\ndef parse_graph(input_str):\n    lines = input_str.strip().split('\\n')\n    graph = {}\n    for line in lines:\n        parts = line.split(':')\n        node = int(parts[0].strip())\n        neighbors_str = parts[1].strip()\n        if neighbors_str:\n            neighbors = [int(n.strip()) for n in neighbors_str.split(',')]\n        else:\n            neighbors = []\n        graph[node] = neighbors\n    return graph\n\nif __name__ == '__main__':\n    input_data = sys.stdin.read()\n    parts = input_data.split('---')\n    graph_str = parts[0].strip()\n    start_node = int(parts[1].strip())\n    \n    graph = parse_graph(graph_str)\n    \n    result = Solution().dfs(graph, start_node)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "4\n1 2\n1 3\n2 4",
+        "display_input": "4\n1 2\n1 3\n2 4",
+        "expected_output": "[1, 2, 4, 3]"
+      },
+      {
+        "input": "5\n1 2\n1 3\n2 4\n3 5",
+        "display_input": "5\n1 2\n1 3\n2 4\n3 5",
+        "expected_output": "[1, 2, 4, 3, 5]"
+      },
+      {
+        "input": "6\n1 2\n1 3\n2 4\n2 5\n4 6",
+        "display_input": "6\n1 2\n1 3\n2 4\n2 5\n4 6",
+        "expected_output": "[1, 2, 4, 6, 5, 3]"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "title": "BFS Traversal of Graph",
+    "difficulty": "Easy",
+    "starter_python": "from collections import defaultdict, deque\n\nclass Solution:\n    def bfs(self, graph: dict[int, list[int]], start_node: int) -> list[int]:\n        pass\n",
+    "driver_python": "import sys\nimport json\nfrom collections import defaultdict\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    graph_data = json.loads(lines[0].strip())\n    start_node = int(lines[1].strip())\n\n    graph = defaultdict(list)\n    for node, neighbors in graph_data.items():\n        graph[int(node)] = neighbors\n\n    result = Solution().bfs(graph, start_node)\n    print(json.dumps(result))\n",
+    "test_cases": [
+      {
+        "input": "4\n1 2\n1 3\n2 4",
+        "display_input": "4\n1 2\n1 3\n2 4",
+        "expected_output": "[1, 2, 3, 4]"
+      },
+      {
+        "input": "5\n1 2\n1 3\n2 4\n3 5",
+        "display_input": "5\n1 2\n1 3\n2 4\n3 5",
+        "expected_output": "[1, 2, 3, 4, 5]"
+      },
+      {
+        "input": "6\n1 2\n1 3\n2 4\n2 5\n4 6",
+        "display_input": "6\n1 2\n1 3\n2 4\n2 5\n4 6",
+        "expected_output": "[1, 2, 3, 4, 5, 6]"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Number of Provinces",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findCircleNum(self, isConnected: list[list[int]]) -> int:\n        pass\n",
+    "driver_python": "import sys\n\ndef find_provinces(isConnected):\n    n = len(isConnected)\n    visited = [False] * n\n    count = 0\n\n    def dfs(node):\n        visited[node] = True\n        for neighbor in range(n):\n            if isConnected[node][neighbor] == 1 and not visited[neighbor]:\n                dfs(neighbor)\n\n    for i in range(n):\n        if not visited[i]:\n            dfs(i)\n            count += 1\n\n    return count\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    n = int(lines[0].strip())\n    isConnected = []\n    for i in range(1, n + 1):\n        row = list(map(int, lines[i].strip().split()))\n        isConnected.append(row)\n\n    result = Solution().findCircleNum(isConnected)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "[[1,1,0],\n[1,1,0],\n[0,0,1]]",
+        "display_input": "arg1 = [1,1,0]\\narg2 = [1,1,0]\\narg3 = [0,0,1]",
+        "expected_output": "2"
+      },
+      {
+        "input": "[[1,0,0,1],\n[0,1,1,0],\n[0,1,1,1],\n[1,0,1,1]]",
+        "display_input": "arg1 = [1,0,0,1]\\narg2 = [0,1,1,0]\\narg3 = [0,1,1,1]\\narg4 = [1,0,1,1]",
+        "expected_output": "3"
+      },
+      {
+        "input": "[[1,0,0,0,0],\n[0,1,0,1,0],\n[0,0,1,0,0],\n[0,1,0,1,1],\n[0,0,0,1,1]]",
+        "display_input": "arg1 = [1,0,0,0,0]\\narg2 = [0,1,0,1,0]\\narg3 = [0,0,1,0,0]\\narg4 = [0,1,0,1,1]\\narg5 = [0,0,0,1,1]",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "title": "Rotting Oranges",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def orangesRotting(self, grid: list[list[int]]) -> int:\n        pass\n",
+    "driver_python": "import sys\nfrom collections import deque\n\nif __name__ == '__main__':\n    grid = []\n    for line in sys.stdin:\n        row = list(map(int, line.strip().split()))\n        grid.append(row)\n\n    result = Solution().orangesRotting(grid)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "[[2,1,1],\n[1,1,0],\n[0,1,1]]",
+        "display_input": "arg1 = [2,1,1]\\narg2 = [1,1,0]\\narg3 = [0,1,1]",
+        "expected_output": "4"
+      },
+      {
+        "input": "[[2,1,1],\n[0,1,1],\n[1,0,1]]",
+        "display_input": "arg1 = [2,1,1]\\narg2 = [0,1,1]\\narg3 = [1,0,1]",
+        "expected_output": "-1"
+      },
+      {
+        "input": "[[0,2]]",
+        "display_input": "input = [0,2]",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "title": "Shortest Path with Alternating Colors",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def shortestAlternatingPaths(self, n: int, red_edges: list[list[int]], blue_edges: list[list[int]]) -> list[int]:\n        pass",
+    "driver_python": "import sys\nimport json\n\nclass Solution:\n    def shortestAlternatingPaths(self, n: int, red_edges: list[list[int]], blue_edges: list[list[int]]) -> list[int]:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    n = int(lines[0].strip())\n    red_edges = json.loads(lines[1].strip())\n    blue_edges = json.loads(lines[2].strip())\n    result = Solution().shortestAlternatingPaths(n, red_edges, blue_edges)\n    print(json.dumps(result))",
+    "test_cases": [
+      {
+        "input": "{'n': 3, 'red_edges': [[0, 1]], 'blue_edges': [[1, 2]]}",
+        "display_input": "{'n': 3, 'red_edges': [[0, 1]], 'blue_edges': [[1, 2]]}",
+        "expected_output": "3"
+      },
+      {
+        "input": "{'n': 3, 'red_edges': [[0, 1], [1, 2]], 'blue_edges': [[0, 2]]}",
+        "display_input": "{'n': 3, 'red_edges': [[0, 1], [1, 2]], 'blue_edges': [[0, 2]]}",
+        "expected_output": "-1"
+      },
+      {
+        "input": "{'n': 3, 'red_edges': [[0, 1]], 'blue_edges': []}",
+        "display_input": "{'n': 3, 'red_edges': [[0, 1]], 'blue_edges': []}",
+        "expected_output": "-1"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Find the Maximum Depth of a Binary Tree",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def maxDepth(self, root: TreeNode) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] == 'null':\n        return None\n    \n    root = TreeNode(int(nodes[0]))\n    queue = [root]\n    i = 1\n    \n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.left = TreeNode(int(nodes[i]))\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.right = TreeNode(int(nodes[i]))\n            queue.append(node.right)\n        i += 1\n    \n    return root\n\nif __name__ == '__main__':\n    input_str = sys.stdin.readline().strip()\n    nodes = input_str.split()\n    root = build_tree(nodes)\n    \n    result = Solution().maxDepth(root)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "Root: [3,9,20,null,null,15,7]",
+        "display_input": "Root: [3,9,20,null,null,15,7]",
+        "expected_output": "3"
+      },
+      {
+        "input": "Root: [1,null,2]",
+        "display_input": "Root: [1,null,2]",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Sum of Left Leaves",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def sumOfLeftLeaves(self, root: TreeNode) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] is None:\n        return None\n\n    root = TreeNode(nodes[0])\n    queue = [root]\n    i = 1\n\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n\n        if i < len(nodes) and nodes[i] is not None:\n            node.left = TreeNode(nodes[i])\n            queue.append(node.left)\n        i += 1\n\n        if i < len(nodes) and nodes[i] is not None:\n            node.right = TreeNode(nodes[i])\n            queue.append(node.right)\n        i += 1\n\n    return root\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nodes = lines[0].strip().split(',')\n    nodes = [int(x) if x != 'null' else None for x in nodes]\n    root = build_tree(nodes)\n    print(Solution().sumOfLeftLeaves(root))",
+    "test_cases": [
+      {
+        "input": "Root: [3,9,20,6,7,null]",
+        "display_input": "Root: [3,9,20,6,7,null]",
+        "expected_output": "23"
+      },
+      {
+        "input": "Root: [1]",
+        "display_input": "Root: [1]",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "title": "Invert Binary Tree",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def invertTree(self, root: TreeNode) -> TreeNode:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] is None:\n        return None\n    \n    root = TreeNode(nodes[0])\n    queue = [root]\n    i = 1\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.left = TreeNode(nodes[i])\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.right = TreeNode(nodes[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\ndef tree_to_list(root):\n    if not root:\n        return []\n    \n    result = []\n    queue = [root]\n    while queue:\n        node = queue.pop(0)\n        if node:\n            result.append(node.val)\n            queue.append(node.left)\n            queue.append(node.right)\n        else:\n            result.append(None)\n    \n    # Remove trailing None values\n    while result and result[-1] is None:\n        result.pop()\n    \n    return result\n\nif __name__ == '__main__':\n    input_str = sys.stdin.readline().strip()\n    nodes_str = input_str.split(',')\n    nodes = [int(x) if x != 'null' else None for x in nodes_str]\n    root = build_tree(nodes)\n    \n    inverted_tree = Solution().invertTree(root)\n    \n    print(tree_to_list(inverted_tree))",
+    "test_cases": [
+      {
+        "input": "Root: [4,2,7,1,3,6,9]",
+        "display_input": "Root: [4,2,7,1,3,6,9]",
+        "expected_output": "[4,7,2,9,6,3,1]"
+      },
+      {
+        "input": "Root: [2,1,3]",
+        "display_input": "Root: [2,1,3]",
+        "expected_output": "[2,3,1]"
+      },
+      {
+        "input": "Root: []",
+        "display_input": "Root: []",
+        "expected_output": "[]"
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Check for Balanced Binary Tree",
+    "difficulty": "Medium",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def isBalanced(self, root: TreeNode) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] == 'null':\n        return None\n    \n    def helper(index):\n        if index >= len(nodes) or nodes[index] == 'null':\n            return None\n        \n        node = TreeNode(int(nodes[index]))\n        node.left = helper(2 * index + 1)\n        node.right = helper(2 * index + 2)\n        return node\n    \n    return helper(0)\n\nif __name__ == '__main__':\n    line = sys.stdin.readline().strip()\n    nodes = line.split()\n    root = build_tree(nodes)\n    \n    result = Solution().isBalanced(root)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "3\n1 2 4 0 0 5 6\n",
+        "display_input": "3\n1 2 4 0 0 5 6\n",
+        "expected_output": "0"
+      },
+      {
+        "input": "5\n1 2 3 4 5 0 0 0 0 0 0\n",
+        "display_input": "5\n1 2 3 4 5 0 0 0 0 0 0\n",
+        "expected_output": "1"
+      },
+      {
+        "input": "1\n",
+        "display_input": "1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Inorder Traversal of a Binary Tree Using Moris Traversal",
+    "difficulty": "Medium",
+    "starter_python": "from typing import Optional, List\n\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes:\n        return None\n    \n    def create_node(index):\n        if index >= len(nodes) or nodes[index] is None:\n            return None\n        node = TreeNode(nodes[index])\n        node.left = create_node(2 * index + 1)\n        node.right = create_node(2 * index + 2)\n        return node\n\n    root = create_node(0)\n    return root\n\nif __name__ == '__main__':\n    line = sys.stdin.readline().strip()\n    nodes = []\n    if line:\n        nodes = [int(x) if x != 'null' else None for x in line.strip('[]').split(', ')]\n\n    root = build_tree(nodes)\n    \n    result = Solution().inorderTraversal(root)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 4 0 0 0 0",
+        "display_input": "4\n1 2 3 4 0 0 0 0",
+        "expected_output": "[1, 2, 4, 3]"
+      },
+      {
+        "input": "8\n1 2\n1 1 1\n0 0 0\n0",
+        "display_input": "8\n1 2\n1 1 1\n0 0 0\n0",
+        "expected_output": "[1, 2, 1, 1, 1, 1]"
+      },
+      {
+        "input": "3\n2 0 0 1",
+        "display_input": "3\n2 0 0 1",
+        "expected_output": "[1, 2, 3]"
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Binary Tree Maximum Path Sum",
+    "difficulty": "Medium",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def maxPathSum(self, root: TreeNode) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] is None:\n        return None\n    \n    root = TreeNode(nodes[0])\n    queue = [root]\n    i = 1\n    \n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.left = TreeNode(nodes[i])\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.right = TreeNode(nodes[i])\n            queue.append(node.right)\n        i += 1\n    \n    return root\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nodes = [int(x) if x != 'null' else None for x in lines[0].strip().strip('[]').split(',')]\n    root = build_tree(nodes)\n    print(Solution().maxPathSum(root))",
+    "test_cases": [
+      {
+        "input": "10\n1 2 10 -3 -1 7 8 -4",
+        "display_input": "10\n1 2 10 -3 -1 7 8 -4",
+        "expected_output": "28"
+      },
+      {
+        "input": "3\n1 2\n2 1\n1",
+        "display_input": "3\n1 2\n2 1\n1",
+        "expected_output": "4"
+      },
+      {
+        "input": "5\n1 2\n2 1\n1 3 -5",
+        "display_input": "5\n1 2\n2 1\n1 3 -5",
+        "expected_output": "6"
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Subset Sum Problem",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def subsetSum(self, nums: list[int], target: int) -> bool:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    \n    result = Solution().subsetSum(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [3, 34, 4, 12, 5, 2], target = 9",
+        "display_input": "nums = [3, 34, 4, 12, 5, 2], target = 9",
+        "expected_output": "true"
+      },
+      {
+        "input": "nums = [1, 2, 3], target = 7",
+        "display_input": "nums = [1, 2, 3], target = 7",
+        "expected_output": "true"
+      },
+      {
+        "input": "nums = [1, 2, 3], target = 6",
+        "display_input": "nums = [1, 2, 3], target = 6",
+        "expected_output": "false"
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "title": "Generate All Valid IP Addresses",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def restoreIpAddresses(self, s: str) -> list[str]:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def restoreIpAddresses(self, s: str) -> list[str]:\n        def isValid(s):\n            if not s:\n                return False\n            if len(s) > 1 and s[0] == '0':\n                return False\n            return 0 <= int(s) <= 255\n\n        def backtrack(s, dots, current_ip, result):\n            if dots == 4:\n                if not s:\n                    result.append(current_ip[:-1])\n                return\n\n            for i in range(1, min(4, len(s) + 1)):\n                segment = s[:i]\n                if isValid(segment):\n                    backtrack(s[i:], dots + 1, current_ip + segment + '.', result)\n\n        result = []\n        backtrack(s, 0, '', result)\n        return result\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().restoreIpAddresses(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "s = \"255255255255\"\n",
+        "display_input": "s = \"255255255255\"\n",
+        "expected_output": "[\"255.255.255.255\"]"
+      },
+      {
+        "input": "s = \"000111222\"\n",
+        "display_input": "s = \"000111222\"\n",
+        "expected_output": "[\"0.0.1.11222\", \"0.0.11.122\", \"0.0.111.222\", \"0.1.1.12222\"]"
+      },
+      {
+        "input": "s = \"010010\"\n",
+        "display_input": "s = \"010010\"\n",
+        "expected_output": "[\"0.10.0.10\", \"0.10.0.10\"], (Note: duplicates filtered for testing.)"
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Maze Path Counting",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def solve(self, maze: list[list[int]]) -> int:\n        pass",
+    "driver_python": "import sys\n\ndef solve_maze(maze):\n    m = len(maze)\n    n = len(maze[0])\n    dp = [[0] * n for _ in range(m)]\n    if maze[0][0] == 0:\n        dp[0][0] = 1\n\n    for i in range(m):\n        for j in range(n):\n            if maze[i][j] == 1:\n                continue\n            if i > 0:\n                dp[i][j] += dp[i-1][j]\n            if j > 0:\n                dp[i][j] += dp[i][j-1]\n    return dp[m-1][n-1]\n\nif __name__ == '__main__':\n    maze = []\n    for line in sys.stdin:\n        row = list(map(int, line.strip().split()))\n        maze.append(row)\n\n    print(Solution().solve(maze))",
+    "test_cases": [
+      {
+        "input": "maze = [[0, 0, 0],\n[0, 1, 0],\n[0, 0, 0]]",
+        "display_input": "maze = [[0, 0, 0],\n[0, 1, 0],\n[0, 0, 0]]",
+        "expected_output": "2"
+      },
+      {
+        "input": "maze = [[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]]",
+        "display_input": "maze = [[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]]",
+        "expected_output": "6"
+      },
+      {
+        "input": "maze = [[0, 0], [0, 0]] (all cells open)",
+        "display_input": "maze = [[0, 0], [0, 0]] (all cells open)",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "title": "N-Queens II Problem",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def totalNQueens(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().totalNQueens(n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "n = 4",
+        "display_input": "n = 4",
+        "expected_output": "2"
+      },
+      {
+        "input": "n = 1",
+        "display_input": "n = 1",
+        "expected_output": "1"
+      },
+      {
+        "input": "n = 2",
+        "display_input": "n = 2",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "title": "Combination Sum with Constraints",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:\n        pass\n",
+    "driver_python": "import sys\n\ndef parse_input(input_string):\n    lines = input_string.strip().split('\\n')\n    candidates = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    return candidates, target\n\nif __name__ == '__main__':\n    input_data = sys.stdin.read()\n    candidates, target = parse_input(input_data)\n    result = Solution().combinationSum(candidates, target)\n    \n    # Sort each combination and the list of combinations for consistent output\n    result = [sorted(comb) for comb in result]\n    result.sort()\n    \n    for comb in result:\n        print(comb)\n",
+    "test_cases": [
+      {
+        "input": "candidates = [2, 3, 5], target = 8",
+        "display_input": "candidates = [2, 3, 5], target = 8",
+        "expected_output": "[[2, 2, 2, 2], [2, 3, 3], [3, 5], [5, 3], [5, 2, 2]]"
+      },
+      {
+        "input": "candidates = [2, 3, 6, 7], target = 7",
+        "display_input": "candidates = [2, 3, 6, 7], target = 7",
+        "expected_output": "[[7], [2, 2, 3]]"
+      },
+      {
+        "input": "candidates = [2], target = 1",
+        "display_input": "candidates = [2], target = 1",
+        "expected_output": "[]"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "title": "Sliding Window Maximum",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    result = Solution().maxSlidingWindow(nums, k)\n    print(*result)",
+    "test_cases": [
+      {
+        "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "display_input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "expected_output": "[3,3,5,5,6,7]"
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "display_input": "nums = [1], k = 1",
+        "expected_output": "[1]"
+      },
+      {
+        "input": "nums = [9,11,8,5,2,7,4], k = 2",
+        "display_input": "nums = [9,11,8,5,2,7,4], k = 2",
+        "expected_output": "[11,11,9,7,7,7]"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "title": "Check if a String Contains All Characters of Another String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def solve(self, s: str, t: str) -> bool:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    s = lines[0].strip()\n    t = lines[1].strip()\n    result = Solution().solve(s, t)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "s = 'abcbcdbe', t = 'adc'",
+        "display_input": "s = 'abcbcdbe', t = 'adc'",
+        "expected_output": "True"
+      },
+      {
+        "input": "s = 'eecbcdbe', t = 'ab'",
+        "display_input": "s = 'eecbcdbe', t = 'ab'",
+        "expected_output": "True"
+      },
+      {
+        "input": "s = 'abcde', t = 'xyz'",
+        "display_input": "s = 'abcde', t = 'xyz'",
+        "expected_output": "False"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "title": "First Occurrence in a Sorted Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findFirstOccurrence(self, nums: list[int], target: int) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    \n    result = Solution().findFirstOccurrence(nums, target)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "nums = [4,5,6,7,0,1,2], target = 0",
+        "display_input": "nums = [4,5,6,7,0,1,2], target = 0",
+        "expected_output": "4"
+      },
+      {
+        "input": "nums = [1,2,4,5,6,7], target = 6",
+        "display_input": "nums = [1,2,4,5,6,7], target = 6",
+        "expected_output": "4"
+      },
+      {
+        "input": "nums = [3,1], target = 1",
+        "display_input": "nums = [3,1], target = 1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "title": "Maximum Sum Subarray of Size K",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def max_sum_subarray(self, arr: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arr = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    \n    result = Solution().max_sum_subarray(arr, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [2, 1, 5, 1, 3, 2], k = 3",
+        "display_input": "nums = [2, 1, 5, 1, 3, 2], k = 3",
+        "expected_output": "9"
+      },
+      {
+        "input": "nums = [1, 4, 2, 10, 2, 3, 1, 0, 20], k = 4",
+        "display_input": "nums = [1, 4, 2, 10, 2, 3, 1, 0, 20], k = 4",
+        "expected_output": "33"
+      },
+      {
+        "input": "nums = [-2, -3, 4, -1, -2, 1, 5, -3], k = 2",
+        "display_input": "nums = [-2, -3, 4, -1, -2, 1, 5, -3], k = 2",
+        "expected_output": "6"
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "title": "Merge Two Heaps",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def mergeHeaps(self, a: list[int], b: list[int], n: int, m: int) -> list[int]:\n        pass",
+    "driver_python": "import heapq\nimport sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    n = int(lines[0].strip())\n    a = list(map(int, lines[1].strip().split()))\n    m = int(lines[2].strip())\n    b = list(map(int, lines[3].strip().split()))\n    \n    result = Solution().mergeHeaps(a, b, n, m)\n    \n    if result:\n        print(*result)\n",
+    "test_cases": [
+      {
+        "input": "[]\n[]",
+        "display_input": "[]\n[]",
+        "expected_output": "[]"
+      },
+      {
+        "input": "[1, 3, 5]\n[2, 4, 6]",
+        "display_input": "[1, 3, 5]\n[2, 4, 6]",
+        "expected_output": "[1, 2, 3, 4, 5, 6]"
+      },
+      {
+        "input": "[7, 9, 10, 15]\n[1, 2, 3]",
+        "display_input": "[7, 9, 10, 15]\n[1, 2, 3]",
+        "expected_output": "[1, 2, 3, 7, 9, 10, 6, 15]"
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "title": "Kth Largest Element in a Stream",
+    "difficulty": "Easy",
+    "starter_python": "class KthLargest:\n\n    def __init__(self, k: int, nums: list[int]):\n        pass\n\n    def insert(self, val: int) -> int:\n        pass\n\n    def get_kth_largest(self) -> int:\n        pass\n\n\n# Your KthLargest object will be instantiated and called as such:\n# obj = KthLargest(k, nums)\n# param_1 = obj.insert(val)\n# param_2 = obj.get_kth_largest()",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    k = int(lines[0].strip())\n    nums = list(map(int, lines[1].strip().split()))\n    kth_largest = KthLargest(k, nums)\n    \n    results = []\n    for i in range(2, len(lines)):\n        val = int(lines[i].strip())\n        kth_largest.insert(val)\n        results.append(kth_largest.get_kth_largest())\n\n    for result in results:\n        print(result)",
+    "test_cases": [
+      {
+        "input": "KthLargest kth = new KthLargest(3);\nkth.insert(5);\nkth.insert(10);\nkth.insert(-1);\nkth.insert(0);\nkth.insert(3);\nkth.get_kth_largest();",
+        "display_input": "KthLargest kth = new KthLargest(3);\nkth.insert(5);\nkth.insert(10);\nkth.insert(-1);\nkth.insert(0);\nkth.insert(3);\nkth.get_kth_largest();",
+        "expected_output": "5"
+      },
+      {
+        "input": "KthLargest kth = new KthLargest(2);\nkth.insert(2);\nkth.insert(3);\nkth.get_kth_largest();",
+        "display_input": "KthLargest kth = new KthLargest(2);\nkth.insert(2);\nkth.insert(3);\nkth.get_kth_largest();",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "title": "Last Stone Weight",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def lastStoneWeight(self, stones: list[int]) -> int:\n        pass",
+    "driver_python": "import heapq\nimport sys\n\nif __name__ == '__main__':\n    stones = list(map(int, sys.stdin.readline().split()))\n    result = Solution().lastStoneWeight(stones)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[1,\n2]",
+        "display_input": "arg1 = 1\\narg2 = 2",
+        "expected_output": "1"
+      },
+      {
+        "input": "[2,\n7,\n4,\n1,\n8,\n1]",
+        "display_input": "arg1 = 2\\narg2 = 7\\narg3 = 4\\narg4 = 1\\narg5 = 8\\narg6 = 1",
+        "expected_output": "1"
+      },
+      {
+        "input": "[1]",
+        "display_input": "input = 1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "title": "Kth Largest Element in an Array",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findKthLargest(self, nums: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split(',')))\n    k = int(lines[1].strip())\n    result = Solution().findKthLargest(nums, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "{'nums': [3, 2, 1, 5, 6, 4], 'k': 2}",
+        "display_input": "{'nums': [3, 2, 1, 5, 6, 4], 'k': 2}",
+        "expected_output": "5"
+      },
+      {
+        "input": "{'nums': [1], 'k': 1}",
+        "display_input": "{'nums': [1], 'k': 1}",
+        "expected_output": "1"
+      },
+      {
+        "input": "{'nums': [3, 2, 3, 1, 2, 4, 5, 5, 6], 'k': 4}",
+        "display_input": "{'nums': [3, 2, 3, 1, 2, 4, 5, 5, 6], 'k': 4}",
+        "expected_output": "4"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "title": "Find Median in a Stream of Integers",
+    "difficulty": "Hard",
+    "starter_python": "class Solution:\n    def find_median(self, stream: list[int]) -> list[float]:\n        pass\n",
+    "driver_python": "import sys\n\nclass Solution:\n    def find_median(self, stream: list[int]) -> list[float]:\n        import heapq\n        max_heap = []  # Stores the smaller half of the numbers\n        min_heap = []  # Stores the larger half of the numbers\n        medians = []\n\n        for num in stream:\n            if not max_heap or num <= -max_heap[0]:\n                heapq.heappush(max_heap, -num)\n            else:\n                heapq.heappush(min_heap, num)\n\n            # Balance the heaps\n            if len(max_heap) > len(min_heap) + 1:\n                heapq.heappush(min_heap, -heapq.heappop(max_heap))\n            elif len(min_heap) > len(max_heap):\n                heapq.heappush(max_heap, -heapq.heappop(min_heap))\n\n            # Calculate the median\n            if len(max_heap) == len(min_heap):\n                medians.append((-max_heap[0] + min_heap[0]) / 2.0)\n            else:\n                medians.append(-max_heap[0])\n\n        return medians\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read()\n    input_list = [int(x) for x in input_str.strip('[]').split(',') if x]\n    result = Solution().find_median(input_list)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "{'nums': [1, 2], 'queries': [1]}",
+        "display_input": "{'nums': [1, 2], 'queries': [1]}",
+        "expected_output": "[1,1.5]"
+      },
+      {
+        "input": "{'nums': [5, 3, 7, 1], 'queries': [2, 3]}",
+        "display_input": "{'nums': [5, 3, 7, 1], 'queries': [2, 3]}",
+        "expected_output": "[5.0,3.0,3.5,4.0]"
+      },
+      {
+        "input": "{'nums': [1, 2, 3], 'queries': [1, 2, 3]}",
+        "display_input": "{'nums': [1, 2, 3], 'queries': [1, 2, 3]}",
+        "expected_output": "[1,1.5,2,2.0,2.5]"
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "title": "Find the Maximum and Minimum Element in an Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def find_max_min(self, arr: list[int]) -> list[int]:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arr = list(map(int, lines[0].strip().split()))\n    \n    result = Solution().find_max_min(arr)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[3, 5, 2, 8, 1]",
+        "display_input": "arg1 = 3\\narg2 = 5\\narg3 = 2\\narg4 = 8\\narg5 = 1",
+        "expected_output": "[8, 1]"
+      },
+      {
+        "input": "[-10, -5, 0, 15, 20]",
+        "display_input": "arg1 = -10\\narg2 = -5\\narg3 = 0\\narg4 = 15\\narg5 = 20",
+        "expected_output": "[20, -10]"
+      },
+      {
+        "input": "[42]",
+        "display_input": "input = 42",
+        "expected_output": "[42, 42]"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "title": "Second Largest Element in an Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findSecondLargest(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def findSecondLargest(self, nums: list[int]) -> int:\n        if len(set(nums)) < 2:\n            return -1\n        \n        largest = float('-inf')\n        second_largest = float('-inf')\n        \n        for num in nums:\n            if num > largest:\n                second_largest = largest\n                largest = num\n            elif num > second_largest and num != largest:\n                second_largest = num\n        \n        return second_largest if second_largest != float('-inf') else -1\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    print(Solution().findSecondLargest(nums))",
+    "test_cases": [
+      {
+        "input": "[12, 35, 1, 10, 34]",
+        "display_input": "arg1 = 12\\narg2 = 35\\narg3 = 1\\narg4 = 10\\narg5 = 34",
+        "expected_output": "35"
+      },
+      {
+        "input": "[10, 5, 10]",
+        "display_input": "arg1 = 10\\narg2 = 5\\narg3 = 10",
+        "expected_output": "-1"
+      },
+      {
+        "input": "[-1, -2, -3, -4]",
+        "display_input": "arg1 = -1\\narg2 = -2\\narg3 = -3\\narg4 = -4",
+        "expected_output": "-2"
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "title": "Reverse the Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseArray(self, arr: list[int]) -> None:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read().strip()\n    if input_str:\n        arr_str = input_str.split()\n        arr = [int(x) for x in arr_str]\n        Solution().reverseArray(arr)\n        print(' '.join(map(str, arr)))\n",
+    "test_cases": [
+      {
+        "input": "[1,\n 2,\n 3,\n 4,\n 5]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 4\\narg5 = 5",
+        "expected_output": "[5, 4, 3, 2, 1]"
+      },
+      {
+        "input": "[-1,\n -3,\n -2]",
+        "display_input": "arg1 = -1\\narg2 = -3\\narg3 = -2",
+        "expected_output": "[-2, -3, -1]"
+      },
+      {
+        "input": "[10]",
+        "display_input": "input = 10",
+        "expected_output": "[10]"
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "title": "Maximum Subarray Sum",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def maxSubArray(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = [int(x) for x in lines[0].strip().split(',')]\n    result = Solution().maxSubArray(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "1\n-2\n3\n5\n-1",
+        "display_input": "1\n-2\n3\n5\n-1",
+        "expected_output": "9"
+      },
+      {
+        "input": "-1\n-2\n-3\n-4",
+        "display_input": "-1\n-2\n-3\n-4",
+        "expected_output": "-1"
+      },
+      {
+        "input": "2\n1\n-3\n4\n-1\n2\n1\n-5\n4",
+        "display_input": "2\n1\n-3\n4\n-1\n2\n1\n-5\n4",
+        "expected_output": "6"
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "title": "Reverse Pairs",
+    "difficulty": "Hard",
+    "starter_python": "class Solution:\n    def reversePairs(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def reversePairs(self, nums: list[int]) -> int:\n        return super().reversePairs(nums)\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    result = Solution().reversePairs(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[2, 1, 5, 6, 4, 3]",
+        "display_input": "arg1 = 2\\narg2 = 1\\narg3 = 5\\narg4 = 6\\narg5 = 4\\narg6 = 3",
+        "expected_output": "3"
+      },
+      {
+        "input": "[1, 7, 5, 6, 4, 3, 2]",
+        "display_input": "arg1 = 1\\narg2 = 7\\narg3 = 5\\narg4 = 6\\narg5 = 4\\narg6 = 3\\narg7 = 2",
+        "expected_output": "8"
+      },
+      {
+        "input": "[1]",
+        "display_input": "input = 1",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "title": "Check for Palindrome",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys\nimport re\n\nclass Solution:\n    def isPalindrome(self, s: str) -> bool:\n        processed_string = re.sub(r'[^a-zA-Z0-9]', '', s).lower()\n        return processed_string == processed_string[::-1]\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    print(Solution().isPalindrome(s))",
+    "test_cases": [
+      {
+        "input": "A man a plan a canal Panama",
+        "display_input": "A man a plan a canal Panama",
+        "expected_output": "true"
+      },
+      {
+        "input": "racecar",
+        "display_input": "racecar",
+        "expected_output": "true"
+      },
+      {
+        "input": "hello",
+        "display_input": "hello",
+        "expected_output": "false"
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "title": "Find the First Unique Character",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().firstUniqChar(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "leetcode",
+        "display_input": "leetcode",
+        "expected_output": "0"
+      },
+      {
+        "input": "loveleetcode",
+        "display_input": "loveleetcode",
+        "expected_output": "2"
+      },
+      {
+        "input": "aabb",
+        "display_input": "aabb",
+        "expected_output": "-1"
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().longestPalindrome(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "babad",
+        "display_input": "babad",
+        "expected_output": "bab"
+      },
+      {
+        "input": "cbbd",
+        "display_input": "cbbd",
+        "expected_output": "bb"
+      },
+      {
+        "input": "a",
+        "display_input": "a",
+        "expected_output": "a"
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "title": "Factorial Calculation",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def factorial(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def factorial(self, n: int) -> int:\n        if n == 0:\n            return 1\n        else:\n            return n * self.factorial(n-1)\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline())\n    print(Solution().factorial(n))",
+    "test_cases": [
+      {
+        "input": "5",
+        "display_input": "5",
+        "expected_output": "120"
+      },
+      {
+        "input": "0",
+        "display_input": "0",
+        "expected_output": "1"
+      },
+      {
+        "input": "3",
+        "display_input": "3",
+        "expected_output": "6"
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "title": "Sum of Array Elements",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def array_sum(self, arr: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def array_sum(self, arr: list[int]) -> int:\n        if not arr:\n            return 0\n        return arr[0] + self.array_sum(arr[1:])\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read().strip()\n    arr = list(map(int, input_str.split()))\n    print(Solution().array_sum(arr))",
+    "test_cases": [
+      {
+        "input": "[1,\n 2,\n 3,\n 4]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 4",
+        "expected_output": "10"
+      },
+      {
+        "input": "[-1,\n 0,\n 1]",
+        "display_input": "arg1 = -1\\narg2 = 0\\narg3 = 1",
+        "expected_output": "0"
+      },
+      {
+        "input": "[5]",
+        "display_input": "input = 5",
+        "expected_output": "5"
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "title": "Check if a Number is Even",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isEven(self, n: int) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def isEven(self, n: int) -> bool:\n        if n == 0:\n            return True\n        if n == 1:\n            return False\n        if n < 0:\n            return self.isEven(-n)\n        return self.isEven(n - 2)\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    print(Solution().isEven(n))",
+    "test_cases": [
+      {
+        "input": "10",
+        "display_input": "10",
+        "expected_output": "true"
+      },
+      {
+        "input": "7",
+        "display_input": "7",
+        "expected_output": "false"
+      },
+      {
+        "input": "0",
+        "display_input": "0",
+        "expected_output": "true"
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "title": "Reverse a String Using Recursion",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def reverseString(self, s: str) -> str:\n        if not s:\n            return s\n        return self.reverseString(s[1:]) + s[0]\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    print(Solution().reverseString(s))",
+    "test_cases": [
+      {
+        "input": "\"\"\n",
+        "display_input": "",
+        "expected_output": "\"\""
+      },
+      {
+        "input": "\"hello\"\n",
+        "display_input": "hello",
+        "expected_output": "\"olleh\""
+      },
+      {
+        "input": "\"racecar\"\n",
+        "display_input": "racecar",
+        "expected_output": "\"racecar\""
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "title": "Fibonacci Sequence with Memoization",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def fibonacci(self, n: int) -> int:\n        pass\n",
+    "driver_python": "import sys\n\nclass Solution:\n    def fibonacci(self, n: int) -> int:\n        memo = {}\n        def fib(n):\n            if n in memo:\n                return memo[n]\n            if n <= 1:\n                return n\n            memo[n] = fib(n-1) + fib(n-2)\n            return memo[n]\n        return fib(n)\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    print(Solution().fibonacci(n))",
+    "test_cases": [
+      {
+        "input": "0",
+        "display_input": "0",
+        "expected_output": "0"
+      },
+      {
+        "input": "1",
+        "display_input": "1",
+        "expected_output": "1"
+      },
+      {
+        "input": "5",
+        "display_input": "5",
+        "expected_output": "5"
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "title": "Count Paths in a Grid",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def solve(self, m: int, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    m = int(lines[0].strip())\n    n = int(lines[1].strip())\n    \n    result = Solution().solve(m, n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[2, 2]",
+        "display_input": "arg1 = 2\\narg2 = 2",
+        "expected_output": "6"
+      },
+      {
+        "input": "[3, 3]",
+        "display_input": "arg1 = 3\\narg2 = 3",
+        "expected_output": "20"
+      },
+      {
+        "input": "[1, 1]",
+        "display_input": "arg1 = 1\\narg2 = 1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "title": "Check for Balanced Parentheses",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isValid(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def isValid(self, s: str) -> bool:\n        stack = []\n        mapping = {')': '(', '}': '{', ']': '['}\n        for char in s:\n            if char in mapping:\n                top_element = stack.pop() if stack else '#'\n                if mapping[char] != top_element:\n                    return False\n            else:\n                stack.append(char)\n        return not stack\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().isValid(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "()",
+        "display_input": "()",
+        "expected_output": "true"
+      },
+      {
+        "input": ")(",
+        "display_input": ")(",
+        "expected_output": "false"
+      },
+      {
+        "input": "{()[]}",
+        "display_input": "{()[]}",
+        "expected_output": "true"
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "title": "Next Greater Element",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def nextGreaterElement(self, arr: list[int]) -> list[int]:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    arr = list(map(int, sys.stdin.readline().split()))\n    result = Solution().nextGreaterElement(arr)\n    print(' '.join(map(str, result)))",
+    "test_cases": [
+      {
+        "input": "[4, 5, 2, 25]\n0",
+        "display_input": "[4, 5, 2, 25]\n0",
+        "expected_output": "[5, -1, 25, -1]"
+      },
+      {
+        "input": "[13, 7, 6, 12]\n0",
+        "display_input": "[13, 7, 6, 12]\n0",
+        "expected_output": "[-1, 12, -1, -1]"
+      },
+      {
+        "input": "[[1, 2, 3, 4], [5, 4, 3, 2, 1]]\n0",
+        "display_input": "[[1, 2, 3, 4], [5, 4, 3, 2, 1]]\n0",
+        "expected_output": "[[2, 3, 4, -1], [-1, -1, -1, -1, -1]]"
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "title": "Reverse a String using a Stack",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        pass",
+    "driver_python": "import sys\n\nclass Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, item):\n        self.items.append(item)\n\n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n        else:\n            return None\n\n    def is_empty(self):\n        return len(self.items) == 0\n\n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n        else:\n            return None\n\n    def size(self):\n        return len(self.items)\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().reverseString(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "\"Hello\"",
+        "display_input": "Hello",
+        "expected_output": "\"olleH\""
+      },
+      {
+        "input": "\"Data Structures\"",
+        "display_input": "Data Structures",
+        "expected_output": "\"sreuctruS atad\""
+      },
+      {
+        "input": "\"\"",
+        "display_input": "",
+        "expected_output": "\"\""
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "title": "Remove Duplicate Letters",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def removeDuplicateLetters(self, s: str) -> str:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().removeDuplicateLetters(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "\"bcabc\"\n",
+        "display_input": "bcabc",
+        "expected_output": "\"abc\""
+      },
+      {
+        "input": "\"cbacdcbc\"\n",
+        "display_input": "cbacdcbc",
+        "expected_output": "\"acdb\""
+      },
+      {
+        "input": "\"abccdca\"\n",
+        "display_input": "abccdca",
+        "expected_output": "\"adbc\""
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "title": "Implement a Queue Using Stacks",
+    "difficulty": "Easy",
+    "starter_python": "class Queue:\n    def __init__(self):\n        pass\n\n    def push(self, x: int) -> None:\n        pass\n\n    def pop(self) -> int:\n        pass\n\n    def peek(self) -> int:\n        pass\n\n    def empty(self) -> bool:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    queue = Queue()\n    operations = []\n    values = []\n    \n    for line in sys.stdin:\n        parts = line.strip().split()\n        operations.append(parts[0])\n        if len(parts) > 1:\n            values.append(int(parts[1]))\n\n    results = []\n    for i, op in enumerate(operations):\n        if op == 'push':\n            queue.push(values[i])\n        elif op == 'pop':\n            results.append(queue.pop())\n        elif op == 'peek':\n            results.append(queue.peek())\n        elif op == 'empty':\n            results.append(queue.empty())\n\n    for result in results:\n        print(result)",
+    "test_cases": [
+      {
+        "input": "1\nQueue q = new Queue();\nq.push(1);\nq.push(2);\nq.push(3);\nq.peek();\nq.pop();\nq.peek();",
+        "display_input": "1\nQueue q = new Queue();\nq.push(1);\nq.push(2);\nq.push(3);\nq.peek();\nq.pop();\nq.peek();",
+        "expected_output": "3\n1\n2"
+      },
+      {
+        "input": "2\nQueue q = new Queue();\nq.push(4);\nq.push(5);\nq.pop();\nq.push(6);\nq.peek();\nq.pop();\nq.peek();",
+        "display_input": "2\nQueue q = new Queue();\nq.push(4);\nq.push(5);\nq.pop();\nq.push(6);\nq.peek();\nq.pop();\nq.peek();",
+        "expected_output": "4\n6\n5"
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "title": "Interleave First and Second Half of a Queue",
+    "difficulty": "Easy",
+    "starter_python": "from collections import deque\n\nclass Solution:\n    def interleaveQueue(self, q: deque) -> deque:\n        pass",
+    "driver_python": "import sys\nfrom collections import deque\n\nif __name__ == '__main__':\n    q = deque(map(int, sys.stdin.readline().split()))\n    result = Solution().interleaveQueue(q)\n    print(*list(result))",
+    "test_cases": [
+      {
+        "input": "[1, 2, 3, 4, 5]\n[3, 4, 5, 1, 2]",
+        "display_input": "[1, 2, 3, 4, 5]\n[3, 4, 5, 1, 2]",
+        "expected_output": "[1, 4, 2, 5, 3]"
+      },
+      {
+        "input": "[9, 15, 21, 27, 33, 39, 45]\n[15, 21, 27, 33, 39, 45, 9]",
+        "display_input": "[9, 15, 21, 27, 33, 39, 45]\n[15, 21, 27, 33, 39, 45, 9]",
+        "expected_output": "[9, 39, 15, 45, 21, 33, 27]"
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "title": "Generate Binary Numbers in a Queue",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def generateBinaryNumbers(self, n: int) -> list[int]:\n        pass",
+    "driver_python": "import sys\nfrom collections import deque\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().generateBinaryNumbers(n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "5\n[1]",
+        "display_input": "5\n[1]",
+        "expected_output": "[1, 1, 2, 3, 5]"
+      },
+      {
+        "input": "7\n[1]",
+        "display_input": "7\n[1]",
+        "expected_output": "[1, 1, 2, 3, 5, 8, 13]"
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "title": "Implement Queue using Stacks",
+    "difficulty": "Medium",
+    "starter_python": "class MyQueue:\n\n    def __init__(self):\n        self.stack1 = []\n        self.stack2 = []\n\n    def push(self, x: int) -> None:\n        pass\n\n    def pop(self) -> int:\n        pass\n\n    def peek(self) -> int:\n        pass\n\n    def empty(self) -> bool:\n        pass\n\n\n# Your MyQueue object will be instantiated and called as such:\n# obj = MyQueue()\n# obj.push(x)\n# param_2 = obj.pop()\n# param_3 = obj.peek()\n# param_4 = obj.empty()",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    operations = []\n    values = []\n    for line in lines:\n        parts = line.strip().split()\n        operations.append(parts[0])\n        if len(parts) > 1:\n            values.append(int(parts[1]))\n\n    queue = MyQueue()\n    results = []\n    for i, op in enumerate(operations):\n        if op == 'push':\n            queue.push(values[i])\n            results.append(None)\n        elif op == 'pop':\n            results.append(queue.pop())\n        elif op == 'peek':\n            results.append(queue.peek())\n        elif op == 'empty':\n            results.append(queue.empty())\n\n    for result in results:\n        if result is not None:\n            print(result)",
+    "test_cases": [
+      {
+        "input": "enqueue(1)enqueue(2)dequeue()enqueue(3)peek()dequeue()enqueue(4)dequeue()dequeue()",
+        "display_input": "enqueue(1)enqueue(2)dequeue()enqueue(3)peek()dequeue()enqueue(4)dequeue()dequeue()",
+        "expected_output": "214"
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "title": "Task Scheduler (LeetCode 621)",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def leastInterval(self, tasks: List[str], n: int) -> int:\n        pass",
+    "driver_python": "import sys\nfrom collections import Counter\n\nclass Solution:\n    def leastInterval(self, tasks: List[str], n: int) -> int:\n        counts = Counter(tasks)\n        max_count = max(counts.values())\n        max_count_tasks = sum(1 for count in counts.values() if count == max_count)\n        return max(len(tasks), (max_count - 1) * (n + 1) + max_count_tasks)\n\nif __name__ == '__main__':\n    import ast\n    lines = sys.stdin.readlines()\n    tasks = ast.literal_eval(lines[0].strip())\n    n = int(lines[1].strip())\n    result = Solution().leastInterval(tasks, n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "tasks = [\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], n = 2",
+        "display_input": "tasks = [\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], n = 2",
+        "expected_output": "8"
+      },
+      {
+        "input": "tasks = [\"A\", \"A\", \"B\"], n = 1",
+        "display_input": "tasks = [\"A\", \"A\", \"B\"], n = 1",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "title": "Binary Search in Sorted Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def binary_search(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    \n    result = Solution().binary_search(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 9",
+        "display_input": "nums = [-1,0,3,5,9,12], target = 9",
+        "expected_output": "4"
+      },
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 2",
+        "display_input": "nums = [-1,0,3,5,9,12], target = 2",
+        "expected_output": "-1"
+      },
+      {
+        "input": "nums = [1,2,3,4,5,6], target = 6",
+        "display_input": "nums = [1,2,3,4,5,6], target = 6",
+        "expected_output": "5"
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "title": "Search Insert Position",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def searchInsert(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    result = Solution().searchInsert(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [1,3,5,6], target = 5",
+        "display_input": "nums = [1,3,5,6], target = 5",
+        "expected_output": "2"
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 2",
+        "display_input": "nums = [1,3,5,6], target = 2",
+        "expected_output": "1"
+      },
+      {
+        "input": "nums = [1,3,5,6], target = 7",
+        "display_input": "nums = [1,3,5,6], target = 7",
+        "expected_output": "4"
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    \n    result = Solution().search(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[4,5,6,7,0,1,2]\n target = 0",
+        "display_input": "[4,5,6,7,0,1,2]\n target = 0",
+        "expected_output": "4"
+      },
+      {
+        "input": "[1,3]\n target = 3",
+        "display_input": "[1,3]\n target = 3",
+        "expected_output": "1"
+      },
+      {
+        "input": "[3,1]\n target = 1",
+        "display_input": "[3,1]\n target = 1",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "title": "Find Peak Element in a Bitonic Array",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findPeakElement(self, arr: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arr = list(map(int, lines[0].strip().split()))\n    \n    result = Solution().findPeakElement(arr)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[1, 3, 5, 4, 2]",
+        "display_input": "arg1 = 1\\narg2 = 3\\narg3 = 5\\narg4 = 4\\narg5 = 2",
+        "expected_output": "5"
+      },
+      {
+        "input": "[5, 10, 20, 15, 5, 2]",
+        "display_input": "arg1 = 5\\narg2 = 10\\narg3 = 20\\narg4 = 15\\narg5 = 5\\narg6 = 2",
+        "expected_output": "20"
+      },
+      {
+        "input": "[1, 2]",
+        "display_input": "arg1 = 1\\narg2 = 2",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "title": "Closest Binary Search Value",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def solve(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    print(Solution().solve(nums, target))",
+    "test_cases": [
+      {
+        "input": "[1,2,4,5,9,10,20]\n target = 6",
+        "display_input": "[1,2,4,5,9,10,20]\n target = 6",
+        "expected_output": "5"
+      },
+      {
+        "input": "[1,5,6,7,8,9,13]\n target = 12",
+        "display_input": "[1,5,6,7,8,9,13]\n target = 12",
+        "expected_output": "13"
+      },
+      {
+        "input": "[1,2,3,4,5,6,7]\n target = 6",
+        "display_input": "[1,2,3,4,5,6,7]\n target = 6",
+        "expected_output": "6"
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "title": "Change Making Problem",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def coinChange(self, coins: list[int], amount: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    coins = list(map(int, lines[0].strip().split()))\n    amount = int(lines[1].strip())\n    result = Solution().coinChange(coins, amount)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "coins = [1, 2, 5], amount = 11",
+        "display_input": "coins = [1, 2, 5], amount = 11",
+        "expected_output": "3"
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "display_input": "coins = [2], amount = 3",
+        "expected_output": "-1"
+      },
+      {
+        "input": "coins = [1, 3, 4], amount = 6",
+        "display_input": "coins = [1, 3, 4], amount = 6",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "title": "Jump Game",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def canJump(self, nums: list[int]) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def canJump(self, nums: list[int]) -> bool:\n        max_reach = 0\n        for i, jump in enumerate(nums):\n            if i > max_reach:\n                return False\n            max_reach = max(max_reach, i + jump)\n        return True\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    result = Solution().canJump(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "display_input": "nums = [2,3,1,1,4]",
+        "expected_output": "true"
+      },
+      {
+        "input": "nums = [3,2,1,0,4]",
+        "display_input": "nums = [3,2,1,0,4]",
+        "expected_output": "false"
+      },
+      {
+        "input": "nums = [0]",
+        "display_input": "nums = [0]",
+        "expected_output": "true"
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "title": "Minimum Platforms for Trains",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def minPlatforms(self, arrival: list[int], departure: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arrival = list(map(int, lines[0].strip().split()))\n    departure = list(map(int, lines[1].strip().split()))\n    \n    result = Solution().minPlatforms(arrival, departure)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "arrival = [900, 940, 950, 1100, 1500, 1800]\ndeparture = [910, 1200, 1120, 1130, 1900, 2000]",
+        "display_input": "arrival = [900, 940, 950, 1100, 1500, 1800]\ndeparture = [910, 1200, 1120, 1130, 1900, 2000]",
+        "expected_output": "3"
+      },
+      {
+        "input": "arrival = [900, 1100, 1500]\ndeparture = [910, 1200, 1900]",
+        "display_input": "arrival = [900, 1100, 1500]\ndeparture = [910, 1200, 1900]",
+        "expected_output": "2"
+      },
+      {
+        "input": "arrival = [900]\ndeparture = [910]",
+        "display_input": "arrival = [900]\ndeparture = [910]",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "title": "Coin Change Problem (LeetCode - 322)",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        pass",
+    "driver_python": "import sys\nfrom typing import List\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    coins = list(map(int, lines[0].strip().split()))\n    amount = int(lines[1].strip())\n    \n    result = Solution().coinChange(coins, amount)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "coins = [1, 2, 5], amount = 11",
+        "display_input": "coins = [1, 2, 5], amount = 11",
+        "expected_output": "3"
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "display_input": "coins = [2], amount = 3",
+        "expected_output": "-1"
+      },
+      {
+        "input": "coins = [1, 2], amount = 4",
+        "display_input": "coins = [1, 2], amount = 4",
+        "expected_output": "2"
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "title": "Minimum Number of Platforms Required for Train Schedule",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minPlatforms(self, arrival: list[float], departure: list[float]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arrival = list(map(float, lines[0].strip().split()))\n    departure = list(map(float, lines[1].strip().split()))\n    \n    result = Solution().minPlatforms(arrival, departure)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "arrival = [9:00, 9:40, 9:50, 11:00, 15:00, 18:00]\ndeparture = [9:10, 12:00, 11:20, 11:30, 19:00, 20:00]",
+        "display_input": "arrival = [9:00, 9:40, 9:50, 11:00, 15:00, 18:00]\ndeparture = [9:10, 12:00, 11:20, 11:30, 19:00, 20:00]",
+        "expected_output": "3"
+      },
+      {
+        "input": "arrival = [0:00, 1:00, 2:00, 3:00]\ndeparture = [0:15, 3:00, 2:30, 4:00]",
+        "display_input": "arrival = [0:00, 1:00, 2:00, 3:00]\ndeparture = [0:15, 3:00, 2:30, 4:00]",
+        "expected_output": "2"
+      },
+      {
+        "input": "arrival = [9:00]\ndeparture = [10:00]",
+        "display_input": "arrival = [9:00]\ndeparture = [10:00]",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "title": "Partition Array for Maximum Sum (LeetCode - 1043)",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys\nfrom typing import List\n\nclass Solution:\n    def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    arr = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    \n    result = Solution().maxSumAfterPartitioning(arr, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [1, 15, 7, 9, 2, 5, 10]",
+        "display_input": "nums = [1, 15, 7, 9, 2, 5, 10]",
+        "expected_output": "84"
+      },
+      {
+        "input": "nums = [1, 4, 1, 5, 7, 3, 6, 1, 9, 9, 3]",
+        "display_input": "nums = [1, 4, 1, 5, 7, 3, 6, 1, 9, 9, 3]",
+        "expected_output": "83"
+      },
+      {
+        "input": "nums = [1]",
+        "display_input": "nums = [1]",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "title": "Climbing Stairs with Limited Steps",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def climbStairs(self, n: int, k: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    n = int(lines[0].strip())\n    k = int(lines[1].strip())\n    \n    result = Solution().climbStairs(n, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "3\n2",
+        "display_input": "3\n2",
+        "expected_output": "3"
+      },
+      {
+        "input": "5\n3",
+        "display_input": "5\n3",
+        "expected_output": "5"
+      },
+      {
+        "input": "7\n4",
+        "display_input": "7\n4",
+        "expected_output": "21"
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "title": "Longest Increasing Subsequence with Cost",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def solve(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().split()))\n    result = Solution().solve(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[[1, 2, 3],\n[5, 1, 0]]",
+        "display_input": "arg1 = [1,2,3]\\narg2 = [5,1,0]",
+        "expected_output": "2"
+      },
+      {
+        "input": "[[10, 20, 10, 30, 20, 50],\n[1, 5, 3, 6, 2, 7]]",
+        "display_input": "arg1 = [10,20,10,30,20,50]\\narg2 = [1,5,3,6,2,7]",
+        "expected_output": "4"
+      },
+      {
+        "input": "[[3, 10, 2, 20, 7],\n[5, 2, 8, 5, 4]]",
+        "display_input": "arg1 = [3,10,2,20,7]\\narg2 = [5,2,8,5,4]",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "title": "Word Break with Limited Repetitions",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def wordBreak(self, s: str, wordDict: List[str], k: int) -> bool:\n        pass",
+    "driver_python": "import sys\nfrom typing import List\n\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str], k: int) -> bool:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    s = lines[0].strip()\n    wordDict = lines[1].strip().split(',')\n    k = int(lines[2].strip())\n    wordDict = [word.strip() for word in wordDict]\n    result = Solution().wordBreak(s, wordDict, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "\"leetcodes\"\n[k: 2]\n[\"leet\", \"code\", \"codel\", \"s\", \"e\", \"leetc\"]",
+        "display_input": "\"leetcodes\"\n[k: 2]\n[\"leet\", \"code\", \"codel\", \"s\", \"e\", \"leetc\"]",
+        "expected_output": "true"
+      },
+      {
+        "input": "\"catsandog\",[k: 2],{\"cats\", \"dog\", \"sand\", \"and\", \"cat\"}",
+        "display_input": "\"catsandog\",[k: 2],{\"cats\", \"dog\", \"sand\", \"and\", \"cat\"}",
+        "expected_output": "true"
+      },
+      {
+        "input": "\"aaaaaab\"\n[k: 3]\n[\"aaaa\", \"a\", \"b\"]",
+        "display_input": "\"aaaaaab\"\n[k: 3]\n[\"aaaa\", \"a\", \"b\"]",
+        "expected_output": "false"
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "title": "Flood Fill",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def floodFill(self, image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:\n        pass",
+    "driver_python": "import sys\n\ndef parse_matrix(s):\n    rows = s.strip('[]').split('],[')\n    matrix = []\n    for row in rows:\n        matrix.append([int(x) for x in row.split(',')])\n    return matrix\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    image = parse_matrix(lines[0])\n    sr = int(lines[1])\n    sc = int(lines[2])\n    color = int(lines[3])\n    result = Solution().floodFill(image, sr, sc, color)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[[1,1,1],\n[1,1,0],\n[1,0,1]],\n1, 1, 2",
+        "display_input": "[[1,1,1],\n[1,1,0],\n[1,0,1]],\n1, 1, 2",
+        "expected_output": "[[[2,2,2],[2,2,0],[2,0,1]], 1, 1, 2]"
+      },
+      {
+        "input": "[[0,0,0],\n[0,0,0],\n[0,0,0]],\n0, 0, 2",
+        "display_input": "[[0,0,0],\n[0,0,0],\n[0,0,0]],\n0, 0, 2",
+        "expected_output": "[[[2,2,2],[2,2,2],[2,2,2]], 0, 0, 2]"
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "title": "Course Schedule II",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findOrder(self, numCourses: int, prerequisites: list[list[int]], totalVisits: int) -> list[int]:\n        pass\n",
+    "driver_python": "import sys\n\ndef parse_input(input_string):\n    lines = input_string.strip().split('\\n')\n    numCourses = int(lines[0])\n    prerequisites = []\n    for i in range(1, len(lines) - 1):\n        prerequisites.append(list(map(int, lines[i].split())))\n    totalVisits = int(lines[-1])\n    return numCourses, prerequisites, totalVisits\n\nif __name__ == '__main__':\n    input_data = sys.stdin.read()\n    numCourses, prerequisites, totalVisits = parse_input(input_data)\n    result = Solution().findOrder(numCourses, prerequisites, totalVisits)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "{'numCourses': 4, 'prerequisites': [[1, 0], [2, 0], [3, 1], [3, 2]], 'totalVisits': 2, 'visitTypes': [2, 1, 2, 1]}",
+        "display_input": "{'numCourses': 4, 'prerequisites': [[1, 0], [2, 0], [3, 1], [3, 2]], 'totalVisits': 2, 'visitTypes': [2, 1, 2, 1]}",
+        "expected_output": "[0, 1, 3, 2]"
+      },
+      {
+        "input": "{'numCourses': 2, 'prerequisites': [[0, 1]], 'totalVisits': 2, 'visitTypes': [1, 1]}",
+        "display_input": "{'numCourses': 2, 'prerequisites': [[0, 1]], 'totalVisits': 2, 'visitTypes': [1, 1]}",
+        "expected_output": "[]"
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "title": "Detect Cycles in an Undirected Graph",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def hasCycle(self, n: int, undirectedEdges: list[list[int]]) -> bool:\n        pass",
+    "driver_python": "import sys\n\ndef parse_input(input_string):\n    lines = input_string.strip().split('\\n')\n    n = int(lines[0])\n    undirectedEdges = []\n    for line in lines[1:]:\n        u, v = map(int, line.split())\n        undirectedEdges.append([u, v])\n    return n, undirectedEdges\n\nif __name__ == '__main__':\n    input_data = sys.stdin.read()\n    n, undirectedEdges = parse_input(input_data)\n    result = Solution().hasCycle(n, undirectedEdges)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "{'n': 5, 'undirectedEdges': [[0, 1], [1, 2], [2, 0], [3, 4]]}",
+        "display_input": "{'n': 5, 'undirectedEdges': [[0, 1], [1, 2], [2, 0], [3, 4]]}",
+        "expected_output": "True (Cycle exists in nodes: 0, 1, 2)"
+      },
+      {
+        "input": "{'n': 4, 'undirectedEdges': [[0, 1], [1, 2], [1, 3]]}",
+        "display_input": "{'n': 4, 'undirectedEdges': [[0, 1], [1, 2], [1, 3]]}",
+        "expected_output": "False"
+      },
+      {
+        "input": "{'n': 6, 'undirectedEdges': [[0, 1], [1, 5], [2, 3], [3, 4], [4, 2]]}",
+        "display_input": "{'n': 6, 'undirectedEdges': [[0, 1], [1, 5], [2, 3], [3, 4], [4, 2]]}",
+        "expected_output": "True (Cycles exist in nodes: 0, 1, 5 and 2, 3, 4)"
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "title": "Shortest Path in Binary Matrix",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def shortestPathBinaryMatrix(self, grid: list[list[int]]) -> int:\n        pass",
+    "driver_python": "import sys\nfrom collections import deque\n\ndef shortest_path_binary_matrix(grid):\n    n = len(grid)\n    if grid[0][0] == 1 or grid[n-1][n-1] == 1:\n        return -1\n\n    q = deque([(0, 0, 1)])\n    grid[0][0] = 1  # Mark as visited\n    \n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]\n\n    while q:\n        row, col, dist = q.popleft()\n\n        if row == n - 1 and col == n - 1:\n            return dist\n\n        for dr, dc in directions:\n            new_row, new_col = row + dr, col + dc\n\n            if 0 <= new_row < n and 0 <= new_col < n and grid[new_row][new_col] == 0:\n                grid[new_row][new_col] = 1  # Mark as visited\n                q.append((new_row, new_col, dist + 1))\n\n    return -1\n\nif __name__ == '__main__':\n    grid = []\n    for line in sys.stdin:\n        row = list(map(int, line.strip().split()))\n        grid.append(row)\n\n    print(shortest_path_binary_matrix(grid))",
+    "test_cases": [
+      {
+        "input": "{'grid': [[0, 0, 0],\n[1, 1, 0],\n[1, 1, 1]]}",
+        "display_input": "{'grid': [[0, 0, 0],\n[1, 1, 0],\n[1, 1, 1]]}",
+        "expected_output": "4"
+      },
+      {
+        "input": "{'grid': [[0, 0, 0],\n[1, 1, 1],\n[0, 0, 1]]}",
+        "display_input": "{'grid': [[0, 0, 0],\n[1, 1, 1],\n[0, 0, 1]]}",
+        "expected_output": "-1"
+      },
+      {
+        "input": "{'grid': [[1, 1, 0, 0],\n[1, 1, 0, 1],\n[0, 0, 0, 1],\n[0, 0, 1, 1]]}",
+        "display_input": "{'grid': [[1, 1, 0, 0],\n[1, 1, 0, 1],\n[0, 0, 0, 1],\n[0, 0, 1, 1]]}",
+        "expected_output": "5"
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "title": "Tree Node Construction from Level Order",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def buildTree(self, levelOrder: list[int | None]) -> TreeNode | None:\n        pass",
+    "driver_python": "import sys\nfrom collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef stringToTreeNode(input):\n    if not input:\n        return None\n\n    inputValues = [s.strip() for s in input.strip('[]').split(',')]\n    root = TreeNode(int(inputValues[0]))\n    nodeQueue = [root]\n    front = 0\n    index = 1\n    while index < len(inputValues):\n        node = nodeQueue[front]\n        front = front + 1\n\n        item = inputValues[index]\n        index = index + 1\n        if item != \"null\":\n            leftNumber = int(item)\n            node.left = TreeNode(leftNumber)\n            nodeQueue.append(node.left)\n\n        if index >= len(inputValues):\n            break\n\n        item = inputValues[index]\n        index = index + 1\n        if item != \"null\":\n            rightNumber = int(item)\n            node.right = TreeNode(rightNumber)\n            nodeQueue.append(node.right)\n    return root\n\ndef treeNodeToString(root):\n    if not root:\n        return \"[]\"\n\n    output = \"\"\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n\n        if not node:\n            output += \"null, \"\n            continue\n\n        output += str(node.val) + \", \"\n        queue.append(node.left)\n        queue.append(node.right)\n    return \"[\" + output[:-2] + \"]\"\n\nif __name__ == '__main__':\n    levelOrder_str = sys.stdin.read().strip()\n    levelOrder = []\n    for s in levelOrder_str.strip('[]').split(','):\n        s = s.strip()\n        if s == 'null':\n            levelOrder.append(None)\n        else:\n            levelOrder.append(int(s))\n\n    result = Solution().buildTree(levelOrder)\n    print(treeNodeToString(result))",
+    "test_cases": [
+      {
+        "input": "[3,9,20,null,null,15,7]",
+        "display_input": "arg1 = 3\\narg2 = 9\\narg3 = 20\\narg4 = null\\narg5 = null\\narg6 = 15\\narg7 = 7",
+        "expected_output": "Tree constructed successfully with root as 3 and children as per input."
+      },
+      {
+        "input": "[]",
+        "display_input": "[]",
+        "expected_output": "Empty tree returned."
+      },
+      {
+        "input": "[1]",
+        "display_input": "input = 1",
+        "expected_output": "Tree constructed successfully with root as 1."
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "title": "Check if Binary Tree is Symmetric",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def isSymmetric(self, root: TreeNode) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] is None:\n        return None\n    \n    root = TreeNode(nodes[0])\n    queue = [root]\n    i = 1\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.left = TreeNode(nodes[i])\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] is not None:\n            node.right = TreeNode(nodes[i])\n            queue.append(node.right)\n        i += 1\n    return root\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nodes = lines[0].strip().split(',')\n    nodes = [int(x) if x != 'null' else None for x in nodes]\n    \n    root = build_tree(nodes)\n    \n    result = Solution().isSymmetric(root)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "Binary tree: [1,2,2,3,4,4,3]",
+        "display_input": "Binary tree: [1,2,2,3,4,4,3]",
+        "expected_output": "true"
+      },
+      {
+        "input": "Binary tree: [1,2,2,null,3,null,3]",
+        "display_input": "Binary tree: [1,2,2,null,3,null,3]",
+        "expected_output": "false"
+      },
+      {
+        "input": "Single node tree: [1]",
+        "display_input": "Single node tree: [1]",
+        "expected_output": "true"
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "title": "Count Nodes with Even Value in BST",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def countEvenNodes(self, root: TreeNode) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] is None:\n        return None\n\n    root = TreeNode(nodes[0])\n    queue = [root]\n    i = 1\n\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n\n        if i < len(nodes) and nodes[i] is not None:\n            node.left = TreeNode(nodes[i])\n            queue.append(node.left)\n        i += 1\n\n        if i < len(nodes) and nodes[i] is not None:\n            node.right = TreeNode(nodes[i])\n            queue.append(node.right)\n        i += 1\n\n    return root\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nodes = [int(x) if x != 'null' else None for x in lines[0].strip().strip('[]').split(',')]\n    root = build_tree(nodes)\n    print(Solution().countEvenNodes(root))",
+    "test_cases": [
+      {
+        "input": "BST: [2,3,4,null,null,5,6]",
+        "display_input": "BST: [2,3,4,null,null,5,6]",
+        "expected_output": "2"
+      },
+      {
+        "input": "BST: [1]",
+        "display_input": "BST: [1]",
+        "expected_output": "0"
+      },
+      {
+        "input": "BST: [4,2,5,1,3,null,null,7]",
+        "display_input": "BST: [4,2,5,1,3,null,null,7]",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def maxDepth(self, root: TreeNode) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] == 'null':\n        return None\n    \n    root = TreeNode(int(nodes[0]))\n    queue = [root]\n    i = 1\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.left = TreeNode(int(nodes[i]))\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.right = TreeNode(int(nodes[i]))\n            queue.append(node.right)\n        i += 1\n    return root\n\nif __name__ == '__main__':\n    line = sys.stdin.readline().strip()\n    nodes = line.split()\n    root = build_tree(nodes)\n    \n    result = Solution().maxDepth(root)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "root = [3,9,20,null,null,15,7]",
+        "display_input": "root = [3,9,20,null,null,15,7]",
+        "expected_output": "3"
+      },
+      {
+        "input": "root = [1,null,2]",
+        "display_input": "root = [1,null,2]",
+        "expected_output": "2"
+      },
+      {
+        "input": "root = []",
+        "display_input": "root = []",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "title": "Lowest Common Ancestor of a Binary Tree",
+    "difficulty": "Medium",
+    "starter_python": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        pass",
+    "driver_python": "import sys\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_tree(nodes):\n    if not nodes or nodes[0] == 'null':\n        return None\n    \n    root = TreeNode(int(nodes[0]))\n    queue = [root]\n    i = 1\n    while queue and i < len(nodes):\n        node = queue.pop(0)\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.left = TreeNode(int(nodes[i]))\n            queue.append(node.left)\n        i += 1\n        \n        if i < len(nodes) and nodes[i] != 'null':\n            node.right = TreeNode(int(nodes[i]))\n            queue.append(node.right)\n        i += 1\n    return root\n\ndef find_node(root, val):\n    if not root:\n        return None\n    if root.val == val:\n        return root\n    left = find_node(root.left, val)\n    if left:\n        return left\n    return find_node(root.right, val)\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    tree_nodes = lines[0].strip().split()\n    p_val = int(lines[1].strip())\n    q_val = int(lines[2].strip())\n    \n    root = build_tree(tree_nodes)\n    p = find_node(root, p_val)\n    q = find_node(root, q_val)\n    \n    result = Solution().lowestCommonAncestor(root, p, q)\n    \n    if result:\n        print(result.val)\n    else:\n        print(None)",
+    "test_cases": [
+      {
+        "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+        "display_input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+        "expected_output": "3"
+      },
+      {
+        "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+        "display_input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+        "expected_output": "5"
+      },
+      {
+        "input": "root = [1,2]\n\np = 1\n\nq = 2",
+        "display_input": "root = [1,2]\n\np = 1\n\nq = 2",
+        "expected_output": "1"
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "title": "Subsets",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def subsets(self, nums: list[int]) -> list[list[int]]:\n        pass",
+    "driver_python": "import sys\nimport json\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = json.loads(lines[0].strip())\n    result = Solution().subsets(nums)\n    print(json.dumps(result))",
+    "test_cases": [
+      {
+        "input": "[1,\n 2,\n 3]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3",
+        "expected_output": "[[3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], [1,2,3],[], [1,2,3]]"
+      },
+      {
+        "input": "[0]",
+        "display_input": "input = 0",
+        "expected_output": "[[0], []]"
+      },
+      {
+        "input": "[1,\n2,\n-1,\n3]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = -1\\narg4 = 3",
+        "expected_output": "[[1], [2,-1,3], [2], [-1,3], [-1], [3], [3,-1,1], [1,2,-1], [1,2], [1,-1,3], [1,3], [1,-1], [2,3], [2,-1], [1,2,-1,3], [-1,3,1,2], [1,2,-1,3,1,2,-1,3], []]"
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "title": "Generate Parentheses",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def generateParenthesis(self, n: int) -> list[str]:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def generateParenthesis(self, n: int) -> list[str]:\n        def backtrack(s='', left=0, right=0):\n            if len(s) == 2 * n:\n                result.append(s)\n                return\n            if left < n:\n                backtrack(s + '(', left + 1, right)\n            if right < left:\n                backtrack(s + ')', left, right + 1)\n\n        result = []\n        backtrack()\n        return result\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().generateParenthesis(n)\n    for s in result:\n        print(s)",
+    "test_cases": [
+      {
+        "input": "3",
+        "display_input": "3",
+        "expected_output": "[( ( ) ) ( ) , ( ( ( ) ) ) , ( ( ) ( ) ) , ( ( ) ) ( ) , ( ) ( ( ) ) , ( ) ( ( ) ) ( ) , ...]"
+      },
+      {
+        "input": "1",
+        "display_input": "1",
+        "expected_output": "[( )]"
+      },
+      {
+        "input": "2",
+        "display_input": "2",
+        "expected_output": "[( ( ) ) , ( () () )]"
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "title": "Permutations of a String",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def get_permutations(self, s: str) -> list[str]:\n        pass",
+    "driver_python": "import sys\nfrom itertools import permutations\n\nclass Solution_Correct:\n    def get_permutations(self, s: str) -> list[str]:\n        perms = [''.join(p) for p in permutations(s)]\n        return sorted(list(set(perms)))\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().get_permutations(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "\"abc\"\n",
+        "display_input": "abc",
+        "expected_output": "[[\"abc\", \"acb\", \"bac\", \"bca\", \"cab\", \"cba\"]]"
+      },
+      {
+        "input": "\"aab\"\n",
+        "display_input": "aab",
+        "expected_output": "[[\"aab\", \"aba\", \"aab\", \"baa\", \"aab\", \"aba\"]]"
+      },
+      {
+        "input": "\"aba\"\n",
+        "display_input": "aba",
+        "expected_output": "[[\"aab\", \"aba\", \"aab\", \"baa\", \"aab\", \"aba\"]]"
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "title": "Subset Sum II",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def subsetSum2(self, nums: list[int], T: int) -> list[list[int]]:\n        pass\n",
+    "driver_python": "import sys\n\ndef parse_input(input_str):\n    lines = input_str.strip().split('\\n')\n    nums = list(map(int, lines[0].split()))\n    T = int(lines[1])\n    return nums, T\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read()\n    nums, T = parse_input(input_str)\n    result = Solution().subsetSum2(nums, T)\n    \n    # Sort each subset and the list of subsets for consistent output\n    for subset in result:\n        subset.sort()\n    result.sort()\n\n    for subset in result:\n        print(*subset)\n",
+    "test_cases": [
+      {
+        "input": "nums = [1, 2, 2, 3], T = 5",
+        "display_input": "nums = [1, 2, 2, 3], T = 5",
+        "expected_output": "[[1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]"
+      },
+      {
+        "input": "nums = [0, 0, 0, 1, 1], T = 1",
+        "display_input": "nums = [0, 0, 0, 1, 1], T = 1",
+        "expected_output": "[[0], [0, 0], [0, 0, 0], [1], [1, 1]]"
+      },
+      {
+        "input": "nums = [5, 1, 4, 2], T = 3",
+        "display_input": "nums = [5, 1, 4, 2], T = 3",
+        "expected_output": "[[1], [1, 2], [2]]"
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "title": "Word Search II",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        pass",
+    "driver_python": "import sys\nfrom typing import List\n\nclass Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    board_str = lines[0].strip()\n    board = eval(board_str)\n    words_str = lines[1].strip()\n    words = eval(words_str)\n    \n    result = Solution().findWords(board, words)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "board = [['o', 'a', 'a', 'n'], ['e', 't', 'a', 'e'], ['i', 'h', 'k', 'r'], ['i', 'f', 'l', 'v']], words = ['oath', 'pea', 'eat', 'rain']",
+        "display_input": "board = [['o', 'a', 'a', 'n'], ['e', 't', 'a', 'e'], ['i', 'h', 'k', 'r'], ['i', 'f', 'l', 'v']], words = ['oath', 'pea', 'eat', 'rain']",
+        "expected_output": "['oath', 'pea', 'eat', 'rain']"
+      },
+      {
+        "input": "board = [\n  ['a', 'b'],\n  ['c', 'd']\n], words = ['abc', 'cd']",
+        "display_input": "board = [\n  ['a', 'b'],\n  ['c', 'd']\n], words = ['abc', 'cd']",
+        "expected_output": "['cd']"
+      },
+      {
+        "input": "board = [\n  ['a']\n], words = ['a']",
+        "display_input": "board = [\n  ['a']\n], words = ['a']",
+        "expected_output": "['a']"
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "title": "Fixed Size Sliding Window Maximum",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    result = Solution().maxSlidingWindow(nums, k)\n    print(' '.join(map(str, result)))",
+    "test_cases": [
+      {
+        "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "display_input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "expected_output": "[5,5,6,7]"
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "display_input": "nums = [1], k = 1",
+        "expected_output": "[1]"
+      },
+      {
+        "input": "nums = [9,11,12,5,8,7,4], k = 2",
+        "display_input": "nums = [9,11,12,5,8,7,4], k = 2",
+        "expected_output": "[12,12,12,9,8,8]"
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "title": "Subarray Sums with Constraints",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def subarraySum(self, nums: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    result = Solution().subarraySum(nums, k)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "nums = [1,2,3,4], k = 3",
+        "display_input": "nums = [1,2,3,4], k = 3",
+        "expected_output": "2"
+      },
+      {
+        "input": "nums = [1,2,1,3,1,2], k = 3",
+        "display_input": "nums = [1,2,1,3,1,2], k = 3",
+        "expected_output": "3"
+      },
+      {
+        "input": "nums = [1], k = 0",
+        "display_input": "nums = [1], k = 0",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "title": "Sliding Window Median",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def medianSlidingWindow(self, nums: list[int], k: int) -> list[float]:\n        pass\n",
+    "driver_python": "import sys\n\nclass Solution:\n    def medianSlidingWindow(self, nums: list[int], k: int) -> list[float]:\n        pass\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    result = Solution().medianSlidingWindow(nums, k)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "nums = [1,3,-1,3,5], k = 3",
+        "display_input": "nums = [1,3,-1,3,5], k = 3",
+        "expected_output": "[3,3,3,5]"
+      },
+      {
+        "input": "nums = [1,4,2,3], k = 4",
+        "display_input": "nums = [1,4,2,3], k = 4",
+        "expected_output": "[2.5]"
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "display_input": "nums = [1], k = 1",
+        "expected_output": "[1]"
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "title": "Minimum Size Subarray Sum",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minSubArrayLen(self, target: int, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    target = int(lines[0].strip())\n    nums = list(map(int, lines[1].strip().split()))\n    \n    result = Solution().minSubArrayLen(target, nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[2,3,1,2,4,3]\n7",
+        "display_input": "[2,3,1,2,4,3]\n7",
+        "expected_output": "2"
+      },
+      {
+        "input": "[1,4,4]\n11",
+        "display_input": "[1,4,4]\n11",
+        "expected_output": "3"
+      },
+      {
+        "input": "[1,1,1]\n4",
+        "display_input": "[1,1,1]\n4",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "title": "Heapify Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def heapify(self, arr: list[int]) -> None:\n        pass\n",
+    "driver_python": "import sys\n\ndef heapify(arr, n, i):\n    largest = i\n    l = 2 * i + 1\n    r = 2 * i + 2\n\n    if l < n and arr[i] > arr[l]:\n        largest = l\n\n    if r < n and arr[largest] > arr[r]:\n        largest = r\n\n    if largest != i:\n        arr[i], arr[largest] = arr[largest], arr[i]\n        heapify(arr, n, largest)\n\n\ndef build_heap(arr):\n    n = len(arr)\n    for i in range(n // 2 - 1, -1, -1):\n        heapify(arr, n, i)\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read()\n    if input_str:\n        arr = list(map(int, input_str.split()))\n        Solution().heapify(arr)\n        build_heap(arr)\n        print(*arr)\n",
+    "test_cases": [
+      {
+        "input": "[3,\n6,\n5,\n0,\n8,\n2]",
+        "display_input": "arg1 = 3\\narg2 = 6\\narg3 = 5\\narg4 = 0\\narg5 = 8\\narg6 = 2",
+        "expected_output": "[0,2,5,3,8,6]  // Represents a min-heap with root at index 0"
+      },
+      {
+        "input": "[4,\n10,\n3,\n5,\n1]",
+        "display_input": "arg1 = 4\\narg2 = 10\\narg3 = 3\\narg4 = 5\\narg5 = 1",
+        "expected_output": "[1,3,5,4,10]"
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "title": "Find Kth Largest Element in Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findKthLargest(self, nums: list[int], k: int) -> int:\n        pass",
+    "driver_python": "import sys\nimport heapq\n\nclass Solution:\n    def findKthLargest(self, nums: list[int], k: int) -> int:\n        return heapq.nlargest(k, nums)[-1]\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    k = int(lines[1].strip())\n    print(Solution().findKthLargest(nums, k))",
+    "test_cases": [
+      {
+        "input": "[3,2,1,5,6,4]\n2",
+        "display_input": "[3,2,1,5,6,4]\n2",
+        "expected_output": "5"
+      },
+      {
+        "input": "[7,10,4,3,20,15]\n3",
+        "display_input": "[7,10,4,3,20,15]\n3",
+        "expected_output": "10"
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "title": "Merge K Sorted Lists using Max-Heap",
+    "difficulty": "Easy",
+    "starter_python": "import heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution:\n    def mergeKLists(self, lists: list[ListNode]) -> ListNode:\n        pass",
+    "driver_python": "import sys\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef stringToListNode(input):\n    # Generate list from the input\n    numbers = [int(x) for x in input.strip('[]').split(',') if x]\n    \n    # Now convert that list into linked list\n    dummyRoot = ListNode(0)\n    ptr = dummyRoot\n    for number in numbers:\n        ptr.next = ListNode(number)\n        ptr = ptr.next\n\n    ptr = dummyRoot.next\n    return ptr\n\ndef listNodeToString(node):\n    if not node:\n        return \"[]\"\n\n    result = \"\"\n    while node:\n        result += str(node.val) + \", \"\n        node = node.next\n    return \"[\" + result[:-2] + \"]\"\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    lists_input = []\n    i = 0\n    while i < len(lines):\n        line = lines[i].strip()\n        if line:\n            lists_input.append(stringToListNode(line))\n        i += 1\n\n    result = Solution().mergeKLists(lists_input)\n    print(listNodeToString(result))",
+    "test_cases": [
+      {
+        "input": "[1,3,5]\n[2,4,6]\n[0,7,8]",
+        "display_input": "[1,3,5]\n[2,4,6]\n[0,7,8]",
+        "expected_output": "[0,1,2,3,4,5,6,7,8]"
+      },
+      {
+        "input": "[10]\n[20]\n[30,40]\n[5]",
+        "display_input": "[10]\n[20]\n[30,40]\n[5]",
+        "expected_output": "[5,10,20,30,40]"
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "title": "Merge K Sorted Lists",
+    "difficulty": "Medium",
+    "starter_python": "from typing import List, Optional\n\n# Definition for singly-linked list.\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nclass Solution:\n    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n        pass",
+    "driver_python": "import sys\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef stringToListNode(input):\n    # Generate list from the input\n    numbers = [int(x) for x in input.strip('[]').split(',') if x]\n    \n    # Now convert that list into linked list\n    dummyRoot = ListNode(0)\n    ptr = dummyRoot\n    for number in numbers:\n        ptr.next = ListNode(number)\n        ptr = ptr.next\n\n    ptr = dummyRoot.next\n    return ptr\n\ndef listNodeToString(node):\n    if not node:\n        return \"[]\"\n\n    result = \"\"\n    while node:\n        result += str(node.val) + \", \"\n        node = node.next\n    return \"[\" + result[:-2] + \"]\"\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    lists_input = []\n    for line in lines:\n        lists_input.append(stringToListNode(line))\n\n    result = Solution().mergeKLists(lists_input)\n    print(listNodeToString(result))",
+    "test_cases": [
+      {
+        "input": "[1->4->5, 1->3->4, 2->6]\n3",
+        "display_input": "[1->4->5, 1->3->4, 2->6]\n3",
+        "expected_output": "[1, 1, 2, 3, 4, 4, 5, 6]"
+      },
+      {
+        "input": "[]\n0",
+        "display_input": "[]\n0",
+        "expected_output": "[]"
+      },
+      {
+        "input": "[0]\n1",
+        "display_input": "[0]\n1",
+        "expected_output": "[0]"
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "title": "Reverse an Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseArray(self, arr: list[int]) -> list[int]:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    input_str = sys.stdin.read().strip()\n    arr = [int(x) for x in input_str.split(',')]\n    result = Solution().reverseArray(arr)\n    print(','.join(map(str, result)))",
+    "test_cases": [
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 4\\narg5 = 5",
+        "expected_output": "[5, 4, 3, 2, 1]"
+      },
+      {
+        "input": "[-1, -2, -3, -4]",
+        "display_input": "arg1 = -1\\narg2 = -2\\narg3 = -3\\narg4 = -4",
+        "expected_output": "[-4, -3, -2, -1]"
+      },
+      {
+        "input": "[1, 2]",
+        "display_input": "arg1 = 1\\narg2 = 2",
+        "expected_output": "[2, 1]"
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "title": "Find the Maximum Consecutive Ones",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def findMaxConsecutiveOnes(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    result = Solution().findMaxConsecutiveOnes(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[1, 1, 0, 1, 1, 1]",
+        "display_input": "arg1 = 1\\narg2 = 1\\narg3 = 0\\narg4 = 1\\narg5 = 1\\narg6 = 1",
+        "expected_output": "3"
+      },
+      {
+        "input": "[1, 0, 1, 1, 0, 1, 1, 1]",
+        "display_input": "arg1 = 1\\narg2 = 0\\narg3 = 1\\narg4 = 1\\narg5 = 0\\narg6 = 1\\narg7 = 1\\narg8 = 1",
+        "expected_output": "3"
+      },
+      {
+        "input": "[0]",
+        "display_input": "input = 0",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "id": 176,
+    "title": "Remove Duplicates from Sorted Array",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def removeDuplicates(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def removeDuplicates(self, nums: list[int]) -> int:\n        i = 0\n        for j in range(1, len(nums)):\n            if nums[i] != nums[j]:\n                i += 1\n                nums[i] = nums[j]\n        return i + 1\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    \n    solution = Solution()\n    k = solution.removeDuplicates(nums)\n    \n    print(k)\n    print(*nums[:k])",
+    "test_cases": [
+      {
+        "input": "[1, 1, 2]",
+        "display_input": "arg1 = 1\\narg2 = 1\\narg3 = 2",
+        "expected_output": "2"
+      },
+      {
+        "input": "[0, 0, 1, 1, 1, 2, 2, 3, 3, 4]",
+        "display_input": "arg1 = 0\\narg2 = 0\\narg3 = 1\\narg4 = 1\\narg5 = 1\\narg6 = 2\\narg7 = 2\\narg8 = 3\\narg9 = 3\\narg10 = 4",
+        "expected_output": "5"
+      },
+      {
+        "input": "[-1, 0, 0, 0, 0, 3, 3]",
+        "display_input": "arg1 = -1\\narg2 = 0\\narg3 = 0\\narg4 = 0\\narg5 = 0\\narg6 = 3\\narg7 = 3",
+        "expected_output": "4"
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "title": "Find the Duplicate in an Array",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def findDuplicate(self, nums: list[int]) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.read().strip().split()))\n    result = Solution().findDuplicate(nums)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[1, 3, 4, 2, 2]",
+        "display_input": "arg1 = 1\\narg2 = 3\\narg3 = 4\\narg4 = 2\\narg5 = 2",
+        "expected_output": "2"
+      },
+      {
+        "input": "[3, 1, 3, 4, 2]",
+        "display_input": "arg1 = 3\\narg2 = 1\\narg3 = 3\\narg4 = 4\\narg5 = 2",
+        "expected_output": "3"
+      },
+      {
+        "input": "[1, 2, 3, 4, 5, 3]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3\\narg4 = 4\\narg5 = 5\\narg6 = 3",
+        "expected_output": "3"
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "title": "Next Permutation",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def nextPermutation(self, nums: list[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def nextPermutation(self, nums: list[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Find the first decreasing element from the right\n        i = len(nums) - 2\n        while i >= 0 and nums[i] >= nums[i + 1]:\n            i -= 1\n\n        if i >= 0:\n            # Find the smallest element to the right of i that is greater than nums[i]\n            j = len(nums) - 1\n            while j >= 0 and nums[j] <= nums[i]:\n                j -= 1\n\n            # Swap nums[i] and nums[j]\n            nums[i], nums[j] = nums[j], nums[i]\n\n        # Reverse the subarray from i + 1 to the end\n        left = i + 1\n        right = len(nums) - 1\n        while left < right:\n            nums[left], nums[right] = nums[right], nums[left]\n            left += 1\n            right -= 1\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    Solution().nextPermutation(nums)\n    print(' '.join(map(str, nums)))",
+    "test_cases": [
+      {
+        "input": "[1, 2, 3]",
+        "display_input": "arg1 = 1\\narg2 = 2\\narg3 = 3",
+        "expected_output": "[1, 3, 2]"
+      },
+      {
+        "input": "[3, 2, 1]",
+        "display_input": "arg1 = 3\\narg2 = 2\\narg3 = 1",
+        "expected_output": "[1, 2, 3]"
+      },
+      {
+        "input": "[1, 1, 5]",
+        "display_input": "arg1 = 1\\narg2 = 1\\narg3 = 5",
+        "expected_output": "[1, 5, 1]"
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "title": "3Sum Closest",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def threeSumClosest(self, nums: list[int], target: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    nums = list(map(int, lines[0].strip().split()))\n    target = int(lines[1].strip())\n    result = Solution().threeSumClosest(nums, target)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "[-1, 2, 1, -4]\n1",
+        "display_input": "[-1, 2, 1, -4]\n1",
+        "expected_output": "2"
+      },
+      {
+        "input": "[0, 1, 2]\n3",
+        "display_input": "[0, 1, 2]\n3",
+        "expected_output": "3"
+      },
+      {
+        "input": "[1, 2, 4, 8, 16, 32, 64, 128]\n82",
+        "display_input": "[1, 2, 4, 8, 16, 32, 64, 128]\n82",
+        "expected_output": "82"
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "title": "Palindrome Checker",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys\nimport re\n\nclass SolutionWrapper:\n    def isPalindrome(self, s: str) -> bool:\n        return Solution().isPalindrome(s)\n\nif __name__ == '__main__':\n    input_str = sys.stdin.readline().strip()\n    result = SolutionWrapper().isPalindrome(input_str)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "A man, a plan, a canal: Panama",
+        "display_input": "A man, a plan, a canal: Panama",
+        "expected_output": "true"
+      },
+      {
+        "input": "race a car",
+        "display_input": "race a car",
+        "expected_output": "false"
+      },
+      {
+        "input": "No 'x' in Nixon",
+        "display_input": "No 'x' in Nixon",
+        "expected_output": "true"
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "title": "First Unique Character",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def firstUniqChar(self, s: str) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def firstUniqChar(self, s: str) -> int:\n        char_counts = {}\n        for char in s:\n            char_counts[char] = char_counts.get(char, 0) + 1\n        \n        for i, char in enumerate(s):\n            if char_counts[char] == 1:\n                return i\n        \n        return -1\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().firstUniqChar(s)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "leetcode",
+        "display_input": "leetcode",
+        "expected_output": "0"
+      },
+      {
+        "input": "loveleetcode",
+        "display_input": "loveleetcode",
+        "expected_output": "2"
+      },
+      {
+        "input": "aabb",
+        "display_input": "aabb",
+        "expected_output": "-1"
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "title": "Minimum Window Substring",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    lines = sys.stdin.readlines()\n    s = lines[0].strip()\n    t = lines[1].strip()\n    result = Solution().minWindow(s, t)\n    print(result)\n",
+    "test_cases": [
+      {
+        "input": "{'s': 'ADOBECODEBANC', 't': 'ABC'}",
+        "display_input": "{'s': 'ADOBECODEBANC', 't': 'ABC'}",
+        "expected_output": "BANC"
+      },
+      {
+        "input": "{'s': 'a', 't': 'a'}",
+        "display_input": "{'s': 'a', 't': 'a'}",
+        "expected_output": "a"
+      },
+      {
+        "input": "{'s': 'a', 't': 'b'}",
+        "display_input": "{'s': 'a', 't': 'b'}",
+        "expected_output": ""
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "title": "Factorial of a Number",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def factorial(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().factorial(n)\n    print(result)",
+    "test_cases": [
+      {
+        "input": "5",
+        "display_input": "5",
+        "expected_output": "120"
+      },
+      {
+        "input": "0",
+        "display_input": "0",
+        "expected_output": "1"
+      },
+      {
+        "input": "7",
+        "display_input": "7",
+        "expected_output": "5040"
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "title": "Sum of Digits in a Number",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def sum_digits(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def sum_digits(self, n: int) -> int:\n        if n == 0:\n            return 0\n        else:\n            return (n % 10) + self.sum_digits(n // 10)\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline())\n    print(Solution().sum_digits(n))",
+    "test_cases": [
+      {
+        "input": "1234",
+        "display_input": "1234",
+        "expected_output": "10"
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "title": "Fibonacci Number",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def fib(self, n: int) -> int:\n        pass",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline().strip())\n    result = Solution().fib(n)\n    print(result)",
+    "test_cases": []
+  },
+  {
+    "id": 186,
+    "title": "Reverse a String Using Stack",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def reverseString(self, s: str) -> str:\n        pass\n",
+    "driver_python": "import sys\n\nclass Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, item):\n        self.items.append(item)\n\n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n        else:\n            return None\n\n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n        else:\n            return None\n\n    def is_empty(self):\n        return len(self.items) == 0\n\n    def size(self):\n        return len(self.items)\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    \n    def reverse_string_with_stack(s):\n        stack = Stack()\n        for char in s:\n            stack.push(char)\n        \n        reversed_string = ''\n        while not stack.is_empty():\n            reversed_string += stack.pop()\n        \n        return reversed_string\n\n    class SolutionWrapper:\n        def reverseString(self, s: str) -> str:\n            return reverse_string_with_stack(s)\n\n    print(SolutionWrapper().reverseString(s))",
+    "test_cases": []
+  },
+  {
+    "id": 187,
+    "title": "Check for Valid Palindrome",
+    "difficulty": "Easy",
+    "starter_python": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        pass",
+    "driver_python": "import sys\n\nclass Solution:\n    def isPalindrome(self, s: str) -> bool:\n        new_string = ''.join(ch.lower() for ch in s if ch.isalnum())\n        stack = []\n        for char in new_string:\n            stack.append(char)\n        \n        reversed_string = ''\n        while stack:\n            reversed_string += stack.pop()\n        \n        return new_string == reversed_string\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().strip()\n    result = Solution().isPalindrome(s)\n    print(result)",
+    "test_cases": []
+  },
+  {
+    "id": 188,
+    "title": "Next Greater Element II",
+    "difficulty": "Medium",
+    "starter_python": "class Solution:\n    def nextGreaterElements(self, nums: list[int]) -> list[int]:\n        pass\n",
+    "driver_python": "import sys\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.readline().strip().split()))\n    result = Solution().nextGreaterElements(nums)\n    print(' '.join(map(str, result)))\n",
+    "test_cases": []
+  },
+  {
+    "id": 190,
+    "title": "Reverse a Queue",
+    "difficulty": "Easy",
+    "starter_python": "from collections import deque\n\nclass Solution:\n    def reverseQueue(self, queue: deque) -> deque:\n        pass\n",
+    "driver_python": "import sys\nfrom collections import deque\n\nif __name__ == '__main__':\n    input_str = sys.stdin.readline().strip()\n    input_list = [int(x) for x in input_str.split()]\n    queue = deque(input_list)\n    \n    result = Solution().reverseQueue(queue)\n    \n    if result:\n        print(*list(result))\n",
+    "test_cases": []
+  }
+]
